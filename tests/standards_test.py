@@ -26,7 +26,6 @@
 
 import unittest
 from codingerrors import run
-from codingerrors.utils import _hyph
 
 class TestStandards(unittest.TestCase):
     def test_dhsii2(self):
