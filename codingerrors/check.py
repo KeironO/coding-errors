@@ -33,7 +33,7 @@ def _check_rule_values(values, icd10s):
 
     for value in values:
         if value.endswith("X"):
-            truth = [x.startswith(value[:-1]) for x in icd10s]
+            truth = [x == value[:-1] for x in icd10s]
         elif len(value) == 3:
             truth = [x.startswith(value) for x in icd10s]
         else:
@@ -47,6 +47,8 @@ def _check_rule_values(values, icd10s):
 
 
 def _check_against_standard(returned_standard, icd10s, icd10):
+
+    print(returned_standard, icd10s, icd10)
     results = {}
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():

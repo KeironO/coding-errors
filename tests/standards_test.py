@@ -39,6 +39,9 @@ class TestStandards(unittest.TestCase):
         # Test to see whether unspecified anemia coded with unspecified leukemia returns an error
         self.assertIsNot(run(["D649", "C909"]), {"D649": {}})
 
+    def test_dcsix10(self):
+        print(run(["I50"]))
+        self.assertEqual(run(["I501"]), {"I501": {}})
 
 if __name__ == "__main__":
     unittest.main()

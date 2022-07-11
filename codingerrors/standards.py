@@ -35,58 +35,7 @@ from .utils import hyph
 # { : Must always be coded with
 
 standards_dict = {
-    # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
-    "DChS.II.2:0": "?D64:!C90-C95",
-    # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
-    "DCS.III.1:0": "?D573:!D56,D570,D571",
-    # COPD with Chest infection
-    "DCS.X.5:0": "?J440:!J22X",
-    # Chest infection and pneumonia
-    "DCS.X.5:1": "?J18:!J22",
-    # COPD with pneumonia
-    "DCS.X.5:2": "?J449:!J12-J18",
-    # COPD with Emphysema
-    "DCS.X.5:3": "?J449:!J439",
-    # Respiratory Failure
-    "DCS.X.7:0": "?J960,J961,J969:.5",
-    # Gastritis and duodenitis
-    "DCS.XI.4:0": "?K297:!K298",
-    # Multiple gestation
-    "DCS.XV.14:0": "?O30:{Z372-Z377",
-    # Parastoma hernia
-    "DCS.XI.5:0": "?K433,K435:{Z93",
-    # Delirum and Dementia
-    "DCS.V.3:0": "?F03X,F01,F02:!F050,F059",
-    # Amaurosis fugax
-    "DCS.VI.2:0": "?G453:!H54",
-    # Heart Failure CCF
-    "DCS.IX.10:0": "?I501,I509:!I500",
-    # Pulmonary Oedema
-    "DCS.IX.10:1": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
-    # Atherosclerosis 
-    "DCS.IX.14:0": "?I70:.5",
-    # Fifth character in Chapter XIX
-    "DCS.XIX.2:0": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
-    # Palliative care
-    "DCS.XXI.9:0": "?Z518:!Z515",
-    # DM should be either Type 1/Type 2 or unknown
-    "DCS.IV.1:0": "?E11,E14:!E10",
-    "DCS.IV.1:1": "?E11:!E14,E10",
-    "DCS.IV.1:2": "?E14:!E10,E11",
-    # External Causes 
-    "DChS.XX.1:0": "?V01-V99,Y01-Y98:&*",
-    # B972 without U071 
-    "DSC.XXII.5:COVID-19:0": "?U071:!B972",
-    # Signs, symptoms and abnormal laboratory findings
-    "DChS.XVIII:0": "?G40,G41;!R568",
-    # Constipation with ileus or obstruction
-    "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
-    # Neonatal Jaundice 
-    "FSCP:0": "?P072,P073:!P599",
-    # B95/B96/B97/B98 Never in primary position
-    "FSCP:1": "?B95-B98:&*",
-    # I350 should not be coded with I351
-    "FSCP:2": "?I351:!I350"
+    "DCS.IX.10:0": "?I501,I509:!I500,I50X"
 }
 
 
