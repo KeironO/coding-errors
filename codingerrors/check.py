@@ -27,7 +27,7 @@ from .standards import _build_standards_dict
 
 
 def _check_rule_values(values, icd10s):
-
+    
     mask_dict = {}
 
     for value in values:
@@ -44,11 +44,15 @@ def _check_rule_values(values, icd10s):
 
     return mask_dict
 
+def _cannot_have():
+    pass
+
 def _check_against_standard(returned_standard, icd10s):
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
-            mask_dict = _check_rule_values(values, icd10s)
-            
+            if rule in ["!"]:
+                mask_dict = _check_rule_values(values, icd10s)
+
 
 def run_check(icd10s: list, standards_dict = None):
     if standards_dict == None:
