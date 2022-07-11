@@ -33,6 +33,7 @@ from .utils import hyph
 #   # : Unless present
 # .n: Require's nth character
 # { : Must always be coded with
+# ~x..y: x character cannot be y
 
 standards_dict = {
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
@@ -81,12 +82,23 @@ standards_dict = {
     "DChS.XVIII:0": "?G40,G41;!R568",
     # Constipation with ileus or obstruction
     "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
+    # Musculoskeletal 5th Character
+    "DChS.XIII.1:0": "M00-M25,M40-M54,M60-M99:~5..9",
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
     "FSCP:1": "?B95-B98:&*",
     # I350 should not be coded with I351
-    "FSCP:2": "?I351:!I350"
+    "FSCP:2": "?I351:!I350",
+    # I080 coded with codes from I34 and I35
+    "FSCP:3": "?I34,I35:!I080",
+    # M479 should not be coded with 5th character of 2 cervical, 6 lumbar or 8 sacral
+    "FSCP:4": "?M4792, M4796,M4798:\*",
+    # Z722 should not be coded with F55, F19, F11,F12,F13,F14,F15,F16
+    "FSCP:5": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
+    # Z720 should not be coded with F171
+    "FSCP:6": "?F171:!Z720"
+    
 }
 
 

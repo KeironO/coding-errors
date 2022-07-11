@@ -48,7 +48,6 @@ def _check_rule_values(values, icd10s):
 
 def _check_against_standard(returned_standard, icd10s, icd10):
 
-    print(returned_standard, icd10s, icd10)
     results = {}
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
