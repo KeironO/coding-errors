@@ -16,7 +16,18 @@ You can install the development version directly from GitHub with:
 pip install git+https://github.com/KeironO/coding-errors
 ```
 
+
+## Usage
+
+```python
+>>> from codingerrors import run
+>>> run(["J440", "J22"])
+{'DCS.X.5:0': {'!': {'pass': False, 'relevant': ['J22']}}}
+```
+
 ### Standards
+
+Currently, this little tool accounts for the following standards:
 
 - DChS.II.2: Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
 - DCS.III.1: Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
@@ -40,14 +51,6 @@ pip install git+https://github.com/KeironO/coding-errors
 - DCS.XIV.5: no need to assign urethral obstruction N368 with N40X
 - DSC.V.7: Z72.0 tobacco use must not be coded
 - Four Step Coding Procedures : Neonatal Jaundice, B95/B96/B97/B98 never in primary position, I350 should not be coded with I351, I830 should not be coded with I831, K802 should not be coded with K81, Z721 should not be coded with F102, N13.2 Hydronephrosis with N20_
-
-## Usage
-
-```python
->>> from codingerrors import run
->>> run(["J440", "J22"])
-{'DCS.X.5:0': {'!': {'pass': False, 'relevant': ['J22']}}}
-```
 
 ## Bug reporting and feature suggestions
 
