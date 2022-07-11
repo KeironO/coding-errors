@@ -83,7 +83,13 @@ standards_dict = {
     # Constipation with ileus or obstruction
     "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Musculoskeletal 5th Character
-    "DChS.XIII.1:0": "M00-M25,M40-M54,M60-M99:~5..9",
+    "DChS.XIII.1:0": "?M00-M25,M40-M54,M60-M99:~5..9",
+    # no need to assign urethral obstruction N368 with N40X
+    "DCS.XIV.5:0" :"?N40X:!N368",
+    # Z72.0 tobacco use must not be coded
+    "DSC.V.7:0": "?Z720:\*"
+    
+    
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
@@ -97,7 +103,20 @@ standards_dict = {
     # Z722 should not be coded with F55, F19, F11,F12,F13,F14,F15,F16
     "FSCP:5": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # Z720 should not be coded with F171
-    "FSCP:6": "?F171:!Z720"
+    "FSCP:6": "?F171:!Z720",
+    # I350 should not be coded with I351
+    "FSCP:7": "?I351:!I350",
+    # I830 should not be coded with I831
+    "FSCP:8": "?I831:!I830",
+    # K802 should not be coded with K81
+    "FSCP:9": "?K81:!K802",
+    # Z721 should not be coded with F102
+    "FSCP:10": "?F102:!Z721",
+    # N13.2 Hydronephrosis with N20_
+    "FSCP:11": "?N132:!N20"
+
+    
+
     
 }
 
