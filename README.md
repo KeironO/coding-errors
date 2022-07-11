@@ -31,6 +31,12 @@ pip install git+https://github.com/KeironO/coding-errors
 - DCS.IX.14: Atherosclerosis
 - DCS.XIX.2: Fifth character in Chapter XIX
 - DCS.XXI.9: Palliative care
+- DCS.IV.1: DM should be either Type 1/Type 2 or unknown
+- DChS.XX.1: External Causes 
+- DSC.XXII.5:COVID-19: B972 without U071 
+- DChS.XVIII: Signs, symptoms and abnormal laboratory findings
+- DChS.XI.1: Constipation with ileus or obstruction
+- Four Step Coding Procedures : Neonatal Jaundice, B95/B96/B97/B98 never in primary position, I350 should not be coded with I351
 
 ## Usage
 
