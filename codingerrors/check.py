@@ -56,10 +56,11 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     if standard not in results:
                         results[standard] = {}
                     if True in list(itertools.chain(*mask)):
+                        rel = [icd10s[x.index(True)] for x in mask]
                         results[standard][rule] = {
                             "pass": False,
-                            "relevant": [icd10s[x.index(True)] for x in mask],
-                            "note": None,
+                            "relevant": rel,
+                            "note": "You cannot code %s with %s" % ("".join(rel), icd10),
                         }
             elif rule == "{":
 
@@ -82,7 +83,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": None,
+                        "note": "%s needs to have a %i character" % (icd10, int(values)),
                     }
 
             elif rule == "&":
