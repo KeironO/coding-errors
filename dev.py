@@ -1,3 +1,3 @@
-from codingerrors.check import run_check
+from codingerrors import run
 
-run_check(["J440", "J22"])
+run(["J440", "J22"])

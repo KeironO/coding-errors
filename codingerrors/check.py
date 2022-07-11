@@ -54,14 +54,5 @@ def _check_against_standard(returned_standard, icd10s):
                 mask_dict = _check_rule_values(values, icd10s)
 
 
-def run_check(icd10s: list, standards_dict = None):
-    if standards_dict == None:
-        standards_dict = _build_standards_dict()
-    
-    for icd10 in icd10s:
-        if icd10 in standards_dict:
-            returned_standard = standards_dict[icd10]
-            result = _check_against_standard(returned_standard, icd10s)
-            
 
     
