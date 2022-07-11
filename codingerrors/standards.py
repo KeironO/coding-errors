@@ -60,7 +60,7 @@ standards_dict = {
     # Amaurosis fugax
     "DCS.VI.2:0": "?G453:!H54",
     # Heart Failure CCF
-    "DCS.IX.10:0": "?I501,I509:!I500,I50X",
+    "DCS.IX.10:0": "?I501,I509:!I500",
     # Pulmonary Oedema
     "DCS.IX.10:1": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
     # Atherosclerosis 
