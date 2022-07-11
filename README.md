@@ -16,6 +16,17 @@ You can install the development version directly from GitHub with:
 pip install git+https://github.com/KeironO/coding-dashboard-errors
 ```
 
+### Standards
+
+- DChS.II.2: Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
+- DCS.III.1: Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
+- DCS.X.5: COPD with Chest infection, Chest infection and pneumonia, COPD with pneumonia, and COPD with Emphysema
+- DCS.X.7: Respiratory Failure
+- DCS.XI.4: Gastritis and duodenitis
+- DCS.XV.14: Multiple gestation
+- DCS.XI.5: Parastoma hernia
+- DCS.V.3: Delirum and Dementia
+
 ## Usage
 
 ```python
