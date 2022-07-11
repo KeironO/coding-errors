@@ -33,7 +33,7 @@ pip install git+https://github.com/KeironO/coding-errors
 - DCS.XXI.9: Palliative care
 - DCS.IV.1: DM should be either Type 1/Type 2 or unknown
 - DChS.XX.1: External Causes 
-- DSC.XXII.5:COVID-19: B972 without U071 
+- DSC.XXII.5: COVID-19: B972 without U071 
 - DChS.XVIII: Signs, symptoms and abnormal laboratory findings
 - DChS.XI.1: Constipation with ileus or obstruction
 - DChS.XIII.1: Musculoskeletal 5th Character
