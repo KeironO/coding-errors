@@ -87,8 +87,7 @@ standards_dict = {
     # no need to assign urethral obstruction N368 with N40X
     "DCS.XIV.5:0" :"?N40X:!N368",
     # Z72.0 tobacco use must not be coded
-    "DSC.V.7:0": "?Z720:\*"
-    
+    "DSC.V.7:0": "?Z720:\*",
     
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -114,10 +113,6 @@ standards_dict = {
     "FSCP:10": "?F102:!Z721",
     # N13.2 Hydronephrosis with N20_
     "FSCP:11": "?N132:!N20"
-
-    
-
-    
 }
 
 
