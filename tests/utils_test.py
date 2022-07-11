@@ -25,7 +25,7 @@
 
 
 import unittest
-from codingerrors.utils import _hyph
+from codingerrors.utils import hyph
 
 class TestHyph(unittest.TestCase):
     def test_hyph_basic(self):
