@@ -23,5 +23,33 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-def hyph(a: str) -> list:
-    pass
+from .utils import hyph
+
+
+standards_dict = {
+    # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
+    "DChS.II.2:0": "?D64:!C90-C95",
+    # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
+    "DCS.III.1:0": "?D573:!D56,D570,D571",
+    # COPD with Chest infection 
+    "DCS.X.5:0": "?J440:!J22X"
+}
+
+
+def _build_standards_dict() -> dict:
+    compiled_standards_dict = {}
+    for key, standard in standards_dict.items():
+        standard = standard.split(":")
+
+        for part in standard:
+            dehyphyed = hyph(part[1:])
+
+            if part.startswith("?"):
+                for icd10 in dehyphyed:
+                    if icd10 not in compiled_standards_dict:
+                        compiled_standards_dict[icd10] = {}
+            else:
+                if key not in compiled_standards_dict[icd10]:
+                    compiled_standards_dict[icd10][key] = {}
+                compiled_standards_dict[icd10][key][part[0]] = dehyphyed
+    return compiled_standards_dict

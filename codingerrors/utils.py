@@ -23,17 +23,18 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-standards_dict = {
-    # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
-    "DChS.II.2:0": "?D64_:!C90-C95",
-    # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
-    "DCS.III.1:0": "?D573:!D56,D570,D571",
-    # COPD with Chest infection 
-    "DCS.X.5:0": "?J440!J22X"
-}
+def hyph(s: str) -> list:
+    ret = []
 
-def _build_standards_dict() -> dict:
-    standards_dict = {}
-    for key, item in standards_dict.items():
-        pass
-    return standards_dict
+    l = [x.strip() for x in s.split(",")]
+    
+    for entity in l:
+        if "-" in entity:
+            se = [x.strip() for x in entity.split("-")]
+            start, end = se[0], se[1]
+            for i in range(int(start[1:]), int(end[1:])+1):
+                ret.append("%s%s" % (start[0], str(i).zfill(2)))
+        else:
+            ret.append(entity)
+    
+    return ret
