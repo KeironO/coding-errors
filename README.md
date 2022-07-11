@@ -19,7 +19,7 @@ pip install git+https://github.com/KeironO/coding-dashboard-errors
 
 ## Usage
 
-```
+```python
 from codingerrors import run
 run(["J440", "J22"])
 ```
