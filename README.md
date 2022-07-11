@@ -26,6 +26,11 @@ pip install git+https://github.com/KeironO/coding-dashboard-errors
 - DCS.XV.14: Multiple gestation
 - DCS.XI.5: Parastoma hernia
 - DCS.V.3: Delirum and Dementia
+- DCS.VI.2: Amaurosis fugax
+- DCS.IX.10: Heart Failure CCF, and Pulmonary Oedema
+- DCS.IX.14: Atherosclerosis
+- DCS.XIX.2: Fifth character in Chapter XIX
+- DCS.XXI.9: Palliative care
 
 ## Usage
 
