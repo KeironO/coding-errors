@@ -35,9 +35,18 @@ def run(icd10s: list, standards_dict=None):
     final_results = {}
 
     for icd10 in icd10s:
+        if len(icd10) == 3:
+            if "%sX" % (icd10) in standards_dict:
+                a = _check_against_standard(standards_dict["%sX" % (icd10)], icd10s, icd10)
+        
         if icd10 in standards_dict:
             final_results[icd10] = _check_against_standard(
                 standards_dict[icd10], icd10s, icd10
+            )
+        
+        if len(icd10) != 3 and icd10[0:3] in standards_dict:
+            final_results[icd10] = _check_against_standard(
+                standards_dict[icd10[0:3]], icd10s, icd10
             )
 
     return final_results

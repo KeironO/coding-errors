@@ -87,7 +87,6 @@ standards_dict = {
     "FSCP:1": "?B95-B98:&*",
     # I350 should not be coded with I351
     "FSCP:2": "?I351:!I350"
-
 }
 
 
@@ -109,8 +108,13 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key]["."] = part[1:]
+                elif part.startswith("&"):
+                    if key not in compiled_standards_dict[icd10]:
+                        compiled_standards_dict[icd10][key] = {}
+                    compiled_standards_dict[icd10][key][part[0]] = icd10
                 else:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = dehyphyed
+
     return compiled_standards_dict

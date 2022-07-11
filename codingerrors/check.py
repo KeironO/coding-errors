@@ -52,7 +52,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
         for rule, values in rules.items():
             mask_dict = _check_rule_values(values, icd10s)
             if rule == "!":
-
                 for code, mask in mask_dict.items():
                     if standard not in results:
                         results[standard] = {}
@@ -84,5 +83,15 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "pass": False,
                         "relevant": [icd10],
                         "note": None,
+                    }
+
+            elif rule == "&":
+                if icd10 == icd10s[0]:
+                    if standard not in results:
+                        results[standard] = {}
+                    results[standard][rule] = {
+                        "pass": False,
+                        "relevant": [icd10],
+                        "note": "%s cannot be in primary position!" % (icd10)
                     }
     return results

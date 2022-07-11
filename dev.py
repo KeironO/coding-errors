@@ -1,4 +1,4 @@
 from codingerrors import run
 
 
-print(run(["O30"]))
+print(run(["B951", "R03"]))
