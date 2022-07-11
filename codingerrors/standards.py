@@ -26,6 +26,7 @@
 from .utils import hyph
 
 # & : Can never be in the primary position
+# ? : Applies to the following codes.
 # \ : never code
 # ! : Cannot be coded with
 #   # : Unless present
@@ -71,15 +72,18 @@ standards_dict = {
     "DCS.IV.1:0": "?E11,E14:!E10",
     "DCS.IV.1:1": "?E11:!E14,E10",
     "DCS.IV.1:2": "?E14:!E10,E11",
-    
     # External Causes 
-    "DChS.XX.1:0": "&V01-V99,Y01-Y98",
+    "DChS.XX.1:0": "?V01-V99,Y01-Y98:&",
     # B972 without U071 
-    "DSC.XXII.5:COVID-19:0": "U071:!B972",
+    "DSC.XXII.5:COVID-19:0": "?U071:!B972",
+    # Signs, symptoms and abnormal laboratory findings
+    "DChS.XVIII:0": "?G40,G41;!R568",
+    # Constipation with ileus or obstruction
+    "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
-    "FSCP:1": "&B95-B98"
+    "FSCP:1": "?B95-B98:&"
 
 }
 
