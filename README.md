@@ -6,7 +6,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-This is a simple tool to evaluate a list of ICD-10 codes against DCS/DChgS coding standards.
+This is a simple tool to evaluate a list of ICD-10 codes against DCS/DChS coding standards.
 
 ## Installation
 
