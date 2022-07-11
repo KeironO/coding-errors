@@ -54,6 +54,18 @@ standards_dict = {
     "DCS.XI.5:0": "?K433,K435:{Z93",
     # Delirum and Dementia
     "DCS.V.3:0": "?F03X,F01,F02:!F050,F059",
+    # Amaurosis fugax
+    "DCS.VI.2:0": "?G453:!H54",
+    # Heart Failure CCF
+    "DCS.IX.10:0": "?I501,I509:!I500,I50X",
+    # Pulmonary Oedema
+    "DCS.IX.10:1": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
+    # Atherosclerosis 
+    "DCS.IX.14:0": "?I70:.5",
+    # Fifth character in Chapter XIX
+    "DCS.XIX.2:0": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
+    # Palliative care
+    "DCS.XXI.9:0": "?Z518:!Z515"
 }
 
 
