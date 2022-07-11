@@ -20,8 +20,9 @@ pip install git+https://github.com/KeironO/coding-dashboard-errors
 ## Usage
 
 ```python
-from codingerrors import run
-run(["J440", "J22"])
+>>> from codingerrors import run
+>>> run(["J440", "J22"])
+{'DCS.X.5:0': {'!': {'pass': False, 'relevant': ['J22']}}}
 ```
 
 ## Bug reporting and feature suggestions

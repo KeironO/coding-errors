@@ -23,6 +23,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+from gzip import READ
 from .standards import _build_standards_dict
 from .check import _check_against_standard
 
@@ -30,8 +31,11 @@ def run(icd10s: list, standards_dict = None):
     if standards_dict == None:
         standards_dict = _build_standards_dict()
     
+    final_results = {}
+
     for icd10 in icd10s:
         if icd10 in standards_dict:
             returned_standard = standards_dict[icd10]
-            result = _check_against_standard(returned_standard, icd10s)
+            result = _check_against_standard(returned_standard, icd10s, icd10)
+            print(icd10, result)
             

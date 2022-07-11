@@ -23,6 +23,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import itertools
 from .standards import _build_standards_dict
 
 
@@ -44,14 +45,25 @@ def _check_rule_values(values, icd10s):
 
     return mask_dict
 
-def _cannot_have():
-    pass
-
-def _check_against_standard(returned_standard, icd10s):
+def _check_against_standard(returned_standard, icd10s, icd10):
+    results = {}
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
-            if rule in ["!"]:
-                mask_dict = _check_rule_values(values, icd10s)
+            mask_dict = _check_rule_values(values, icd10s)
+            if rule == "!":
+                for code, mask in mask_dict.items():
+                    if standard not in results:
+                            results[standard] = {}
+                    if True in list(itertools.chain(*mask)):
+                        results[standard][rule] = {"pass": False, "relevant": [icd10s[x.index(True)] for x in mask]}
+
+            elif rule == ".":
+                 if len(icd10) < int(values):
+                        if standard not in results:
+                            results[standard] = {}
+                        results[standard][rule] = {"pass": False, "relevant": [icd10]}
+    return results
+            
 
 
 
