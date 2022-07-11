@@ -22,3 +22,23 @@
 # ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+import unittest
+from codingerrors import run
+from codingerrors.utils import _hyph
+
+class TestStandards(unittest.TestCase):
+    def test_dhsii2(self):
+        # Test to see whether anaemia can be run on its own
+        self.assertEqual(run(["D64"]), {"D64": {}})
+        # Test to see whether anemia coded with leukemia returns an error
+        self.assertIsNot(run(["D64", "C90"]), {"D64": {}})
+        # Test to see whether unspecified anemia coded with leukemia returns an error
+        self.assertIsNot(run(["D649", "C90"]), {"D649": {}})
+        # Test to see whether unspecified anemia coded with unspecified leukemia returns an error
+        self.assertIsNot(run(["D649", "C909"]), {"D649": {}})
+
+
+if __name__ == '__main__':
+    unittest.main()

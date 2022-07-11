@@ -25,7 +25,7 @@
 
 from .utils import hyph
 
-
+# \ : never code
 # ! : Cannot be coded with
 #   # : Unless present
 # .n: Require's nth character
@@ -45,7 +45,13 @@ standards_dict = {
     # COPD with Emphysema
     "DCS.X.5:3": "?J449:!J439",
     # Respiratory Failure
-    "DCS.X.7:0": "?J960,J961,J969:.5"
+    "DCS.X.7:0": "?J960,J961,J969:.5",
+    # Gastritis and duodenitis 
+    "DCS.XI.4:0": "?K297:!K298",
+    # Multiple gestation 
+    "DCS.XV.14:0": "?O30:{Z372-Z377",
+    # Parastoma hernia
+    "DCS.XI.5:0": "?K433,K435:{Z93"
 }
 
 
@@ -71,5 +77,4 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = dehyphyed
-
     return compiled_standards_dict

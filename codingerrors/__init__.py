@@ -35,7 +35,6 @@ def run(icd10s: list, standards_dict = None):
 
     for icd10 in icd10s:
         if icd10 in standards_dict:
-            returned_standard = standards_dict[icd10]
-            result = _check_against_standard(returned_standard, icd10s, icd10)
-            print(icd10, result)
-            
+            final_results[icd10] = _check_against_standard(standards_dict[icd10], icd10s, icd10) 
+
+    return final_results            

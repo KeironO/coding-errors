@@ -51,17 +51,23 @@ def _check_against_standard(returned_standard, icd10s, icd10):
         for rule, values in rules.items():
             mask_dict = _check_rule_values(values, icd10s)
             if rule == "!":
+                
                 for code, mask in mask_dict.items():
                     if standard not in results:
                             results[standard] = {}
                     if True in list(itertools.chain(*mask)):
-                        results[standard][rule] = {"pass": False, "relevant": [icd10s[x.index(True)] for x in mask]}
-
+                        results[standard][rule] = {"pass": False, "relevant": [icd10s[x.index(True)] for x in mask], "note": None}
+            elif rule == "{":
+                
+                if mask_dict == {} or True not in list(itertools.chain(*[list(itertools.chain(*v)) for v in mask_dict.values()])):
+                    if standard not in results:
+                            results[standard] = {}
+                    results[standard][rule] = {"pass": False, "relevant": [], "note": "None of %s found" % (",".join(values))}
             elif rule == ".":
                  if len(icd10) < int(values):
                         if standard not in results:
                             results[standard] = {}
-                        results[standard][rule] = {"pass": False, "relevant": [icd10]}
+                        results[standard][rule] = {"pass": False, "relevant": [icd10], "note": None}
     return results
             
 
