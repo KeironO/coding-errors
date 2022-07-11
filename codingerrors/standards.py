@@ -28,7 +28,7 @@ from .utils import hyph
 # &* : Can never be in the primary position
 # ^ : Must be in primary or secondary position.
 # ? : Applies to the following codes.
-# \ : never code
+# / : never code
 # ! : Cannot be coded with
 #   # : Unless present
 # .n: Require's nth character
@@ -87,7 +87,7 @@ standards_dict = {
     # no need to assign urethral obstruction N368 with N40X
     "DCS.XIV.5:0" :"?N40X:!N368",
     # Z72.0 tobacco use must not be coded
-    "DSC.V.7:0": "?Z720:\*",
+    "DSC.V.7:0": "?Z720:/*",
     
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -98,7 +98,7 @@ standards_dict = {
     # I080 coded with codes from I34 and I35
     "FSCP:3": "?I34,I35:!I080",
     # M479 should not be coded with 5th character of 2 cervical, 6 lumbar or 8 sacral
-    "FSCP:4": "?M4792, M4796,M4798:\*",
+    "FSCP:4": "?M4792, M4796,M4798:/*",
     # Z722 should not be coded with F55, F19, F11,F12,F13,F14,F15,F16
     "FSCP:5": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # Z720 should not be coded with F171
@@ -134,13 +134,20 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key]["."] = part[1:]
-                elif part.startswith("&"):
+                elif part[0] in ("&", "/"):
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = icd10
+                elif part[0] == "~":
+                    character, have = part[1:].split("..")
+                    if key not in compiled_standards_dict[icd10]:
+                        compiled_standards_dict[icd10][key] = {}
+                    compiled_standards_dict[icd10][key][part[0]] = {
+                        "character": character,
+                        "have": have
+                    }
                 else:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = dehyphyed
-
     return compiled_standards_dict

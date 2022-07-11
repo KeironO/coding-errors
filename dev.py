@@ -1,3 +1,3 @@
 from codingerrors import run
 
-print(run(["I501", "I50"]))
+print(run(["M4059"]))

@@ -86,6 +86,32 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "relevant": [icd10],
                         "note": "%s needs to have a %i character" % (icd10, int(values)),
                     }
+            elif rule == "/":
+                if standard not in results:
+                    results[standard] = {}
+                results[standard][rule] = {
+                    "pass": False,
+                    "relevant": [icd10],
+                    "note": "%s cannot be coded" % icd10
+                }
+
+            elif rule == "~":
+                character = int(values["character"])
+                have = values["have"]
+                passes = True
+                if len(icd10) >= character:
+                    if icd10[character-1] == have:
+                        passes = False
+
+                if not passes:
+                    if standard not in results:
+                        results[standard] = {}
+                    
+                    results[standard][rule] = {
+                        "pass": False,
+                        "relevant": [icd10],
+                        "note": "%s has %s in the %i position" % (icd10, have, character)
+                    }
 
             elif rule == "&":
                 if icd10 == icd10s[0]:
