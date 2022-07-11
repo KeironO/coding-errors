@@ -25,6 +25,7 @@
 
 from .utils import hyph
 
+# & : Can never be in the primary position
 # \ : never code
 # ! : Cannot be coded with
 #   # : Unless present
@@ -65,7 +66,21 @@ standards_dict = {
     # Fifth character in Chapter XIX
     "DCS.XIX.2:0": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
     # Palliative care
-    "DCS.XXI.9:0": "?Z518:!Z515"
+    "DCS.XXI.9:0": "?Z518:!Z515",
+    # DM should be either Type 1/Type 2 or unknown
+    "DCS.IV.1:0": "?E11,E14:!E10",
+    "DCS.IV.1:1": "?E11:!E14,E10",
+    "DCS.IV.1:2": "?E14:!E10,E11",
+    
+    # External Causes 
+    "DChS.XX.1:0": "&V01-V99,Y01-Y98",
+    # B972 without U071 
+    "DSC.XXII.5:COVID-19:0": "U071:!B972",
+    # Neonatal Jaundice 
+    "FSCP:0": "?P072,P073:!P599",
+    # B95/B96/B97/B98 Never in primary position
+    "FSCP:1": "&B95-B98"
+
 }
 
 
