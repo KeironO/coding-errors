@@ -14,7 +14,6 @@ You can install the development version directly from GitHub with:
 
 ```
 pip install git+https://github.com/KeironO/coding-dashboard-errors
-
 ```
 
 ## Usage

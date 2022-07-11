@@ -51,7 +51,9 @@ standards_dict = {
     # Multiple gestation 
     "DCS.XV.14:0": "?O30:{Z372-Z377",
     # Parastoma hernia
-    "DCS.XI.5:0": "?K433,K435:{Z93"
+    "DCS.XI.5:0": "?K433,K435:{Z93",
+    # Delirum and Dementia
+    "DCS.V.3:0": "?F03X,F01,F02:!F050,F059" 
 }
 
 
