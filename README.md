@@ -36,7 +36,10 @@ pip install git+https://github.com/KeironO/coding-errors
 - DSC.XXII.5:COVID-19: B972 without U071 
 - DChS.XVIII: Signs, symptoms and abnormal laboratory findings
 - DChS.XI.1: Constipation with ileus or obstruction
-- Four Step Coding Procedures : Neonatal Jaundice, B95/B96/B97/B98 never in primary position, I350 should not be coded with I351
+- DChS.XIII.1: Musculoskeletal 5th Character
+- DCS.XIV.5: no need to assign urethral obstruction N368 with N40X
+- DSC.V.7: Z72.0 tobacco use must not be coded
+- Four Step Coding Procedures : Neonatal Jaundice, B95/B96/B97/B98 never in primary position, I350 should not be coded with I351, I830 should not be coded with I831, K802 should not be coded with K81, Z721 should not be coded with F102, N13.2 Hydronephrosis with N20_
 
 ## Usage
 
