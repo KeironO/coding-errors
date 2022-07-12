@@ -100,8 +100,8 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 for code, masks in mask_dict.items():
                     for mask in masks:
                         if True in mask:
+                            
                             mask_positions = mask.index(True)
-
                             if type(mask_positions) == int:
                                 if mask_positions == primary_code_position+1:
                                     if standard not in results:
@@ -117,9 +117,8 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 primary_code_position = icd10s.index(icd10)
                 for code, masks in mask_dict.items():
                     for mask in masks:
-                        if True in masks:
+                        if True in mask:
                             mask_positions = mask.index(True)
-
                             if type(mask_positions) == int:
                                 if mask_positions != primary_code_position+1:
                                     error = True

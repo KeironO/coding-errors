@@ -40,6 +40,7 @@ def run(icd10s: list, standards_dict=None):
                 a = _check_against_standard(standards_dict["%sX" % (icd10)], icd10s, icd10)
         
         if icd10 in standards_dict:
+            
             final_results[icd10] = _check_against_standard(
                 standards_dict[icd10], icd10s, icd10
             )
