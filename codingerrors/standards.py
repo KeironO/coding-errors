@@ -78,6 +78,10 @@ standards_dict = {
     "DChS.XX.1:0": "?V01-V99,Y01-Y98:&*",
     # B972 without U071 
     "DSC.XXII.5:COVID-19:0": "?U071:!B972",
+    # U071 coded with U072
+    "DSC.XXII.5:COVID-19:1": "?U071:!U072",
+    # U049 SARS should not be coded
+    "DSC.XXII.5:COVID-19:2": "?U071:&*",
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0": "?G40,G41;!R568",
     # Constipation with ileus or obstruction
@@ -88,6 +92,8 @@ standards_dict = {
     "DCS.XIV.5:0" :"?N40X:!N368",
     # Z72.0 tobacco use must not be coded
     "DSC.V.7:0": "?Z720:/*",
+    # Z12.1 Special screening examination for neoplasm of intestinal tract 
+    "DCS.XXI.1:0": "?D12,K55-K64,C18-C21:!Z121",
     
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -112,7 +118,13 @@ standards_dict = {
     # Z721 should not be coded with F102
     "FSCP:10": "?F102:!Z721",
     # N13.2 Hydronephrosis with N20_
-    "FSCP:11": "?N132:!N20"
+    "FSCP:11": "?N132:!N20",
+    # I633-I634-I635 should not be coded with I65
+    "FSCP:12": "?I65:!I633-I635",
+    # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
+    "FSCP:13": "?J12-J18:!J852",
+    # I080 coded with codes from I34 and I35
+    "FSCP:14": "?I34-I35:!I080"
 }
 
 
