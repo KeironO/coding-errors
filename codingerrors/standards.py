@@ -83,10 +83,12 @@ standards_dict = {
     "DSC.XXII.5:COVID-19:0": "?U071:!B972",
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1": "?U071:!U072",
-    # U049 SARS should not be coded
-    "DSC.XXII.5:COVID-19:2": "?U071:&*",
+    # U071 must be in primary position
+    "DSC.XXII.5:COVID-19:2": "?U071:^*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3": "?J18:>B972",
+    # U049 SARS should not be coded
+    "DSC.XXII.5:COVID-19:4": "?U049:/*",
     # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
     "DSC.XXII.5:COVID-19:4": "?U071,U072:>B342,B972",
     # U072 should not be coded with B342, Z115, Z038
@@ -124,7 +126,14 @@ standards_dict = {
     # F80 should not be coded with either F81 or F82
     "DCS.XIV.12:1": "?F81,F82:!F80",
     # CKD with Renal Failure 
-    "DCS.XIV.2": "?N184,N185:!N19",
+    "DCS.XIV.2:0": "?N184,N185:!N19",
+    # Chronic kidney disease
+    "DCS.XIV.2:1": "?N182,N183,N184,N185,N189:!N181",
+    "DCS.XIV.2:2": "?N181,N183,N184,N185,N189:!N182",
+    "DCS.XIV.2:3": "?N181,N182,N184,N185,N189:!N183",
+    "DCS.XIV.2:4": "?N181,N182,N183,N185,N189:!N184",
+    "DCS.XIV.2:5": "?N181,N182,N183,N184,N189:!N185",
+    "DCS.XIV.2:6": "?N181,N182,N183,N184,N185:!N189",
     # T29 should not be coded
     "DCS.XIX.5:0": "?T29:/*",
     # J95.8 should not be coded  
@@ -140,7 +149,9 @@ standards_dict = {
     # R69.X/R96.X/R98.X/R99.X should not be coded is other information is available for code assignment
     "DCS.XVIII.11:0": "?R69X,R96X,R98X,R99X:/*",
     # Rare Delivery Codes
-    "DCS.XV.28:0": "?O801,O802,O808,O809,O81,O821,O822,O828,O829,O83,O84:/*",
+    "DCS.XV.28:0": "?O801,O802,O808,OS809,O81,O821,O822,O828,O829,O83,O84:/*",
+    # Delivery
+    "DCS.XV.28:1": "?O10-O16,O20-O48,O60-O75,O85-O92,O94-O99:!O800,O820",
     # T795 should not be coded with N179
     "DCS.XIII.3:0": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
@@ -162,6 +173,28 @@ standards_dict = {
     "DCS.XII.3:4": "?L890,L891,L892,L893:!L899",
     # Infected Pressure Ulcers
     "DCS.XII.3:5": "?L89,L97X:>B95,B96",
+    # Arthrosis
+    "DChS.XIII.2:0": "?M17,M19:!M16",
+    "DChS.XIII.2:1": "?M19,M16:!M17",
+    "DChS.XIII.2:2": "?M17,M16:!M19",
+    # Neoplasia Prostate
+    "DCS.XIV.7:0": "?D075,C61X:!N423",
+    "DCS.XIV.7:1": "?N423,C61X:!D075",
+    "DCS.XIV.7:2": "?D075,N423:!C61X",
+    # CIN
+    "DCS.XIV.10:0": "?N871,N879,D069:!N870",
+    "DCS.XIV.10:1": "?D069,N870,N879:!N871",
+    "DCS.XIV.10:2": "?N870,N871,N879:!D069",
+    "DCS.XIV.10:3": "?N870,N871,D069:!Z879",
+    # VAIN
+    "DCS.XIV.10:4": "?N891,N899,D072:!N890",
+    "DCS.XIV.10:5": "?D072,N890,N899:!N891",
+    "DCS.XIV.10:6": "?N890,N891,N899:!D072",
+    "DCS.XIV.10:7": "?N890,N891,D072:!N899",
+    # Pregnant state, incidental 
+    "DCS.XV.33:0": "?Z33X:&*",
+    # Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery
+    "DCS.XVI.1:0": "?P00-P04:&*",
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -244,7 +277,11 @@ standards_dict = {
     # Z21X coded with symptomatic HIV
     "FSCP:39": "?B20-B24:!Z21X",
     # Perineal laceration during delivery
-    "FSCP:40": "?O70:!O700,0702,0703"
+    "FSCP:40": "?O70:!O700,0702,0703",
+    # Codes from I64 should not be coded with I63
+    "FSCP:41": "?I63:!I64",
+    # I630-I631-I632 should not be coded with I65
+    "FSCP:42": "?I65:I630-I632"
 
 }
 
@@ -267,7 +304,7 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key]["."] = part[1:]
-                elif part[0] in ("&", "/"):
+                elif part[0] in ("&", "/", "^"):
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = icd10

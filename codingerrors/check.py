@@ -165,4 +165,22 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "relevant": [icd10],
                         "note": "%s cannot be in primary position!" % (icd10)
                     }
+            elif rule == "^":
+                rule_pass = False
+                
+                if len(icd10s) == 1:
+                    rule_pass = True
+                
+                elif icd10 in icd10s[0:2]:
+                    rule_pass = True
+                
+                if not rule_pass:
+                    if standard not in results:
+                        results[standard] = {}
+                        
+                        results[standard][rule] = {
+                            "pass": False,
+                            "relevant": [icd10],
+                            "note": "%s must be in primary or secondary position!" % (icd10)
+                        }
     return results
