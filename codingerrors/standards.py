@@ -37,7 +37,7 @@ from .utils import hyph
 # > : Should not be directly followed by
 
 standards_dict = {
-        # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
+    # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
     "DChS.II.2:0": "?D64:!C90-C95",
     # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
     "DCS.III.1:0": "?D573:!D56,D570,D571",
@@ -59,6 +59,8 @@ standards_dict = {
     "DCS.XI.5:0": "?K433,K435:{Z93",
     # Delirum and Dementia
     "DCS.V.3:0": "?F03X,F01,F02:!F050,F059",
+    # F03X should not be coded with F051
+    "DCS.V.3:1": "?F051:!F03X",
     # Amaurosis fugax
     "DCS.VI.2:0": "?G453:!H54",
     # Heart Failure CCF
@@ -83,6 +85,8 @@ standards_dict = {
     "DSC.XXII.5:COVID-19:1": "?U071:!U072",
     # U049 SARS should not be coded
     "DSC.XXII.5:COVID-19:2": "?U071:&*",
+    # B972 should not directly follow codes in J18_
+    "DSC.XXII.5:COVID-19:3": "?J18:>B972",
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0": "?G40,G41;!R568",
     # Constipation with ileus or obstruction
@@ -101,7 +105,18 @@ standards_dict = {
     "DCS.XIV.12:0": "?N993:>Y83,Y84",
     # CKD with Renal Failure 
     "DCS.XIV.2": "?N184,N185:!N19",
-
+    # T29 should not be coded
+    "DCS.XIX.5:0": "?T29:/*",
+    # J95.8 should not be coded  
+    "DSC.XIX.7:0": "?J958:/*",
+    # Codes O95, O96, O97 should never be assigned
+    "DCS.XV.29:0": "?O95-O97:/*",
+    # D649 should not be coded with O990
+    "DSC.XV.32:0": "?O990:!D649",
+    # Geriatric and elderly falls (R296)
+    "DCS.XVIII.4:0": "?R296:>W00-W19",
+    # Sepsis codes should not be followed by B95 or B96
+    "DCS.I.4:0": "?A40,A41:>B95,B96",
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -150,7 +165,24 @@ standards_dict = {
     # A09, K520, K522,K523,K528,K529 should not be directly followed by a code from Y40 - Y59
     "FSCP:22": "?A09:>K520,K522,K523,K528,K529:>Y40-Y59",
     # M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835 should be directly followed by code from Y40 - Y59
-    "FSCP:23": "?M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835:<Y40-Y59"
+    "FSCP:23": "?M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835:<Y40-Y59",
+    # G620 not directly followed by a code from Y40-Y59 or Y880
+    "FSCP:24": "?G620:>Y40-Y59,Y880",
+    # Codes L233/L251/L270/L271 should be followed by a code from Y10-Y599 to state what drug caused the dermatitis
+    "FSCP:25": "?L233,L251,L270,L271:>Y10-Y58,Y599",
+    # Chronic diarrhoea with infective diarrhoea
+    "FSCP:26": "?A09:!K529",
+    # J18 should not be followed by a code by B95 and B96
+    "FSCP:27": "?J18:>B95,B98",
+    # I959 should not be directly followed by a code from Y40-Y59
+    "FSCP:28": "?I959:>Y40-Y59",
+    # K859 should not be directly followed by a code from Y40-Y59
+    "FSCP:29": "?K859:>Y40-Y59",
+    # G629 should not be directly followed by a code from Y40-Y59
+    "FSCP:30": "?G629:>Y40-Y59",
+    # B95 B96 should not directly follow I830
+    "FSCP:31": "?I830:>B95,B96"
+
 }
 
 
