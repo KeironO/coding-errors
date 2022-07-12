@@ -87,8 +87,20 @@ standards_dict = {
     "DSC.XXII.5:COVID-19:2": "?U071:&*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3": "?J18:>B972",
+    # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
+    "DSC.XXII.5:COVID-19:4": "?U071,U072:>B342,B972",
     # Signs, symptoms and abnormal laboratory findings
-    "DChS.XVIII:0": "?G40,G41;!R568",
+    "DChS.XVIII:0": "?G40,G41:!R568",
+    # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
+    "DChS.XVIII:1": "?K35-K37:!R10",
+    # R07 - chest pain should not be coded with I21, I22
+    "DChS.XVIII:2": "?I21-I22:!R07",
+    # R060 - shortness of breath should not be coded with Pneumonia (J12 - J18) or LRTI (J22) or IECOPD (J440)
+    "DChS.XVIII:3": "?J12-J18:!R060",
+    # R568 should not be coded with either G40 or G41 
+    "DChS.XVIII:4": "?G40-G41:!R568",
+    # R251 should not be coded with either G20 or G21
+    "DChS.XVIII:5": "?G20-G21:!R251",
     # Constipation with ileus or obstruction
     "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Musculoskeletal 5th Character
@@ -181,7 +193,9 @@ standards_dict = {
     # G629 should not be directly followed by a code from Y40-Y59
     "FSCP:30": "?G629:>Y40-Y59",
     # B95 B96 should not directly follow I830
-    "FSCP:31": "?I830:>B95,B96"
+    "FSCP:31": "?I830:>B95,B96", 
+    # Kidney and Ureter Calculi
+    "FSCP:32": "?N201,N202:!N200"
 
 }
 
