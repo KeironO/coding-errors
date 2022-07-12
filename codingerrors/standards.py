@@ -99,6 +99,8 @@ standards_dict = {
     "DSC.XIX.7:0": "?T80-T88:!Y838,Y839,Y848,Y849",
     # N993 should not be directly followed by Y83/Y84
     "DCS.XIV.12:0": "?N993:>Y83,Y84",
+    # CKD with Renal Failure 
+    "DCS.XIV.2": "?N184,N185:!N19",
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -131,7 +133,16 @@ standards_dict = {
     # I080 coded with codes from I34 and I35
     "FSCP:14": "?I34-I35:!I080",
     # codes O640 - O663 should not be coded with O320 - O324/O326 -O329 and O33._
-    "FSCP:15": "?O320-O324,O326-O329,O33:!O640-O663"
+    "FSCP:15": "?O320-O324,O326-O329,O33:!O640-O663",
+    # Dementia 
+    "FSCP:16": "?F03:!F01-F02",
+    # R251 should not be followed directly by a code between Y40 - Y59
+    "FSCP:17": "?R251:>Y40-Y59",
+    # M109 should not be directly followed by a code from Y40-Y59
+    "FSCP:18": "?M109:Y40-Y59",
+    # E162 should not be directly followed by a code from Y40-Y59
+    "FSCP:19": "?E162:Y40-Y59",
+    
 }
 
 
