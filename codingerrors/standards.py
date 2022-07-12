@@ -115,6 +115,8 @@ standards_dict = {
     "DSC.XIX.7:0": "?T80-T88:!Y838,Y839,Y848,Y849",
     # N993 should not be directly followed by Y83/Y84
     "DCS.XIV.12:0": "?N993:>Y83,Y84",
+    # F80 should not be coded with either F81 or F82
+    "DCS.XIV.12:1": "?F81,F82:!F80",
     # CKD with Renal Failure 
     "DCS.XIV.2": "?N184,N185:!N19",
     # T29 should not be coded
@@ -129,7 +131,15 @@ standards_dict = {
     "DCS.XVIII.4:0": "?R296:>W00-W19",
     # Sepsis codes should not be followed by B95 or B96
     "DCS.I.4:0": "?A40,A41:>B95,B96",
-
+    # R69.X/R96.X/R98.X/R99.X should not be coded is other information is available for code assignment
+    "DCS.XVIII.11:0": "?R69X,R96X,R98X,R99X:/*",
+    # Rare Delivery Codes
+    "DCS.XV.28:0": "?O801,O802,O808,O809,O81,O821,O822,O828,O829,O83,O84:/*",
+    # T795 should not be coded with N179
+    "DCS.XIII.3:0": "?N179:!T795",
+    # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
+    "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
+    
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
@@ -195,7 +205,19 @@ standards_dict = {
     # B95 B96 should not directly follow I830
     "FSCP:31": "?I830:>B95,B96", 
     # Kidney and Ureter Calculi
-    "FSCP:32": "?N201,N202:!N200"
+    "FSCP:32": "?N201,N202:!N200",
+    # Codes from L30 should not be directly followed by any codes in the range Y100 - Y599
+    "FSCP:33": "?L30:>Y10-Y59",
+    # Influenza with pneumonia
+    "FSCP:34": "?J13-J18:!J10-J11",
+    # Ankylosis of joint should not be coded with stiffness of joint 
+    "FSCP:35": "?M256:!M246",
+    # K802 Calculus of gallbladder without cholecystitis coded with K81_ Cholecystitis
+    "FSCP:36": "?K81:!K802",
+    # I260 should not be coded with I279
+    "FSCP:37": "?I279:!I260",
+    # I95.2 Hypotension due to drugs should have an additional Y40 - Y59 coded directly beneath
+    "FSCP:38": "?I952:<Y40-Y59"
 
 }
 
