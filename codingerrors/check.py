@@ -74,7 +74,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         results[standard] = {}
                     results[standard][rule] = {
                         "pass": False,
-                        "relevant": [],
+                        "relevant": [icd10],
                         "note": "None of %s found" % (",".join(values)),
                     }
             elif rule == ".":
@@ -94,6 +94,23 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     "relevant": [icd10],
                     "note": "%s cannot be coded" % icd10
                 }
+
+            elif rule == ">":
+                primary_code_position = icd10s.index(icd10)
+                for code, masks in mask_dict.items():
+                    for mask in masks:
+                        if True in mask:
+                            mask_positions = mask.index(True)
+
+                            if type(mask_positions) == int:
+                                if mask_positions == primary_code_position+1:
+                                    if standard not in results:
+                                        results[standard] = {}
+                                    results[standard][rule] = {
+                                        "pass": False,
+                                        "relevant": [icd10],
+                                        "note": "%s should not be coded directly after %s" % (code, icd10)
+                                    }
 
             elif rule == "~":
                 character = int(values["character"])
