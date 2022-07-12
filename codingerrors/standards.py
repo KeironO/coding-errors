@@ -34,6 +34,7 @@ from .utils import hyph
 # .n: Require's nth character
 # { : Must always be coded with
 # ~x..y: x character cannot be y
+# > : Should not be directly followed by
 
 standards_dict = {
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
@@ -97,6 +98,9 @@ standards_dict = {
     # Y838 and Y839 and Y848 and Y849 should not be coded with a code from T80-T88
     "DSC.XIX.7:0": "?T80-T88:!Y838,Y839,Y848,Y849",
 
+    # N993 should not be directly followed by Y83/Y84
+    "DCS.XIV.12:0": "?N993:>Y83,Y84"
+    
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
