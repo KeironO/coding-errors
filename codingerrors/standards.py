@@ -91,6 +91,10 @@ standards_dict = {
     "DSC.XXII.5:COVID-19:4": "?U071,U072:>B342,B972",
     # U072 should not be coded with B342, Z115, Z038
     "DSC.XXII.5:COVID-19:5": "?U072:!B342,Z115,Z038",
+    # U073 must not be assigned with U071 or U072
+    "DSC.XXII.5:COVID-19:6": "?U071,U072:!U073",
+    # U073 must not be assigned with U074
+    "DSC.XXII.5:COVID-19:7": "?U074:!U073",
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0": "?G40,G41:!R568",
     # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
@@ -143,6 +147,15 @@ standards_dict = {
     "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
     # Multiple independent primary malignant neoplasm
     "DSC.II.4:0": "?C97X:^*",
+    # I739 should not be coded with I702,I723,I724,I743,I744,I745
+    "DC.IX.15:0": "?I702,I723,I724,I743,I744,I745:!I739",
+    # Haemorrhoids
+    "DCS.XI.10:0": "?K641,K642,K643:!K640",
+    "DCS.XI.10:1": "?K640,K642,K643:!K641",
+    "DCS.XI.10:3": "?K640,K641,K643:!K642",
+    "DCS.XI.10:4": "?K640,K641,K642:!K643",
+    # Pressure Ulcers 
+    ""
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -223,7 +236,9 @@ standards_dict = {
     # I95.2 Hypotension due to drugs should have an additional Y40 - Y59 coded directly beneath
     "FSCP:38": "?I952:<Y40-Y59",
     # Z21X coded with symptomatic HIV
-    "FSCP:39": "?B20-B24:!Z21X"
+    "FSCP:39": "?B20-B24:!Z21X",
+    # Perineal laceration during delivery
+    "FSCP:40": "?O70:!O700,0702,0703",
 
 }
 
