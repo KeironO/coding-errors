@@ -26,7 +26,7 @@
 from .utils import hyph
 
 # &* : Can never be in the primary position
-# ^ : Must be in primary or secondary position.
+# ^* : Must be in primary or secondary position.
 # ? : Applies to the following codes.
 # / : never code
 # ! : Cannot be coded with
@@ -89,6 +89,8 @@ standards_dict = {
     "DSC.XXII.5:COVID-19:3": "?J18:>B972",
     # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
     "DSC.XXII.5:COVID-19:4": "?U071,U072:>B342,B972",
+    # U072 should not be coded with B342, Z115, Z038
+    "DSC.XXII.5:COVID-19:5": "?U072:!B342,Z115,Z038",
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0": "?G40,G41:!R568",
     # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
@@ -139,7 +141,9 @@ standards_dict = {
     "DCS.XIII.3:0": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
     "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
-    
+    # Multiple independent primary malignant neoplasm
+    "DSC.II.4:0": "?C97X:^*",
+
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
@@ -217,7 +221,9 @@ standards_dict = {
     # I260 should not be coded with I279
     "FSCP:37": "?I279:!I260",
     # I95.2 Hypotension due to drugs should have an additional Y40 - Y59 coded directly beneath
-    "FSCP:38": "?I952:<Y40-Y59"
+    "FSCP:38": "?I952:<Y40-Y59",
+    # Z21X coded with symptomatic HIV
+    "FSCP:39": "?B20-B24:!Z21X"
 
 }
 
