@@ -94,7 +94,9 @@ standards_dict = {
     "DSC.V.7:0": "?Z720:/*",
     # Z12.1 Special screening examination for neoplasm of intestinal tract 
     "DCS.XXI.1:0": "?D12,K55-K64,C18-C21:!Z121",
-    
+    # Y838 and Y839 and Y848 and Y849 should not be coded with a code from T80-T88
+    "DSC.XIX.7:0": "?T80-T88:!Y838,Y839,Y848,Y849",
+
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
@@ -124,7 +126,9 @@ standards_dict = {
     # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
     "FSCP:13": "?J12-J18:!J852",
     # I080 coded with codes from I34 and I35
-    "FSCP:14": "?I34-I35:!I080"
+    "FSCP:14": "?I34-I35:!I080",
+    # codes O640 - O663 should not be coded with O320 - O324/O326 -O329 and O33._
+    "FSCP:15": "?O320-O324,O326-O329,O33:!O640-O663"
 }
 
 
