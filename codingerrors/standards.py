@@ -102,6 +102,7 @@ standards_dict = {
     # CKD with Renal Failure 
     "DCS.XIV.2": "?N184,N185:!N19",
 
+
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
@@ -147,8 +148,9 @@ standards_dict = {
     # S271 should not be coded with S270
     "FSCP:21": "?S271:!S270",
     # A09, K520, K522,K523,K528,K529 should not be directly followed by a code from Y40 - Y59
-    "FSCP:22": "?A09:>K520,K522,K523,K528,K529"
-
+    "FSCP:22": "?A09:>K520,K522,K523,K528,K529:>Y40-Y59",
+    # M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835 should be directly followed by code from Y40 - Y59
+    "FSCP:23": "M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835:<Y40-Y59"
 }
 
 
