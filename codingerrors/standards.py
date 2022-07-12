@@ -155,7 +155,7 @@ standards_dict = {
     # T795 should not be coded with N179
     "DCS.XIII.3:0": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
-    "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
+    # "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
     # Multiple independent primary malignant neoplasm
     "DSC.II.4:0": "?C97X:^*",
     # I739 should not be coded with I702,I723,I724,I743,I744,I745
@@ -277,7 +277,7 @@ standards_dict = {
     # Z21X coded with symptomatic HIV
     "FSCP:39": "?B20-B24:!Z21X",
     # Perineal laceration during delivery
-    "FSCP:40": "?O70:!O700,0702,0703",
+    "FSCP:40": "?O701,O704-O709:!O700,0702,0703",
     # Codes from I64 should not be coded with I63
     "FSCP:41": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
