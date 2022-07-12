@@ -13,7 +13,7 @@ This is a simple tool to evaluate a list of ICD-10 codes against DCS/DChS coding
 You can install the development version directly from GitHub with:
 
 ```
-pip install git+https://github.com/KeironO/coding-errors
+pip install git+https://github.com/KeironO/coding-errors --no-cache-dir
 ```
 
 
@@ -44,8 +44,8 @@ Currently, this little tool accounts for the following standards:
 - DCS.XXI.9: Palliative care
 - DCS.IV.1: DM should be either Type 1/Type 2 or unknown
 - DChS.XX.1: External Causes 
-- DSC.XXII.5: COVID-19: B972 without U071 
-- DChS.XVIII: Signs, symptoms and abnormal laboratory findings
+- DSC.XXII.5: COVID-19: B972 without U071, U071 must be in primary position, B972 should not directly follow codes in J18_, U049 SARS should not be coded, B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital, U072 should not be coded with B342, Z115, Z038, U073 must not be assigned with U071 or U072, U073 must not be assigned with U074
+- DChS.XVIII: Signs, symptoms and abnormal laboratory findings: abdomen pain should not be coded with appendicitis K35, K36,K37, chest pain should not be coded with I21, I22, shortness of breath should not be coded with Pneumonia (J12 - J18) or LRTI (J22) or IECOPD (J440)
 - DChS.XI.1: Constipation with ileus or obstruction
 - DChS.XIII.1: Musculoskeletal 5th Character
 - DCS.XIV.5: no need to assign urethral obstruction N368 with N40X
