@@ -30,7 +30,7 @@ from .utils import hyph
 # ? : Applies to the following codes.
 # / : never code
 # ! : Cannot be coded with
-#   # : Unless present
+# # : Unless present
 # .n: Require's nth character
 # { : Must always be coded with
 # ~x..y: x character cannot be y
@@ -139,10 +139,16 @@ standards_dict = {
     # R251 should not be followed directly by a code between Y40 - Y59
     "FSCP:17": "?R251:>Y40-Y59",
     # M109 should not be directly followed by a code from Y40-Y59
-    "FSCP:18": "?M109:Y40-Y59",
+    "FSCP:18": "?M109:>Y40-Y59",
     # E162 should not be directly followed by a code from Y40-Y59
-    "FSCP:19": "?E162:Y40-Y59",
-    
+    "FSCP:19": "?E162:>Y40-Y59",
+    # R51X should not be directly followed by code from Y40 - Y59
+    "FSCP:20": "?R51X:>Y40-Y59",
+    # S271 should not be coded with S270
+    "FSCP:21": "?S271:!S270",
+    # A09, K520, K522,K523,K528,K529 should not be directly followed by a code from Y40 - Y59
+    "FSCP:22": "?A09:>K520,K522,K523,K528,K529"
+
 }
 
 
