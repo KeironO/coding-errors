@@ -155,7 +155,13 @@ standards_dict = {
     "DCS.XI.10:3": "?K640,K641,K643:!K642",
     "DCS.XI.10:4": "?K640,K641,K642:!K643",
     # Pressure Ulcers 
-    ""
+    "DCS.XII.3:0": "?L891,L892,L893,L899:!L890",
+    "DCS.XII.3:1": "?L890,L892,L893,L899:!L891",
+    "DCS.XII.3:2": "?L890,L891,L893,L899:!L892",
+    "DCS.XII.3:3": "?L890,L891,L892,L899:!L893",
+    "DCS.XII.3:4": "?L890,L891,L892,L893:!L899",
+    # Infected Pressure Ulcers
+    "DCS.XII.3:5": "?L89,L97X:>B95,B96",
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
@@ -238,7 +244,7 @@ standards_dict = {
     # Z21X coded with symptomatic HIV
     "FSCP:39": "?B20-B24:!Z21X",
     # Perineal laceration during delivery
-    "FSCP:40": "?O70:!O700,0702,0703",
+    "FSCP:40": "?O70:!O700,0702,0703"
 
 }
 
