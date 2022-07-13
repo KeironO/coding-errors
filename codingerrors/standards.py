@@ -80,7 +80,7 @@ standards_dict = {
     # External Causes 
     "DChS.XX.1:0": "?V01-V99,Y01-Y98:&*",
     # B972 without U071 
-    "DSC.XXII.5:COVID-19:0": "?U071:!B972",
+    "DSC.XXII.5:COVID-19:0": "?U071:>B972",
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1": "?U071:!U072",
     # U071 must be in primary position
