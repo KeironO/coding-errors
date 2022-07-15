@@ -80,11 +80,11 @@ standards_dict = {
     # External Causes 
     "DChS.XX.1:0": "?V01-V99,Y01-Y98:&*",
     # B972 without U071 
-    "DSC.XXII.5:COVID-19:0": "?U071:>B972",
+    "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
-    "DSC.XXII.5:COVID-19:1": "?U071:!U072",
+    "DSC.XXII.5:COVID-19:1:W": "?U071:!U072",
     # U071 must be in primary position
-    "DSC.XXII.5:COVID-19:2": "?U071:^*",
+    "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3": "?J18:>B972",
     # U049 SARS should not be coded
@@ -98,7 +98,7 @@ standards_dict = {
     # U073 must not be assigned with U074
     "DSC.XXII.5:COVID-19:7": "?U074:!U073",
     # Signs, symptoms and abnormal laboratory findings
-    "DChS.XVIII:0": "?G40,G41:!R568",
+    "DChS.XVIII:0:W": "?G40,G41:!R568",
     # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
     "DChS.XVIII:1": "?K35-K37:!R10",
     # R07 - chest pain should not be coded with I21, I22
@@ -124,7 +124,7 @@ standards_dict = {
     # N993 should not be directly followed by Y83/Y84
     "DCS.XIV.12:0": "?N993:>Y83,Y84",
     # F80 should not be coded with either F81 or F82
-    "DCS.XIV.12:1": "?F81,F82:!F80",
+    "DCS.XIV.12:1!W": "?F81,F82:!F80",
     # CKD with Renal Failure 
     "DCS.XIV.2:0": "?N184,N185:!N19",
     # Chronic kidney disease
@@ -135,9 +135,9 @@ standards_dict = {
     "DCS.XIV.2:5": "?N181,N182,N183,N184,N189:!N185",
     "DCS.XIV.2:6": "?N181,N182,N183,N184,N185:!N189",
     # T29 should not be coded
-    "DCS.XIX.5:0": "?T29:/*",
+    "DCS.XIX.5:0:E": "?T29:/*",
     # J95.8 should not be coded  
-    "DSC.XIX.7:0": "?J958:/*",
+    "DSC.XIX.7:0:W": "?J958:/*",
     # Codes O95, O96, O97 should never be assigned
     "DCS.XV.29:0": "?O95-O97:/*",
     # D649 should not be coded with O990
