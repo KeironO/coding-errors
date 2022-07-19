@@ -68,11 +68,17 @@ standards_dict = {
     # Amaurosis fugax
     "DCS.VI.2:0": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
-    "DCS.IX.6:0": "?I21,I22:!I23"
+    "DCS.IX.6:0": "?I21,I22:!I23",
+    # I46.9 unspecified cardiac arrest should not be coded with I46.0 or I46.1
+    "DCS.IX.8:0" : "?I460,I461:!I469",
     # Heart Failure CCF
     "DCS.IX.10:0": "?I501,I509:!I500,I50X",
     # Pulmonary Oedema
     "DCS.IX.10:1": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
+    # congestive cardiac failure (CCF) (I50.0) should not be coded with left ventricular failure (LVF) (I50.1) 
+    "DCS.IX.10:2:" : "?I501:!I500",
+    # I64.X Stroke, must not be coded with I63.-
+    "DCS.IX.11:0": "?I64X:!I63",
     # Atherosclerosis 
     "DCS.IX.14:0": "?I70:.5",
     # Fifth character in Chapter XIX
