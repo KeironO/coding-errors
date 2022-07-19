@@ -165,6 +165,13 @@ standards_dict = {
     "DCS.XV.28:0": "?O801,O802,O808,OS809,O81,O821,O822,O828,O829,O83,O84:/*",
     # Delivery
     "DCS.XV.28:1": "?O10-O16,O20-O48,O60-O75,O85-O92,O94-O99:!O800,O820",
+    # Code M16.-, M17.-, M18.- AND M19.- must not be coded together, M15.- must be coded instead to indicate multiple areas of osteoarthritis.
+    "DCS.XII.2:0": "?M16:!M17,M18,M19",
+    "DCS.XII.2:1": "?M17:!M16,M18,M19",
+    "DCS.XII.2:2": "?M18:!M16,M17,M19",
+    "DCS.XII.2:3": "?M19:!M16,M17,M18",
+    # I13.- must not be coded with I11.- or I12.-
+    "DCS.IX.2:0": "?I11-I12:?I13",
     # T795 should not be coded with N179
     "DCS.XIII.3:0": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
@@ -173,6 +180,8 @@ standards_dict = {
     "DSC.II.4:0": "?C97X:^*",
     # I739 should not be coded with I702,I723,I724,I743,I744,I745
     "DC.IX.15:0": "?I702,I723,I724,I743,I744,I745:!I739",
+    # K22.2 must not be coded with Q39.4
+    "DCS.XI.1:0": "?Q394:!K222",
     # Haemorrhoids
     "DCS.XI.10:0": "?K641,K642,K643:!K640",
     "DCS.XI.10:1": "?K640,K642,K643:!K641",
