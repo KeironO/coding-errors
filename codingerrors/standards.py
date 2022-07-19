@@ -199,6 +199,8 @@ standards_dict = {
     "DChS.XIII.2:0": "?M17,M19:!M16",
     "DChS.XIII.2:1": "?M19,M16:!M17",
     "DChS.XIII.2:2": "?M17,M16:!M19",
+    # N20.2  must not be coded with N20.0 or N20.1
+    "DCS.XIV.3:0": "?N200,N201:!N202",
     # Neoplasia Prostate
     "DCS.XIV.7:0": "?D075,C61X:!N423",
     "DCS.XIV.7:1": "?N423,C61X:!D075",
@@ -213,8 +215,18 @@ standards_dict = {
     "DCS.XIV.10:5": "?D072,N890,N899:!N891",
     "DCS.XIV.10:6": "?N890,N891,N899:!D072",
     "DCS.XIV.10:7": "?N890,N891,D072:!N899",
+    # O20.- must not be coded with O00.-, O01.-, o02.-, o03.-, o04.-, o05.- o06.-, o07.-, o08.-
+    "DCS.XV.6:0": "?O08-O08:!020",
+    # O21.- must not be coded with R11.x
+    "DCS.XV.7:0": "?021:!R11",
+    # Z33.x must not be used with any code from O00.- to O99.-
+    "DCS.XXI.5:0": "?O00-O99:!Z33",
     # Pregnant state, incidental 
     "DCS.XV.33:0": "?Z33X:&*",
+    # Dehydration of newborn (P74.1) must not be coded with E86.x
+    "DCS.IV.7:0": "?E86X:!P741",
+    # R68.8 must not be coded with N17.-, k72.9, i50.-, i51.- or any other organ failure code
+    "DCS.XVIII.10:0": "?N17,K729,I50,I51:!R688",
     # Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery
     "DCS.XVI.1:0": "?P00-P04:&*",
     # H54.0 Blindness, binocular (if unspecified or stated of both eyes) must not be coded with H54.4 Blindness, monocular (if stated to be of one eye only).
