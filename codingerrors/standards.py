@@ -64,7 +64,7 @@ standards_dict = {
     # F03X should not be coded with F051
     "DCS.V.3:1:W": "?F051:!F03X",
     # Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances not to be coded with f10-f18
-    "DCS.V.4:0:W": "?F10-F18:!F17",
+    "DCS.V.4:0:W": "?F10-F16,F18:!F17",
     # Amaurosis fugax
     "DCS.VI.2:0:W": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
