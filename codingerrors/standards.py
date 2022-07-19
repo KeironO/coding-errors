@@ -53,6 +53,8 @@ standards_dict = {
     "DCS.X.7:0": "?J960,J961,J969:.5",
     # Gastritis and duodenitis
     "DCS.XI.4:0": "?K297:!K298",
+    # Other specified bacterial intestinal infections, is not to be code with K29
+    "DCS.XI.4:1": "?A048:!K29",
     # Multiple gestation
     "DCS.XV.14:0": "?O30:{Z372-Z377",
     # Parastoma hernia
@@ -61,8 +63,12 @@ standards_dict = {
     "DCS.V.3:0": "?F03X,F01,F02:!F050,F059",
     # F03X should not be coded with F051
     "DCS.V.3:1": "?F051:!F03X",
+    # Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances not to be coded with f10-f18
+    "DCS.V.4:0": "?F10-F18:!F17",
     # Amaurosis fugax
     "DCS.VI.2:0": "?G453:!H54",
+    # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
+    "DCS.IX.6:0": "?I21,I22:!I23"
     # Heart Failure CCF
     "DCS.IX.10:0": "?I501,I509:!I500,I50X",
     # Pulmonary Oedema
@@ -134,6 +140,7 @@ standards_dict = {
     "DCS.XIV.2:4": "?N181,N182,N183,N185,N189:!N184",
     "DCS.XIV.2:5": "?N181,N182,N183,N184,N189:!N185",
     "DCS.XIV.2:6": "?N181,N182,N183,N184,N185:!N189",
+
     # T29 should not be coded
     "DCS.XIX.5:0:E": "?T29:/*",
     # J95.8 should not be coded  
@@ -195,6 +202,10 @@ standards_dict = {
     "DCS.XV.33:0": "?Z33X:&*",
     # Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery
     "DCS.XVI.1:0": "?P00-P04:&*",
+    # H54.0 Blindness, binocular (if unspecified or stated of both eyes) must not be coded with H54.4 Blindness, monocular (if stated to be of one eye only).
+    "DCS.VII.3:0": "?H544:!H540",
+    # H91.9 must not be coded with H90.0, h90.1, h90.2, h90.3, h90.4, h90.5, h90.6, h90.7, h90.8, h91.0, h91.1, h91.2, h91.3, h91.8
+    "DCS.VIII.1:0": "?H90,H910,H911,H912,H913,H918:!H919",
 
     # Neonatal Jaundice 
     "FSCP:0": "?P072,P073:!P599",
