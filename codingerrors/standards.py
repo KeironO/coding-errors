@@ -38,59 +38,59 @@ from .utils import hyph
 
 standards_dict = {
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
-    "DChS.II.2:0": "?D64:!C90-C95",
+    "DChS.II.2:0:W": "?D64:!C90-C95",
     # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
-    "DCS.III.1:0": "?D573:!D56,D570,D571",
+    "DCS.III.1:0:W": "?D573:!D56,D570,D571",
     # COPD with Chest infection
-    "DCS.X.5:0": "?J440:!J22X",
+    "DCS.X.5:0:W": "?J440:!J22X",
     # Chest infection and pneumonia
-    "DCS.X.5:1": "?J18:!J22",
+    "DCS.X.5:1:W": "?J18:!J22",
     # COPD with pneumonia
-    "DCS.X.5:2": "?J449:!J12-J18",
+    "DCS.X.5:2:W": "?J449:!J12-J18",
     # COPD with Emphysema
-    "DCS.X.5:3": "?J449:!J439",
+    "DCS.X.5:3:W": "?J449:!J439",
     # Respiratory Failure
-    "DCS.X.7:0": "?J960,J961,J969:.5",
+    "DCS.X.7:0:W": "?J960,J961,J969:.5",
     # Gastritis and duodenitis
-    "DCS.XI.4:0": "?K297:!K298",
+    "DCS.XI.4:0:W": "?K297:!K298",
     # Other specified bacterial intestinal infections, is not to be code with K29
-    "DCS.XI.4:1": "?A048:!K29",
+    "DCS.XI.4:1:W": "?A048:!K29",
     # Multiple gestation
-    "DCS.XV.14:0": "?O30:{Z372-Z377",
+    "DCS.XV.14:0:W": "?O30:{Z372-Z377",
     # Parastoma hernia
-    "DCS.XI.5:0": "?K433,K435:{Z93",
+    "DCS.XI.5:0:W": "?K433,K435:{Z93",
     # Delirum and Dementia
-    "DCS.V.3:0": "?F03X,F01,F02:!F050,F059",
+    "DCS.V.3:0:W": "?F03X,F01,F02:!F050,F059",
     # F03X should not be coded with F051
-    "DCS.V.3:1": "?F051:!F03X",
+    "DCS.V.3:1:W": "?F051:!F03X",
     # Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances not to be coded with f10-f18
-    "DCS.V.4:0": "?F10-F18:!F17",
+    "DCS.V.4:0:W": "?F10-F18:!F17",
     # Amaurosis fugax
-    "DCS.VI.2:0": "?G453:!H54",
+    "DCS.VI.2:0:W": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
-    "DCS.IX.6:0": "?I21,I22:!I23",
+    "DCS.IX.6:0:W": "?I21,I22:!I23",
     # I46.9 unspecified cardiac arrest should not be coded with I46.0 or I46.1
-    "DCS.IX.8:0" : "?I460,I461:!I469",
+    "DCS.IX.8:0:W " : "?I460,I461:!I469",
     # Heart Failure CCF
-    "DCS.IX.10:0": "?I501,I509:!I500,I50X",
+    "DCS.IX.10:0:W": "?I501,I509:!I500,I50X",
     # Pulmonary Oedema
-    "DCS.IX.10:1": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
+    "DCS.IX.10:1:W": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
     # congestive cardiac failure (CCF) (I50.0) should not be coded with left ventricular failure (LVF) (I50.1) 
-    "DCS.IX.10:2:" : "?I501:!I500",
+    "DCS.IX.10:2:W" : "?I501:!I500",
     # I64.X Stroke, must not be coded with I63.-
-    "DCS.IX.11:0": "?I64X:!I63",
+    "DCS.IX.11:0:W": "?I64X:!I63",
     # Atherosclerosis 
-    "DCS.IX.14:0": "?I70:.5",
+    "DCS.IX.14:0:W": "?I70:.5",
     # Fifth character in Chapter XIX
-    "DCS.XIX.2:0": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
+    "DCS.XIX.2:0:W": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
     # Palliative care
-    "DCS.XXI.9:0": "?Z518:!Z515",
+    "DCS.XXI.9:0:W": "?Z518:!Z515",
     # DM should be either Type 1/Type 2 or unknown
-    "DCS.IV.1:0": "?E11,E14:!E10",
-    "DCS.IV.1:1": "?E11:!E14,E10",
-    "DCS.IV.1:2": "?E14:!E10,E11",
+    "DCS.IV.1:0:W": "?E11,E14:!E10",
+    "DCS.IV.1:1:W": "?E11:!E14,E10",
+    "DCS.IV.1:2:W": "?E14:!E10,E11",
     # External Causes 
-    "DChS.XX.1:0": "?V01-V99,Y01-Y98:&*",
+    "DChS.XX.1:0:W": "?V01-V99,Y01-Y98:&*",
     # B972 without U071 
     "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
@@ -98,17 +98,17 @@ standards_dict = {
     # U071 must be in primary position
     "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
     # B972 should not directly follow codes in J18_
-    "DSC.XXII.5:COVID-19:3": "?J18:>B972",
+    "DSC.XXII.5:COVID-19:3:W": "?J18:>B972",
     # U049 SARS should not be coded
-    "DSC.XXII.5:COVID-19:4": "?U049:/*",
+    "DSC.XXII.5:COVID-19:4:W": "?U049:/*",
     # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
-    "DSC.XXII.5:COVID-19:4": "?U071,U072:>B342,B972",
+    "DSC.XXII.5:COVID-19:5:W": "?U071,U072:>B342,B972",
     # U072 should not be coded with B342, Z115, Z038
-    "DSC.XXII.5:COVID-19:5": "?U072:!B342,Z115,Z038",
+    "DSC.XXII.5:COVID-19:6:W": "?U072:!B342,Z115,Z038",
     # U073 must not be assigned with U071 or U072
-    "DSC.XXII.5:COVID-19:6": "?U071,U072:!U073",
+    "DSC.XXII.5:COVID-19:7:W": "?U071,U072:!U073",
     # U073 must not be assigned with U074
-    "DSC.XXII.5:COVID-19:7": "?U074:!U073",
+    "DSC.XXII.5:COVID-19:8:W": "?U074:!U073",
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0:W": "?G40,G41:!R568",
     # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
