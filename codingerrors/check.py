@@ -139,6 +139,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     }
 
             elif rule == "~":
+
                 character = int(values["character"])
                 have = values["have"]
                 passes = True

@@ -351,8 +351,8 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = {
-                        "character:W": character,
-                        "have:W": have
+                        "character": character,
+                        "have": have
                     }
                 else:
                     if key not in compiled_standards_dict[icd10]:
