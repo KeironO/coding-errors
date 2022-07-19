@@ -112,214 +112,214 @@ standards_dict = {
     # Signs, symptoms and abnormal laboratory findings
     "DChS.XVIII:0:W": "?G40,G41:!R568",
     # R10 - abdomen pain should not be coded with appendicitis K35, K36,K37
-    "DChS.XVIII:1": "?K35-K37:!R10",
+    "DChS.XVIII:1:W": "?K35-K37:!R10",
     # R07 - chest pain should not be coded with I21, I22
-    "DChS.XVIII:2": "?I21-I22:!R07",
+    "DChS.XVIII:2:W": "?I21-I22:!R07",
     # R060 - shortness of breath should not be coded with Pneumonia (J12 - J18) or LRTI (J22) or IECOPD (J440)
-    "DChS.XVIII:3": "?J12-J18:!R060",
+    "DChS.XVIII:3:W": "?J12-J18:!R060",
     # R568 should not be coded with either G40 or G41 
-    "DChS.XVIII:4": "?G40-G41:!R568",
+    "DChS.XVIII:4:W": "?G40-G41:!R568",
     # R251 should not be coded with either G20 or G21
-    "DChS.XVIII:5": "?G20-G21:!R251",
+    "DChS.XVIII:5:W": "?G20-G21:!R251",
     # Constipation with ileus or obstruction
-    "DChS.XI.1:0": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
+    "DChS.XI.1:0:W": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Musculoskeletal 5th Character
-    "DChS.XIII.1:0": "?M00-M25,M40-M54,M60-M99:~5..9",
+    "DChS.XIII.1:0:W": "?M00-M25,M40-M54,M60-M99:~5..9",
     # no need to assign urethral obstruction N368 with N40X
-    "DCS.XIV.5:0" :"?N40X:!N368",
+    "DCS.XIV.5:0:W" :"?N40X:!N368",
     # Z72.0 tobacco use must not be coded
-    "DSC.V.7:0": "?Z720:/*",
+    "DSC.V.7:0:W": "?Z720:/*",
     # Z12.1 Special screening examination for neoplasm of intestinal tract 
-    "DCS.XXI.1:0": "?D12,K55-K64,C18-C21:!Z121",
+    "DCS.XXI.1:0:W": "?D12,K55-K64,C18-C21:!Z121",
     # Y838 and Y839 and Y848 and Y849 should not be coded with a code from T80-T88
-    "DSC.XIX.7:0": "?T80-T88:!Y838,Y839,Y848,Y849",
+    "DSC.XIX.7:0:W": "?T80-T88:!Y838,Y839,Y848,Y849",
     # N993 should not be directly followed by Y83/Y84
-    "DCS.XIV.12:0": "?N993:>Y83,Y84",
+    "DCS.XIV.12:0:W": "?N993:>Y83,Y84",
     # F80 should not be coded with either F81 or F82
-    "DCS.XIV.12:1!W": "?F81,F82:!F80",
+    "DCS.XIV.12:1!W:W": "?F81,F82:!F80",
     # CKD with Renal Failure 
-    "DCS.XIV.2:0": "?N184,N185:!N19",
+    "DCS.XIV.2:0:W": "?N184,N185:!N19",
     # Chronic kidney disease
-    "DCS.XIV.2:1": "?N182,N183,N184,N185,N189:!N181",
-    "DCS.XIV.2:2": "?N181,N183,N184,N185,N189:!N182",
-    "DCS.XIV.2:3": "?N181,N182,N184,N185,N189:!N183",
-    "DCS.XIV.2:4": "?N181,N182,N183,N185,N189:!N184",
-    "DCS.XIV.2:5": "?N181,N182,N183,N184,N189:!N185",
-    "DCS.XIV.2:6": "?N181,N182,N183,N184,N185:!N189",
+    "DCS.XIV.2:1:W": "?N182,N183,N184,N185,N189:!N181",
+    "DCS.XIV.2:2:W": "?N181,N183,N184,N185,N189:!N182",
+    "DCS.XIV.2:3:W": "?N181,N182,N184,N185,N189:!N183",
+    "DCS.XIV.2:4:W": "?N181,N182,N183,N185,N189:!N184",
+    "DCS.XIV.2:5:W": "?N181,N182,N183,N184,N189:!N185",
+    "DCS.XIV.2:6:W": "?N181,N182,N183,N184,N185:!N189",
 
     # T29 should not be coded
     "DCS.XIX.5:0:E": "?T29:/*",
     # J95.8 should not be coded  
     "DSC.XIX.7:0:W": "?J958:/*",
     # Codes O95, O96, O97 should never be assigned
-    "DCS.XV.29:0": "?O95-O97:/*",
+    "DCS.XV.29:0:W": "?O95-O97:/*",
     # D649 should not be coded with O990
-    "DSC.XV.32:0": "?O990:!D649",
+    "DSC.XV.32:0:W": "?O990:!D649",
     # Geriatric and elderly falls (R296)
-    "DCS.XVIII.4:0": "?R296:>W00-W19",
+    "DCS.XVIII.4:0:W": "?R296:>W00-W19",
     # Sepsis codes should not be followed by B95 or B96
-    "DCS.I.4:0": "?A40,A41:>B95,B96",
+    "DCS.I.4:0:W": "?A40,A41:>B95,B96",
     # R69.X/R96.X/R98.X/R99.X should not be coded is other information is available for code assignment
-    "DCS.XVIII.11:0": "?R69X,R96X,R98X,R99X:/*",
+    "DCS.XVIII.11:0:W": "?R69X,R96X,R98X,R99X:/*",
     # Rare Delivery Codes
-    "DCS.XV.28:0": "?O801,O802,O808,OS809,O81,O821,O822,O828,O829,O83,O84:/*",
+    "DCS.XV.28:0:W": "?O801,O802,O808,OS809,O81,O821,O822,O828,O829,O83,O84:/*",
     # Delivery
-    "DCS.XV.28:1": "?O10-O16,O20-O48,O60-O75,O85-O92,O94-O99:!O800,O820",
+    "DCS.XV.28:1:W": "?O10-O16,O20-O48,O60-O75,O85-O92,O94-O99:!O800,O820",
     # Code M16.-, M17.-, M18.- AND M19.- must not be coded together, M15.- must be coded instead to indicate multiple areas of osteoarthritis.
-    "DCS.XII.2:0": "?M16:!M17,M18,M19",
-    "DCS.XII.2:1": "?M17:!M16,M18,M19",
-    "DCS.XII.2:2": "?M18:!M16,M17,M19",
-    "DCS.XII.2:3": "?M19:!M16,M17,M18",
+    "DCS.XII.2:0:W": "?M16:!M17,M18,M19",
+    "DCS.XII.2:1:W": "?M17:!M16,M18,M19",
+    "DCS.XII.2:2:W": "?M18:!M16,M17,M19",
+    "DCS.XII.2:3:W": "?M19:!M16,M17,M18",
     # I13.- must not be coded with I11.- or I12.-
-    "DCS.IX.2:0": "?I11-I12:?I13",
+    "DCS.IX.2:0:W": "?I11-I12:?I13",
     # T795 should not be coded with N179
-    "DCS.XIII.3:0": "?N179:!T795",
+    "DCS.XIII.3:0:W": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
-    # "DChS.I.1:0": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
+    # "DChS.I.1:0:W": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
     # Multiple independent primary malignant neoplasm
-    "DSC.II.4:0": "?C97X:^*",
+    "DSC.II.4:0:W": "?C97X:^*",
     # I739 should not be coded with I702,I723,I724,I743,I744,I745
-    "DC.IX.15:0": "?I702,I723,I724,I743,I744,I745:!I739",
+    "DC.IX.15:0:W": "?I702,I723,I724,I743,I744,I745:!I739",
     # K22.2 must not be coded with Q39.4
-    "DCS.XI.1:0": "?Q394:!K222",
+    "DCS.XI.1:0:W": "?Q394:!K222",
     # Haemorrhoids
-    "DCS.XI.10:0": "?K641,K642,K643:!K640",
-    "DCS.XI.10:1": "?K640,K642,K643:!K641",
-    "DCS.XI.10:3": "?K640,K641,K643:!K642",
-    "DCS.XI.10:4": "?K640,K641,K642:!K643",
+    "DCS.XI.10:0:W": "?K641,K642,K643:!K640",
+    "DCS.XI.10:1:W": "?K640,K642,K643:!K641",
+    "DCS.XI.10:3:W": "?K640,K641,K643:!K642",
+    "DCS.XI.10:4:W": "?K640,K641,K642:!K643",
     # Pressure Ulcers 
-    "DCS.XII.3:0": "?L891,L892,L893,L899:!L890",
-    "DCS.XII.3:1": "?L890,L892,L893,L899:!L891",
-    "DCS.XII.3:2": "?L890,L891,L893,L899:!L892",
-    "DCS.XII.3:3": "?L890,L891,L892,L899:!L893",
-    "DCS.XII.3:4": "?L890,L891,L892,L893:!L899",
+    "DCS.XII.3:0:W": "?L891,L892,L893,L899:!L890",
+    "DCS.XII.3:1:W": "?L890,L892,L893,L899:!L891",
+    "DCS.XII.3:2:W": "?L890,L891,L893,L899:!L892",
+    "DCS.XII.3:3:W": "?L890,L891,L892,L899:!L893",
+    "DCS.XII.3:4:W": "?L890,L891,L892,L893:!L899",
     # Infected Pressure Ulcers
-    "DCS.XII.3:5": "?L89,L97X:>B95,B96",
+    "DCS.XII.3:5:W": "?L89,L97X:>B95,B96",
     # Arthrosis
-    "DChS.XIII.2:0": "?M17,M19:!M16",
-    "DChS.XIII.2:1": "?M19,M16:!M17",
-    "DChS.XIII.2:2": "?M17,M16:!M19",
+    "DChS.XIII.2:0:W": "?M17,M19:!M16",
+    "DChS.XIII.2:1:W": "?M19,M16:!M17",
+    "DChS.XIII.2:2:W": "?M17,M16:!M19",
     # N20.2  must not be coded with N20.0 or N20.1
-    "DCS.XIV.3:0": "?N200,N201:!N202",
+    "DCS.XIV.3:0:W": "?N200,N201:!N202",
     # Neoplasia Prostate
-    "DCS.XIV.7:0": "?D075,C61X:!N423",
-    "DCS.XIV.7:1": "?N423,C61X:!D075",
-    "DCS.XIV.7:2": "?D075,N423:!C61X",
+    "DCS.XIV.7:0:W": "?D075,C61X:!N423",
+    "DCS.XIV.7:1:W": "?N423,C61X:!D075",
+    "DCS.XIV.7:2:W": "?D075,N423:!C61X",
     # CIN
-    "DCS.XIV.10:0": "?N871,N879,D069:!N870",
-    "DCS.XIV.10:1": "?D069,N870,N879:!N871",
-    "DCS.XIV.10:2": "?N870,N871,N879:!D069",
-    "DCS.XIV.10:3": "?N870,N871,D069:!Z879",
+    "DCS.XIV.10:0:W": "?N871,N879,D069:!N870",
+    "DCS.XIV.10:1:W": "?D069,N870,N879:!N871",
+    "DCS.XIV.10:2:W": "?N870,N871,N879:!D069",
+    "DCS.XIV.10:3:W": "?N870,N871,D069:!Z879",
     # VAIN
-    "DCS.XIV.10:4": "?N891,N899,D072:!N890",
-    "DCS.XIV.10:5": "?D072,N890,N899:!N891",
-    "DCS.XIV.10:6": "?N890,N891,N899:!D072",
-    "DCS.XIV.10:7": "?N890,N891,D072:!N899",
+    "DCS.XIV.10:4:W": "?N891,N899,D072:!N890",
+    "DCS.XIV.10:5:W": "?D072,N890,N899:!N891",
+    "DCS.XIV.10:6:W": "?N890,N891,N899:!D072",
+    "DCS.XIV.10:7:W": "?N890,N891,D072:!N899",
     # O20.- must not be coded with O00.-, O01.-, o02.-, o03.-, o04.-, o05.- o06.-, o07.-, o08.-
-    "DCS.XV.6:0": "?O08-O08:!020",
+    "DCS.XV.6:0:W": "?O08-O08:!020",
     # O21.- must not be coded with R11.x
-    "DCS.XV.7:0": "?021:!R11",
+    "DCS.XV.7:0:W": "?021:!R11",
     # Z33.x must not be used with any code from O00.- to O99.-
-    "DCS.XXI.5:0": "?O00-O99:!Z33",
+    "DCS.XXI.5:0:W": "?O00-O99:!Z33",
     # Pregnant state, incidental 
-    "DCS.XV.33:0": "?Z33X:&*",
+    "DCS.XV.33:0:W": "?Z33X:&*",
     # Dehydration of newborn (P74.1) must not be coded with E86.x
-    "DCS.IV.7:0": "?E86X:!P741",
+    "DCS.IV.7:0:W": "?E86X:!P741",
     # R68.8 must not be coded with N17.-, k72.9, i50.-, i51.- or any other organ failure code
-    "DCS.XVIII.10:0": "?N17,K729,I50,I51:!R688",
+    "DCS.XVIII.10:0:W": "?N17,K729,I50,I51:!R688",
     # Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery
-    "DCS.XVI.1:0": "?P00-P04:&*",
+    "DCS.XVI.1:0:W": "?P00-P04:&*",
     # H54.0 Blindness, binocular (if unspecified or stated of both eyes) must not be coded with H54.4 Blindness, monocular (if stated to be of one eye only).
-    "DCS.VII.3:0": "?H544:!H540",
+    "DCS.VII.3:0:W": "?H544:!H540",
     # H91.9 must not be coded with H90.0, h90.1, h90.2, h90.3, h90.4, h90.5, h90.6, h90.7, h90.8, h91.0, h91.1, h91.2, h91.3, h91.8
-    "DCS.VIII.1:0": "?H90,H910,H911,H912,H913,H918:!H919",
+    "DCS.VIII.1:0:W": "?H90,H910,H911,H912,H913,H918:!H919",
 
     # Neonatal Jaundice 
-    "FSCP:0": "?P072,P073:!P599",
+    "FSCP:0:W": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
-    "FSCP:1": "?B95-B98:&*",
+    "FSCP:1:W": "?B95-B98:&*",
     # I350 should not be coded with I351
-    "FSCP:2": "?I351:!I350",
+    "FSCP:2:W": "?I351:!I350",
     # I080 coded with codes from I34 and I35
-    "FSCP:3": "?I34,I35:!I080",
+    "FSCP:3:W": "?I34,I35:!I080",
     # M479 should not be coded with 5th character of 2 cervical, 6 lumbar or 8 sacral
-    "FSCP:4": "?M4792, M4796,M4798:/*",
+    "FSCP:4:W": "?M4792, M4796,M4798:/*",
     # Z722 should not be coded with F55, F19, F11,F12,F13,F14,F15,F16
-    "FSCP:5": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
+    "FSCP:5:W": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # Z720 should not be coded with F171
-    "FSCP:6": "?F171:!Z720",
+    "FSCP:6:W": "?F171:!Z720",
     # I350 should not be coded with I351
-    "FSCP:7": "?I351:!I350",
+    "FSCP:7:W": "?I351:!I350",
     # I830 should not be coded with I831
-    "FSCP:8": "?I831:!I830",
+    "FSCP:8:W": "?I831:!I830",
     # K802 should not be coded with K81
-    "FSCP:9": "?K81:!K802",
+    "FSCP:9:W": "?K81:!K802",
     # Z721 should not be coded with F102
-    "FSCP:10": "?F102:!Z721",
+    "FSCP:10:W": "?F102:!Z721",
     # N13.2 Hydronephrosis with N20_
-    "FSCP:11": "?N132:!N20",
+    "FSCP:11:W": "?N132:!N20",
     # I633-I634-I635 should not be coded with I65
-    "FSCP:12": "?I65:!I633-I635",
+    "FSCP:12:W": "?I65:!I633-I635",
     # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
-    "FSCP:13": "?J12-J18:!J852",
+    "FSCP:13:W": "?J12-J18:!J852",
     # I080 coded with codes from I34 and I35
-    "FSCP:14": "?I34-I35:!I080",
+    "FSCP:14:W": "?I34-I35:!I080",
     # codes O640 - O663 should not be coded with O320 - O324/O326 -O329 and O33._
-    "FSCP:15": "?O320-O324,O326-O329,O33:!O640-O663",
+    "FSCP:15:W": "?O320-O324,O326-O329,O33:!O640-O663",
     # Dementia 
-    "FSCP:16": "?F03:!F01-F02",
+    "FSCP:16:W": "?F03:!F01-F02",
     # R251 should not be followed directly by a code between Y40 - Y59
-    "FSCP:17": "?R251:>Y40-Y59",
+    "FSCP:17:W": "?R251:>Y40-Y59",
     # M109 should not be directly followed by a code from Y40-Y59
-    "FSCP:18": "?M109:>Y40-Y59",
+    "FSCP:18:W": "?M109:>Y40-Y59",
     # E162 should not be directly followed by a code from Y40-Y59
-    "FSCP:19": "?E162:>Y40-Y59",
+    "FSCP:19:W": "?E162:>Y40-Y59",
     # R51X should not be directly followed by code from Y40 - Y59
-    "FSCP:20": "?R51X:>Y40-Y59",
+    "FSCP:20:W": "?R51X:>Y40-Y59",
     # S271 should not be coded with S270
-    "FSCP:21": "?S271:!S270",
+    "FSCP:21:W": "?S271:!S270",
     # A09, K520, K522,K523,K528,K529 should not be directly followed by a code from Y40 - Y59
-    "FSCP:22": "?A09:>K520,K522,K523,K528,K529:>Y40-Y59",
+    "FSCP:22:W": "?A09:>K520,K522,K523,K528,K529:>Y40-Y59",
     # M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835 should be directly followed by code from Y40 - Y59
-    "FSCP:23": "?M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835:<Y40-Y59",
+    "FSCP:23:W": "?M102,E242,M804,L640,E273,E160,G251,G720,N141,D592,E661,M814,K853,L105,M342,E064,G256,G444,M835:<Y40-Y59",
     # G620 not directly followed by a code from Y40-Y59 or Y880
-    "FSCP:24": "?G620:>Y40-Y59,Y880",
+    "FSCP:24:W": "?G620:>Y40-Y59,Y880",
     # Codes L233/L251/L270/L271 should be followed by a code from Y10-Y599 to state what drug caused the dermatitis
-    "FSCP:25": "?L233,L251,L270,L271:>Y10-Y58,Y599",
+    "FSCP:25:W": "?L233,L251,L270,L271:>Y10-Y58,Y599",
     # Chronic diarrhoea with infective diarrhoea
-    "FSCP:26": "?A09:!K529",
+    "FSCP:26:W": "?A09:!K529",
     # J18 should not be followed by a code by B95 and B96
-    "FSCP:27": "?J18:>B95,B98",
+    "FSCP:27:W": "?J18:>B95,B98",
     # I959 should not be directly followed by a code from Y40-Y59
-    "FSCP:28": "?I959:>Y40-Y59",
+    "FSCP:28:W": "?I959:>Y40-Y59",
     # K859 should not be directly followed by a code from Y40-Y59
-    "FSCP:29": "?K859:>Y40-Y59",
+    "FSCP:29:W": "?K859:>Y40-Y59",
     # G629 should not be directly followed by a code from Y40-Y59
-    "FSCP:30": "?G629:>Y40-Y59",
+    "FSCP:30:W": "?G629:>Y40-Y59",
     # B95 B96 should not directly follow I830
-    "FSCP:31": "?I830:>B95,B96", 
+    "FSCP:31:W": "?I830:>B95,B96", 
     # Kidney and Ureter Calculi
-    "FSCP:32": "?N201,N202:!N200",
+    "FSCP:32:W": "?N201,N202:!N200",
     # Codes from L30 should not be directly followed by any codes in the range Y100 - Y599
-    "FSCP:33": "?L30:>Y10-Y59",
+    "FSCP:33:W": "?L30:>Y10-Y59",
     # Influenza with pneumonia
-    "FSCP:34": "?J13-J18:!J10-J11",
+    "FSCP:34:W": "?J13-J18:!J10-J11",
     # Ankylosis of joint should not be coded with stiffness of joint 
-    "FSCP:35": "?M256:!M246",
+    "FSCP:35:W": "?M256:!M246",
     # K802 Calculus of gallbladder without cholecystitis coded with K81_ Cholecystitis
-    "FSCP:36": "?K81:!K802",
+    "FSCP:36:W": "?K81:!K802",
     # I260 should not be coded with I279
-    "FSCP:37": "?I279:!I260",
+    "FSCP:37:W": "?I279:!I260",
     # I95.2 Hypotension due to drugs should have an additional Y40 - Y59 coded directly beneath
-    "FSCP:38": "?I952:<Y40-Y59",
+    "FSCP:38:W": "?I952:<Y40-Y59",
     # Z21X coded with symptomatic HIV
-    "FSCP:39": "?B20-B24:!Z21X",
+    "FSCP:39:W": "?B20-B24:!Z21X",
     # Perineal laceration during delivery
-    "FSCP:40": "?O701,O704-O709:!O700,0702,0703",
+    "FSCP:40:W": "?O701,O704-O709:!O700,0702,0703",
     # Codes from I64 should not be coded with I63
-    "FSCP:41": "?I63:!I64",
+    "FSCP:41:W": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
-    "FSCP:42": "?I65:I630-I632"
+    "FSCP:42:W": "?I65:I630-I632"
 
 }
 
@@ -351,8 +351,8 @@ def _build_standards_dict() -> dict:
                     if key not in compiled_standards_dict[icd10]:
                         compiled_standards_dict[icd10][key] = {}
                     compiled_standards_dict[icd10][key][part[0]] = {
-                        "character": character,
-                        "have": have
+                        "character:W": character,
+                        "have:W": have
                     }
                 else:
                     if key not in compiled_standards_dict[icd10]:
