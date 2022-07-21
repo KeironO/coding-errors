@@ -38,21 +38,21 @@ from .utils import hyph
 
 standards_dict = {
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
-    "DChS.II.2:0:W": "?D64:!C90-C95",
+    "DChS.II.2:0:E": "?D64:!C90-C95",
     # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
-    "DCS.III.1:0:W": "?D573:!D56,D570,D571",
+    "DCS.III.1:0:E": "?D573:!D56,D570,D571",
     # COPD with Chest infection
-    "DCS.X.5:0:W": "?J440:!J22X",
+    "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
-    "DCS.X.5:1:W": "?J18:!J22",
+    "DCS.X.5:1:E": "?J18:!J22",
     # COPD with pneumonia
-    "DCS.X.5:2:W": "?J449:!J12-J18",
+    "DCS.X.5:2:E": "?J449:!J12-J18",
     # COPD with Emphysema
-    "DCS.X.5:3:W": "?J449:!J439",
+    "DCS.X.5:3:E": "?J449:!J439",
     # Respiratory Failure
-    "DCS.X.7:0:W": "?J960,J961,J969:.5",
+    "DCS.X.7:0:E": "?J960,J961,J969:.5",
     # Gastritis and duodenitis
-    "DCS.XI.4:0:W": "?K297:!K298",
+    "DCS.XI.4:0:E": "?K297:!K298",
     # Other specified bacterial intestinal infections, is not to be code with K29
     "DCS.XI.4:1:W": "?A048:!K29",
     # Multiple gestation
@@ -146,7 +146,6 @@ standards_dict = {
     "DCS.XIV.2:4:W": "?N181,N182,N183,N185,N189:!N184",
     "DCS.XIV.2:5:W": "?N181,N182,N183,N184,N189:!N185",
     "DCS.XIV.2:6:W": "?N181,N182,N183,N184,N185:!N189",
-
     # T29 should not be coded
     "DCS.XIX.5:0:E": "?T29:/*",
     # J95.8 should not be coded  
