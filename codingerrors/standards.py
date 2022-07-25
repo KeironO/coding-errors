@@ -61,11 +61,11 @@ standards_dict = {
     # Parastoma hernia
     "DCS.XI.5:0:E": "?K433,K435:{Z93",
     # Delirum and Dementia
-    "DCS.V.3:0:E": "?F03X,F01,F02:{F051",
+    "DCS.V.3:0:E": "?F03X,F01,F02:!F051",
     # F03X should not be coded with F051                                                                                                         LC unsure if needs deleting
-    "DCS.V.3:1:W": "?F051:!F03X",
+    # "DCS.V.3:1:W": "?F051:!F03X",
     # Mental and behavioural disorders due to multiple drug use and use of other.ie psychoactive substances not to be coded with f10-f18
-    "DCS.V.4:0:E": "?F10-F16,F18:!F17",
+    "DCS.V.4:0:E": "?F19:!F10-F18",
     # Amaurosis fugax
     "DCS.VI.2:0:E": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
@@ -97,7 +97,7 @@ standards_dict = {
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1:E": "?U071:!U072",
     # U071 must be in primary position
-    "DSC.XXII.5:COVID-19:2:E": "?U071:^*",
+    "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3:E": "?J18:>B972",
     # U049 SARS should not be coded
