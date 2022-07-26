@@ -52,6 +52,13 @@ Currently, this little tool accounts for the following standards:
 - DSC.V.7: Z72.0 tobacco use must not be coded
 - Four Step Coding Procedures : Neonatal Jaundice, B95/B96/B97/B98 never in primary position, I350 should not be coded with I351, I830 should not be coded with I831, K802 should not be coded with K81, Z721 should not be coded with F102, N13.2 Hydronephrosis with N20_
 
+## Contributors
+
+- Lisa Cartwright
+- Claire Connell
+- Joanne Gapper
+- Keiron O'Shea 
+
 ## Bug reporting and feature suggestions
 
 Please report all bugs or feature suggestions to the [issues tracker](https://www.github.com/KeironO/coding-errors/issues). Please do not email me directly as I'm struggling to keep track of what needs to be fixed.
