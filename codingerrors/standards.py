@@ -57,7 +57,7 @@ standards_dict = {
     # Other specified bacterial intestinal infections, is not to be code with K29
     "DCS.XI.4:1:E": "?A048:!K29",
     # Multiple gestation
-    "DCS.XV.14:0:E": "?Z372-Z377:{O30",
+    # "DCS.XV.14:0:E": "?Z372-Z377:{O30",
     # Parastoma hernia
     "DCS.XI.5:0:E": "?K433,K435:{Z93",
     # Delirum and Dementia
@@ -147,7 +147,7 @@ standards_dict = {
     "DCS.XIV.2:4:E": "?N181,N182,N183,N185,N189:!N184",
     "DCS.XIV.2:5:E": "?N181,N182,N183,N184,N189:!N185",
     "DCS.XIV.2:6:E": "?N181,N182,N183,N184,N185:!N189",
-    # T29 should not be coded UNSURE
+    # T29 should not be coded
     "DCS.XIX.5:0:E": "?T29:/*",                                                                                        
     # J95.8 should not be coded  
     "DSC.XIX.7:0:E": "?J958:/*",
