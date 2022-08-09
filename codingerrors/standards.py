@@ -284,7 +284,7 @@ standards_dict = {
     # G620 not directly followed by a code from Y40-Y59 or Y880
     "FSCP:24:E": "?G620:>Y40-Y59,Y880",
     # Codes L233/L251/L270/L271 should be followed by a code from Y10-Y599 to state what drug caused the dermatitis
-    "FSCP:25:E": "?L233,L251,L270,L271:>Y10-Y58,Y599",
+    "FSCP:25:E": "?L233,L251,L270,L271:{Y10-Y58,Y599",
     # Chronic diarrhoea with infective diarrhoea
     "FSCP:26:W": "?A09:!K529",
     # J18 should not be followed by a code by B95 and B96
@@ -318,8 +318,9 @@ standards_dict = {
     # Codes from I64 should not be coded with I63
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
-    "FSCP:42:E": "?I65:I630-I632"
-
+    "FSCP:42:E": "?I65:I630-I632",
+    # Poisoning codes should not be coded with adverse effects
+    "LCAR:01:E": "?T36-T65:!Y40-Y59"
 }
 
 
