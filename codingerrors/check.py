@@ -78,7 +78,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "note": "None of %s found" % (",".join(values)),
                     }
             elif rule == ".":
-                if len(icd10) < int(values):
+                if len(icd10) < int(values) and icd10[-1] != '9':
                     if standard not in results:
                         results[standard] = {}
                     results[standard][rule] = {

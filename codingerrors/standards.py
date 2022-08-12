@@ -103,7 +103,7 @@ standards_dict = {
     # U049 SARS should not be coded
     "DSC.XXII.5:COVID-19:4:E": "?U049:/*",
     # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
-    "DSC.XXII.5:COVID-19:5:E": "?U071,U072:>B342,B972",
+    "DSC.XXII.5:COVID-19:5:E": "?U071,U072:>B342",
     # U072 should not be coded with B342, Z115, Z038
     "DSC.XXII.5:COVID-19:6:E": "?U072:!B342,Z115,Z038",
     # U073 must not be assigned with U071 or U072
@@ -150,7 +150,7 @@ standards_dict = {
     # T29 should not be coded
     "DCS.XIX.5:0:E": "?T29:/*",                                                                                        
     # J95.8 should not be coded  
-    "DSC.XIX.7:0:E": "?J958:/*",
+    "DSC.XIX.7:1:W": "?J958:/*",
     # Codes O95, O96, O97 should never be assigned
     "DCS.XV.29:0:E": "?O95-O97:/*",
     # D649 should not be coded with O990
@@ -318,9 +318,7 @@ standards_dict = {
     # Codes from I64 should not be coded with I63
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
-    "FSCP:42:E": "?I65:I630-I632",
-    # Poisoning codes should not be coded with adverse effects
-    "LCAR:01:E": "?T36-T65:!Y40-Y59"
+    "FSCP:42:E": "?I65:I630-I632"
 }
 
 
