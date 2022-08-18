@@ -45,7 +45,7 @@ standards_dict = {
     # COPD with Chest infection
     "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
-    "DCS.X.5:1:E": "?J18:!J22",
+    "DCS.X.5:1:W": "?J18:!J22",
     # COPD with pneumonia
     "DCS.X.5:2:E": "?J449:!J12-J18",
     # COPD with Emphysema
@@ -55,7 +55,7 @@ standards_dict = {
     # Gastritis and duodenitis
     "DCS.XI.4:0:E": "?K297:!K298",
     # Other specified bacterial intestinal infections, is not to be code with K29
-    "DCS.XI.4:1:E": "?A048:!K29",
+    # "DCS.XI.4:1:E": "?A048:!K29",
     # Multiple gestation
     # "DCS.XV.14:0:E": "?Z372-Z377:{O30",
     # Parastoma hernia
@@ -260,7 +260,7 @@ standards_dict = {
     # I633-I634-I635 should not be coded with I65
     "FSCP:12:E": "?I65:!I633-I635",
     # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
-    "FSCP:13:E": "?J12-J18:!J852",
+    "FSCP:13:W": "?J12-J18:!J852",
     # I080 coded with codes from I34 and I35
     "FSCP:14:E": "?I34-I35:!I080",
     # codes O640 - O663 should not be coded with O320 - O324/O326 -O329 and O33._
@@ -302,7 +302,7 @@ standards_dict = {
     # Codes from L30 should not be directly followed by any codes in the range Y100 - Y599
     "FSCP:33:E": "?L30:>Y10-Y59",
     # Influenza with pneumonia
-    "FSCP:34:E": "?J13-J18:!J10-J11",
+    "FSCP:34:W": "?J13-J18:!J10-J11",
     # Ankylosis of joint should not be coded with stiffness of joint 
     "FSCP:35:E": "?M256:!M246",
     # K802 Calculus of gallbladder without cholecystitis coded with K81_ Cholecystitis
