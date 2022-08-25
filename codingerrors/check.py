@@ -56,15 +56,36 @@ def _check_against_standard(returned_standard, icd10s, icd10):
 
             if rule == "!":
                 for code, mask in mask_dict.items():
-                    if standard not in results:
-                        results[standard] = {}
+
                     if True in list(itertools.chain(*mask)):
+                        if standard not in results:
+                            results[standard] = {}
                         rel = [icd10s[x.index(True)] for x in mask]
                         results[standard][rule] = {
                             "pass": False,
                             "relevant": rel,
                             "note": "You cannot code %s with %s" % ("".join(rel), icd10),
                         }
+
+            elif rule == ")":
+                primary_code_position = icd10s.index(icd10)
+
+                for code, mask in mask_dict.items():
+                    tim = list(itertools.chain(*mask))
+                    if True in tim:
+                        index = tim.index(True)
+                        if index != (primary_code_position + 1) and index != (primary_code_position - 1):
+                            if standard not in results:
+                                results[standard] = {}
+                            rel = [icd10s[x.index(True)] for x in mask]
+                            results[standard][rule] = {
+                                "pass": False,
+                                "relevant": rel,
+                                "note": "%s must be coded before or after %s" % (icd10, "".join(rel)),
+                            }
+
+                        
+
 
             elif rule == "$":
                 
@@ -161,6 +182,8 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "note": "One of %s needs to coded directly after %s" % (",".join(values), icd10)
                     }
             
+            
+
             elif rule == "~":
 
                 character = int(values["character"])
