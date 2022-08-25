@@ -38,7 +38,9 @@ from .utils import hyph
 # $ : Should always follow by
 # % : Should always either be sequenced directly after
 # ) : Should always be sequences either way by 
+# ¬ : When in primary position should never be followed by 
 # @ : Exception when present (ignore)
+
 
 standards_dict = {
     # Zika Virus bust always follow 'Other specified mosquito-borne viral fevers'
@@ -58,15 +60,19 @@ standards_dict = {
     # O629 & O63 cannot be coded with O664 & O665
     "DSC.XV.24W:0:E": "?O664,O665:!O629,O63",
     # E10._ or E11._or E14._ should not be coded in an obstetric FCE
-    "DCS.XV.9:0:E": "?E10,E11,E14:!O00-O99",
+    "DCS.XV.9:0:E": "?O00-O99:!E10,E11,E14",
     # F100 should not be coded with T36-T50 - unless T510 is also assigned
     "DCS.XIX.8:0:E": "?F100:!T36-T50:@T510",
     # - C81._ to C96._ should not be coded with C77._/C78._/C79._ unless there is a code from C00-C75 or C80._ or Z85._
     "DCS.II.7:0:E": "?C81-C96:!C77-C79:@C00-C75,C80,Z85",
     # - codes  Z37.2 or Z37.3 or Z37.4 or Z37.5 or Z37.6 or Z37.7 should always be coded with O30._
-    "DCS.XV.14:0:E": "?Z372,Z373,Z374,Z375,Z376,Z377:{O30",
+    "DCS.XV.14:0:E": "?Z372-Z377:{O30",
     # F00.- must always either be sequenced directly after  or before a code from G30_D 
-    "DGCS.5:0:E": "!F00:)G30",
+    "DGCS.5:0:E": "?F00:)G30",
+    # R65.1 must always be coded directly following a code from A40._ or A41.*or P36.* or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
+    "DChS.I.1:0:E": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753,A394:%R651",
+    # Code in Z20-Z28 in primary position should not directly followed by a code A00-B99 or R00-T99
+    "DCS.XXI.3": "?Z20-Z28:¬A00-B99,R00-T99",
 
     ## LC/JG/KO/CC
 
