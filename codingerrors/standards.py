@@ -35,9 +35,41 @@ from .utils import hyph
 # { : Must always be coded with
 # ~x..y: x character cannot be y
 # > : Should not be directly followed by
-
+# $ : Should always follow by
+# % : Should always either be sequenced directly after
+# ) : Should always be sequences either way by 
+# @ : Exception when present (ignore)
 
 standards_dict = {
+    # Zika Virus bust always follow 'Other specified mosquito-borne viral fevers'
+    "DCS.I.5:0:E": "?U068:$A928",
+    # Metastatic cancer must have a primary cancer or history of a primary cancer 
+    "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
+    # A (Z38) must be primary or first secondary diag position
+    "DChS.XVI.1:0:E": "?Z38:^*",
+    # Only code O432 AFTER O720/O730 
+    "DCS.XV.19:0:E": "?O432:$O720,O730",
+    # P95 should not coded.
+    "DCS.XVI.7:0:E": "?P95:/*",
+    # C97X  should always be coded in the primary diagnosis position
+    "DCS.II.4:0:E": "?C97X:^*",
+    # O664 & O665 should not be coded
+    "DSC.XV.24W:0:W": "?O664,O665:/*",
+    # O629 & O63 cannot be coded with O664 & O665
+    "DSC.XV.24W:0:E": "?O664,O665:!O629,O63",
+    # E10._ or E11._or E14._ should not be coded in an obstetric FCE
+    "DCS.XV.9:0:E": "?E10,E11,E14:!O00-O99",
+    # F100 should not be coded with T36-T50 - unless T510 is also assigned
+    "DCS.XIX.8:0:E": "?F100:!T36-T50:@T510",
+    # - C81._ to C96._ should not be coded with C77._/C78._/C79._ unless there is a code from C00-C75 or C80._ or Z85._
+    "DCS.II.7:0:E": "?C81-C96:!C77-C79:@C00-C75,C80,Z85",
+    # - codes  Z37.2 or Z37.3 or Z37.4 or Z37.5 or Z37.6 or Z37.7 should always be coded with O30._
+    "DCS.XV.14:0:E": "?Z372,Z373,Z374,Z375,Z376,Z377:{O30",
+    # F00.- must always either be sequenced directly after  or before a code from G30_D 
+    "DGCS.5:0:E": "!F00:)G30",
+
+    ## LC/JG/KO/CC
+
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
     "DChS.II.2:0:E": "?D64:!C90-C95",
     # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
