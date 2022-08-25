@@ -65,7 +65,7 @@ standards_dict = {
     # F03X should not be coded with F051                                                                                                         LC unsure if needs deleting
     # "DCS.V.3:1:W": "?F051:!F03X",
     # Mental and behavioural disorders due to multiple drug use and use of other.ie psychoactive substances not to be coded with f10-f18
-    "DCS.V.4:0:E": "?F19:!F10-F16,F18",
+    "DCS.V.4:0:W": "?F19:!F10-F16,F18",
     # Amaurosis fugax
     "DCS.VI.2:0:E": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
@@ -119,7 +119,7 @@ standards_dict = {
     # R060 - shortness of breath should not be coded with Pneumonia (J12 - J18) or LRTI (J22) or IECOPD (J440)
     "DChS.XVIII:3:E": "?J12-J18:!R060",
     # R568 should not be coded with either G40 or G41 
-    "DChS.XVIII:4:E": "?G40-G41:!R568",
+    "DChS.XVIII:4:W": "?G40-G41:!R568",
     # R251 should not be coded with either G20 or G21
     "DChS.XVIII:5:E": "?G20-G21:!R251",
     # Constipation with ileus or obstruction
@@ -243,8 +243,6 @@ standards_dict = {
     "FSCP:3:E": "?I34,I35:!I080",
     # M479 should not be coded with 5th character of 2 cervical, 6 lumbar or 8 sacral
     "FSCP:4:E": "?M4792, M4796,M4798:/*",
-    # Z722 should not be coded with F55, F19, F11,F12,F13,F14,F15,F16
-    "FSCP:5:E": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # Z720 should not be coded with F171
     "FSCP:6:E": "?F171:!Z720",
     # I350 should not be coded with I351                                                                                      SEE FSCP:2:E
@@ -258,7 +256,7 @@ standards_dict = {
     # N13.2 Hydronephrosis with N20_
     "FSCP:11:E": "?N132:!N20",
     # I633-I634-I635 should not be coded with I65
-    "FSCP:12:E": "?I65:!I633-I635",
+    # "FSCP:12:E": "?I65:!I633-I635", <- To investigate
     # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
     "FSCP:13:W": "?J12-J18:!J852",
     # I080 coded with codes from I34 and I35
