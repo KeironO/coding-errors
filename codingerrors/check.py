@@ -52,6 +52,8 @@ def _check_against_standard(returned_standard, icd10s, icd10):
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
             mask_dict = _check_rule_values(values, icd10s)
+            
+
             if rule == "!":
                 for code, mask in mask_dict.items():
                     if standard not in results:
@@ -63,6 +65,27 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             "relevant": rel,
                             "note": "You cannot code %s with %s" % ("".join(rel), icd10),
                         }
+
+            elif rule == "$":
+                
+                position = icd10s.index(icd10)
+
+
+                for code, mask in mask_dict.items():                    
+                    _mask = list(itertools.chain(*mask))
+                    if _mask.index(True) != position-1:
+                        if standard not in results:
+                            results[standard] = {}
+
+                        rel = [icd10s[x.index(True)] for x in mask]
+
+                        results[standard][rule] = {
+                            "pass": False,
+                            "relevant": rel,
+                            "note": "%s must always follow %s" % (icd10, "".join(rel))
+                        }
+
+
             elif rule == "{":
 
                 if mask_dict == {} or True not in list(
@@ -137,7 +160,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "relevant": [icd10],
                         "note": "One of %s needs to coded directly after %s" % (",".join(values), icd10)
                     }
-
+            
             elif rule == "~":
 
                 character = int(values["character"])
