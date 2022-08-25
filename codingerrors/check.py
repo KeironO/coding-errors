@@ -207,4 +207,17 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             "relevant": [icd10],
                             "note": "%s must be in primary or secondary position!" % (icd10)
                         }
+
+    # Exception clauses (@)
+    
+    for standard, rules in returned_standard.items():
+        if "@" in rules and standard in results:
+            exception_codes = rules["@"]
+
+            mask_dict = _check_rule_values(values, icd10s)
+            
+            # 🤡 <- Me writing this code.
+            if True in itertools.chain(*list(itertools.chain(*list(mask_dict.values())))):
+                del results[standard]
+    
     return results
