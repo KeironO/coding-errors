@@ -33,34 +33,37 @@ class TestStandards(unittest.TestCase):
     
     ## Tests
 
-    # &* : Can never be in the primary position
-    # ^* : Must be in primary or secondary position.
-    # ? : Applies to the following codes.
-    # / : never code
+    # ✔️ = In check.py
+    # ☑️ = Two tests written
 
-    # ! : Cannot be coded with ☑️
+    # &* : Can never be in the primary position ✔️
+    # ^* : Must be in primary or secondary position. ✔️
+    # ? : Applies to the following codes.
+    # / : never code ✔️
+
+    # ! : Cannot be coded with ☑️ ✔️
     #   - test_anemia_in_leukaemia_myeloma_and_myelodysplastia
     #   - test_mental_behavioural_exception
 
-    # .n: Require's nth character
+    # .n: Require's nth character ✔️
 
-    # { : Must always be coded with
+    # { : Must always be coded with ✔️
 
-    # ~x..y: x character cannot be y
+    # ~x..y: x character cannot be y ✔️
 
-    # > : Should not be directly followed by
+    # > : Should not be directly followed by ✔️
 
-    # $ : Should always follow by ☑️
+    # $ : Should always follow by ☑️ ✔️
     #   - test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers
     #   - test_morbidly_adherent_placenta_following_retained_or_third_placenta
 
     # % : Should always either be sequenced directly after
 
-    # ) : Should always be sequenced either way by 
+    # ) : Should always be sequenced either way by  ✔️
 
-    # ¬ : When in primary position should never be followed by 
+    # ¬ : When in primary position should never be followed by  ✔️
 
-    # @ : Exception when present (ignore) ☑️
+    # @ : Exception when present (ignore) ☑️ ✔️
     #   - test_mental_behavioural_exception
     #   - test_metastatic_cancer_should_never_be_coded_with_a_hematological_cancer
 
