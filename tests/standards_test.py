@@ -43,7 +43,7 @@ class TestStandards(unittest.TestCase):
         self.assertEqual(run(["I501"]), {"I501": {}})
 
     def test_dcs_i_5(self):
-        # Zika VIrus must always follow Other specified mosquito-borne viral fevers
+        # Zika Virus must always follow Other specified mosquito-borne viral fevers
         print(run(["U068", "A928"]))
 
 if __name__ == "__main__":
