@@ -284,10 +284,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             "note": "%s must be in primary or secondary position!" % (icd10)
                         }
 
-            else:
-                print("DEVELOPER ERROR - WE'RE", rule)
-
-
     # Exception clauses (@)
     
     for standard, rules in returned_standard.items():
