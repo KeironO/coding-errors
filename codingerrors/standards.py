@@ -44,8 +44,6 @@ from .utils import hyph
 
 standards_dict = {
 
-
-
     # Zika Virus bust always follow 'Other specified mosquito-borne viral fevers'
     "DCS.I.5:0:E": "?U068:$A928",
     # Metastatic cancer must have a primary cancer or history of a primary cancer 
@@ -78,7 +76,6 @@ standards_dict = {
     "DCS.XXI.3:0:E": "?Z20-Z28:¬A00-A99,B00-B99,R00-R99,S00-S99,T00-T99",
 
     ## LC/JG/KO/CC
-
     # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
     "DChS.II.2:0:E": "?D64:!C90-C95",
     # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
