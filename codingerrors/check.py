@@ -67,6 +67,32 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             "note": "You cannot code %s with %s" % ("".join(rel), icd10),
                         }
 
+            elif rule == "€":
+                primary_code_position = icd10s.index(icd10)
+                
+
+                if True in list(itertools.chain(*list(itertools.chain(*list(mask_dict.values()))))):
+                    for code, mask in mask_dict.items():
+                        if True in list(itertools.chain(*mask)):
+                            if primary_code_position != (list(itertools.chain(*mask)).index(True) + 1):
+                                rel = [icd10s[x.index(True)] for x in mask]
+                                results[standard] = {
+                                    "pass": False,
+                                    "relevant": icd10,
+                                    "note": "%s can only exist after %s" % (icd10, "/".join(rel))
+                                } 
+                else:
+                    if standard not in results:
+                        results[standard] = {}
+                    
+                    results[standard][rule] = {
+                            "pass": False,
+                            "relevant": icd10,
+                            "note": "%s cannot exist without one of %s" % (icd10, "/".join(values))
+                        }
+
+
+
             elif rule == ")":
                 primary_code_position = icd10s.index(icd10)
 
