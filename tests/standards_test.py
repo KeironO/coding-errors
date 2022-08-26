@@ -30,6 +30,27 @@ from codingerrors import run
 
 class TestStandards(unittest.TestCase):
     # We can't check every single standard (unrealistic, so we'll do 2 of every possible ruleset instead.)
+    
+    ## Tests
+
+    # &* : Can never be in the primary position
+    # ^* : Must be in primary or secondary position.
+    # ? : Applies to the following codes.
+    # / : never code
+    # ! : Cannot be coded with ☑️
+    #   - test_anemia_in_leukaemia_myeloma_and_myelodysplastia
+    #   - test_mental_behavioural_exception
+    # .n: Require's nth character
+    # { : Must always be coded with
+    # ~x..y: x character cannot be y
+    # > : Should not be directly followed by
+    # $ : Should always follow by ☑️
+    #   - test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers
+    #   - test_morbidly_adherent_placenta_following_retained_or_third_placenta
+    # % : Should always either be sequenced directly after
+    # ) : Should always be sequenced either way by 
+    # ¬ : When in primary position should never be followed by 
+    # @ : Exception when present (ignore) (test_mental_behavioural_exception)
 
     def test_anemia_in_leukaemia_myeloma_and_myelodysplastia(self):
         # This test validates to see whether DChS.II.2 works as intended.
@@ -39,11 +60,11 @@ class TestStandards(unittest.TestCase):
         # Test to see whether anaemia can be run on its own
         self.assertEqual(run(["D64"]), {})
         # Test to see whether anemia coded with leukemia returns an error
-        self.assertIsNot(run(["D64", "C90"]), {"D64": {}})
+        self.assertIsNot(run(["D64", "C90"]), {})
         # Test to see whether unspecified anemia coded with leukemia returns an error
-        self.assertIsNot(run(["D649", "C90"]), {"D649": {}})
+        self.assertIsNot(run(["D649", "C90"]), {})
         # Test to see whether unspecified anemia coded with unspecified leukemia returns an error
-        self.assertIsNot(run(["D649", "C909"]), {"D649": {}})
+        self.assertIsNot(run(["D649", "C909"]), {})
 
     def test_mental_behavioural_exception(self):
         # This test validates to see whether DCS.XIX.8 works as intended.
@@ -53,13 +74,36 @@ class TestStandards(unittest.TestCase):
         # Test to see whether F100 can run on its own
         self.assertEqual(run(["F100"]), {})
         # Test to see whether F100 coded with T36 returns an error
-        self.assertIsNot(run(["F100", "T36"]), {"F100": {}})
+        self.assertTrue("F100" in run(["F100", "T36"]))
         # Test to see whether F100 coded with T36 AND T510 does not return an error
         self.assertEqual(run(["F100", "T36", "T510"]), {})
 
-    def test_dcs_i_5(self):
+    def test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers(self):
+        # This test validates to see whether DCS.I.5 works as intended
         # Zika Virus must always follow Other specified mosquito-borne viral fevers
-        print(run(["U068", "A928"]))
+        # RULE: $
+
+        # Coded in correct position.
+        self.assertEqual(run(["A928", "U068"]), {})
+        # Codded in correct position with additional code prepended
+        self.assertEqual(run(["J22", "A928", "U068"]), {})
+        # Coded in correct position with additional code appended
+        self.assertEqual(run(["J22", "A928", "U068", "I10"]), {})
+        # Failed because wrong sequence.
+        self.assertNotEqual(run(["J22", "U068", "A928", "I10"]), {})
+
+    def test_morbidly_adherent_placenta_following_retained_or_third_placenta(self):
+        # This test valdiates to see whether DCS.XV.19 works as intended
+        # Only code O432 AFTER O720/O730
+        # RULE: $
+
+        self.assertEqual(run(["O720", "O432"]), {})
+        self.assertNotEqual(run(["O432", "O720"]), {})
+
+        self.assertEqual(run(["O720"]), {})
+        self.assertNotEqual(run(["O432"]), {})
+
+
 
 if __name__ == "__main__":
     unittest.main()

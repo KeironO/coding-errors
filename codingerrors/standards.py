@@ -30,7 +30,6 @@ from .utils import hyph
 # ? : Applies to the following codes.
 # / : never code
 # ! : Cannot be coded with
-# # : Unless present
 # .n: Require's nth character
 # { : Must always be coded with
 # ~x..y: x character cannot be y

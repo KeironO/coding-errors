@@ -91,20 +91,28 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 
                 position = icd10s.index(icd10)
 
+                if mask_dict == {}:
+                    if standard not in results:
+                        results[standard] = {}
+                    results[standard][rule] = {
+                        "pass": False,
+                        "rel": icd10s,
+                        "note": "%s missing?" % (" or ".join(returned_standard[standard][rule]))
+                    }
+                else:
+                    for code, mask in mask_dict.items():                    
+                        _mask = list(itertools.chain(*mask))
+                        if _mask.index(True) != position-1:
+                            if standard not in results:
+                                results[standard] = {}
 
-                for code, mask in mask_dict.items():                    
-                    _mask = list(itertools.chain(*mask))
-                    if _mask.index(True) != position-1:
-                        if standard not in results:
-                            results[standard] = {}
+                            rel = [icd10s[x.index(True)] for x in mask]
 
-                        rel = [icd10s[x.index(True)] for x in mask]
-
-                        results[standard][rule] = {
-                            "pass": False,
-                            "relevant": rel,
-                            "note": "%s must always follow %s" % (icd10, "".join(rel))
-                        }
+                            results[standard][rule] = {
+                                "pass": False,
+                                "relevant": rel,
+                                "note": "%s must always follow %s" % (icd10, " or ".join(rel))
+                            }
 
 
             elif rule == "{":
