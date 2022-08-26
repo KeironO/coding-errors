@@ -43,11 +43,11 @@ from .utils import hyph
 
 standards_dict = {
 
-    # Zika Virus Must always follow 'Other specified mosquito-borne viral fevers'
+    # ☑️ Zika Virus Must always follow 'Other specified mosquito-borne viral fevers'
     "DCS.I.5:0:E": "?U068:$A928",
     # Metastatic cancer must have a primary cancer or history of a primary cancer 
     "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
-    # A (Z38) must be primary or first secondary diag position
+    # ☑️ A (Z38) must be primary or first secondary diag position
     "DChS.XVI.1:0:E": "?Z38:^*",
     # Only code O432 AFTER O720/O730 
     "DCS.XV.19:0:E": "?O432:$O720,O730",
