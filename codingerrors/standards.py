@@ -53,7 +53,7 @@ standards_dict = {
     "DCS.XV.19:0:E": "?O432:$O720,O730",
     # ☑️ P95 should not coded.
     "DCS.XVI.7:0:E": "?P95X:/*",
-    # C97X  should always be coded in the primary diagnosis position
+    # ☑️ C97X  should always be coded in the primary diagnosis position
     "DCS.II.4:0:E": "?C97X:^*",
     # O664 & O665 should not be coded
     "DSC.XV.24W:0:W": "?O664,O665:/*",

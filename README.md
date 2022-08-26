@@ -40,6 +40,8 @@ Currently, this little tool accounts for the following standards:
 - **DCS.XV.19 : Morbidly adherent placenta** :: O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 (Third-stage haemorrhage) or O73.0 (Retained placenta and membranes, without haemorrhage) when both are present.
 - **DCS.XVI.7 : Stillbirths** :: P95.X (Fetal death of unspecified cause) is not required in any
 diagnostic position.
+- **DCS.II.4 : Multiple independent primary malignant neoplasms** :: Where present, C97.X (Malignant neoplasms of 
+independent (primary) multiple sites) must be assigned in the primary position. Please note that this does not check whether multiple primary neoplasms exist.
 
 ### Four Step Coding Principles (ICD-10)
 
