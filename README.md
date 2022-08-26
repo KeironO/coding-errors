@@ -52,3 +52,5 @@ Please report all bugs or feature suggestions to the [issues tracker](https://ww
 ## License
 Code is proudly released under the terms of the [MIT License](https://raw.githubusercontent.com/KeironO/coding-errors/main/LICENSE).
 
+![cwm taf logo](https://img.keiron.xyz/ru59p3.png)
+
