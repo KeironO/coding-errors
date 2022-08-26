@@ -35,7 +35,7 @@ from .utils import hyph
 # ~x..y: x character cannot be y
 # > : Should not be directly followed by
 # $ : Should always follow by
-# % : Should always either be sequenced directly after
+# € : Should always either be sequenced directly after
 # ) : Should always be sequences either way by 
 # ¬ : When in primary position should never be followed by 
 # @ : Exception when present (ignore)
@@ -70,7 +70,7 @@ standards_dict = {
     # F00.- must always either be sequenced directly after  or before a code from G30_D 
     "DGCS.5:0:E": "?F00:)G30",
     # R65.1 must always be coded directly following a code from A40._ or A41.*or P36.* or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
-    "DChS.I.1:0:E": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753,A394:%R651",
+    "DChS.I.1:0:E": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753,A394:€R651",
     # Code in Z20-Z28 in primary position should not directly followed by a code A00-B99 or R00-T99
     "DCS.XXI.3:0:E": "?Z20-Z28:¬A00-A99,B00-B99,R00-R99,S00-S99,T00-T99",
 

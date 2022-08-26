@@ -57,7 +57,7 @@ class TestStandards(unittest.TestCase):
     #   - test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers
     #   - test_morbidly_adherent_placenta_following_retained_or_third_placenta
 
-    # % : Should always either be sequenced directly after
+    # € : Should always either be sequenced directly after
 
     # ) : Should always be sequenced either way by  ✔️
 
