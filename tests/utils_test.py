@@ -58,5 +58,6 @@ class TestHyph(unittest.TestCase):
         self.assertEqual(hyph(" M38  , M40   "), ["M38", "M40"])
 
 
+
 if __name__ == "__main__":
     unittest.main()
