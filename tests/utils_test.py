@@ -31,31 +31,31 @@ from codingerrors.utils import hyph
 class TestHyph(unittest.TestCase):
     def test_hyph_basic(self):
         # Check to see if a single term works, in all forms.
-        self.assertEquals(hyph("I10"), ["I10"])
+        self.assertEqual(hyph("I10"), ["I10"])
         # X code
-        self.assertEquals(hyph("I10X"), ["I10X"])
+        self.assertEqual(hyph("I10X"), ["I10X"])
         # Five length code.
-        self.assertEquals(hyph("M4792"), ["M4792"])
+        self.assertEqual(hyph("M4792"), ["M4792"])
 
     def test_hyph_multiple(self):
         # Check to see if a single term works, in all forms.
-        self.assertEquals(hyph("I10,J22"), ["I10", "J22"])
-        self.assertEquals(hyph("I10,J22,M4792"), ["I10", "J22", "M4792"])
+        self.assertEqual(hyph("I10,J22"), ["I10", "J22"])
+        self.assertEqual(hyph("I10,J22,M4792"), ["I10", "J22", "M4792"])
 
     def test_hyph_hyphenated(self):
         # Basic hyph down to the third character, should return three instances
-        self.assertEquals(hyph("M38-M40"), ["M38", "M39", "M40"])
+        self.assertEqual(hyph("M38-M40"), ["M38", "M39", "M40"])
         # Large query over a multitude of codes over differing tens.
-        self.assertEquals(len(hyph("M338-M444")), (444-338)+1)
+        self.assertEqual(len(hyph("M338-M444")), (444-338)+1)
     
     def test_spacing(self):
         # Just to see if we can deal with malformed input
-        self.assertEquals(hyph("M38- M40"), ["M38", "M39", "M40"])
-        self.assertEquals(hyph("M38 - M40"), ["M38", "M39", "M40"])
-        self.assertEquals(hyph("M38  - M40"), ["M38", "M39", "M40"])
-        self.assertEquals(hyph(" M38  - M40"), ["M38", "M39", "M40"])
-        self.assertEquals(hyph(" M38  - M40   "), ["M38", "M39", "M40"])
-        self.assertEquals(hyph(" M38  , M40   "), ["M38", "M40"])
+        self.assertEqual(hyph("M38- M40"), ["M38", "M39", "M40"])
+        self.assertEqual(hyph("M38 - M40"), ["M38", "M39", "M40"])
+        self.assertEqual(hyph("M38  - M40"), ["M38", "M39", "M40"])
+        self.assertEqual(hyph(" M38  - M40"), ["M38", "M39", "M40"])
+        self.assertEqual(hyph(" M38  - M40   "), ["M38", "M39", "M40"])
+        self.assertEqual(hyph(" M38  , M40   "), ["M38", "M40"])
 
 
 if __name__ == "__main__":
