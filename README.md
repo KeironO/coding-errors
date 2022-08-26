@@ -38,6 +38,9 @@ Currently, this little tool accounts for the following standards:
 - **DCS.I.5** : Zika Virus :: Ensure that U06.9 (Emergency use of U06.9) is correctly sequenced with A92.8 (Other specified mosquito-borne viral fevers). Please note that this includes the pregnancy positioning, without checking for whether O98.5 (Other viral diseases complicating pregnancy , childbirth and the puerperium) is present.
 - **DChS.XVI.1** : Liveborn infants acording to place of birth :: When a Z38 (Liveborn infants according to place of birth) is assigned, it must always be in the primary diagnosis or secondary position. Please not that this does not check to see whether the baby is completely not well, it just assumes that a code in secondary position is due to this.
 
+
+### Four Step Coding Principles (ICD-10)
+
 ## Contributors
 
 - Lisa Cartwright
