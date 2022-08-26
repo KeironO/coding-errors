@@ -49,10 +49,10 @@ standards_dict = {
     "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
     # ☑️ A (Z38) must be primary or first secondary diag position
     "DChS.XVI.1:0:E": "?Z38:^*",
-    # Only code O432 AFTER O720/O730 
+    # ☑️ Only code O432 AFTER O720/O730 
     "DCS.XV.19:0:E": "?O432:$O720,O730",
-    # P95 should not coded.
-    "DCS.XVI.7:0:E": "?P95:/*",
+    # ☑️ P95 should not coded.
+    "DCS.XVI.7:0:E": "?P95X:/*",
     # C97X  should always be coded in the primary diagnosis position
     "DCS.II.4:0:E": "?C97X:^*",
     # O664 & O665 should not be coded
