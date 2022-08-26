@@ -280,7 +280,7 @@ standards_dict = {
     # I080 coded with codes from I34 and I35
     "FSCP:3:E": "?I34,I35:!I080",
     # M479 should not be coded with 5th character of 2 cervical, 6 lumbar or 8 sacral
-    "FSCP:4:E": "?M4792, M4796,M4798:/*",
+    "FSCP:4:E": "?M4792,M4796,M4798:/*",
     # Z720 should not be coded with F171
     "FSCP:6:E": "?F171:!Z720",
     # I350 should not be coded with I351                                                                                      SEE FSCP:2:E
