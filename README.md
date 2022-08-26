@@ -31,9 +31,12 @@ pip install git+https://github.com/KeironO/coding-errors --no-cache-dir
 
 ## Standards
 
-In progress:
-
 Currently, this little tool accounts for the following standards:
+
+### National Clinical Coding Standards ICD-10 5th Edition (2021)
+
+- **DCS.I.5** : Zika Virus :: Ensure that U06.9 (Emergency use of U06.9) is correctly sequenced currently with A92.8 (Other specified mosquito-borne viral fevers). Please not that this includes the pregancy positioning, without checking for whether O98.5 (Other viral diseases complicating pregnancy , childbirth and the
+puerperium) is present. 
 
 ## Contributors
 
