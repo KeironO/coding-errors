@@ -43,7 +43,7 @@ from .utils import hyph
 
 standards_dict = {
 
-    # Zika Virus bust always follow 'Other specified mosquito-borne viral fevers'
+    # Zika Virus Must always follow 'Other specified mosquito-borne viral fevers'
     "DCS.I.5:0:E": "?U068:$A928",
     # Metastatic cancer must have a primary cancer or history of a primary cancer 
     "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
@@ -353,7 +353,9 @@ standards_dict = {
     # Codes from I64 should not be coded with I63
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
-    "FSCP:42:E": "?I65:I630-I632"
+    "FSCP:42:E": "?I65:I630-I632",
+    # Z722 should not be coded with F55,F19,F11,F12,F13,F14,F15,F16
+    "FSCP:43:E": "?F55,F19,F11-F16:!Z722"
 }
 
 
