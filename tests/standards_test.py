@@ -37,7 +37,7 @@ class TestStandards(unittest.TestCase):
         # RULE : !
 
         # Test to see whether anaemia can be run on its own
-        self.assertEqual(run(["D64"]), {"D64": {}})
+        self.assertEqual(run(["D64"]), {})
         # Test to see whether anemia coded with leukemia returns an error
         self.assertIsNot(run(["D64", "C90"]), {"D64": {}})
         # Test to see whether unspecified anemia coded with leukemia returns an error
@@ -51,11 +51,11 @@ class TestStandards(unittest.TestCase):
         # RULE : ! and @
 
         # Test to see whether F100 can run on its own
-        self.assertEqual(run(["F100"]), {"F100": {}})
+        self.assertEqual(run(["F100"]), {})
         # Test to see whether F100 coded with T36 returns an error
         self.assertIsNot(run(["F100", "T36"]), {"F100": {}})
         # Test to see whether F100 coded with T36 AND T510 does not return an error
-        self.assertEqual(run(["F100", "T36", "T510"]), {"F100": {}})
+        self.assertEqual(run(["F100", "T36", "T510"]), {})
 
     def test_dcs_i_5(self):
         # Zika Virus must always follow Other specified mosquito-borne viral fevers
