@@ -41,7 +41,7 @@ from .utils import hyph
 # @ : Exception when present (ignore)
 
 
-standards_dict = {
+icd10_standards_dict = {
 
     # ☑️ Zika Virus Must always follow 'Other specified mosquito-borne viral fevers'
     "DCS.I.5:0:E": "?U068:$A928",
@@ -359,7 +359,26 @@ standards_dict = {
 }
 
 
-def _build_standards_dict() -> dict:
+opcs49_standards_dict = {
+    # 
+    "PCSK3:0:E": "?K49:!K75",
+    # U21 always requires a site code.
+    "PCSU1:0:E": "?U21:{Z00-Z99",
+    # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code 
+    # with codes in category W82 Therapeutic endoscopic operations on semilunar cartilage
+    "CSW8:0:E":"?W82:!Z00-Z99",
+    # Aspiration of prosthetic joint requires a laterality
+    "PCSW9:0:E": "?W901:{Z94",
+    # 3D mapping of the heart is an inherent part of ablation of the conducting system of the 
+    # heart and is rarely performed on its own, therefore code K58.6 Percutaneous 
+    # transluminal three dimensional electroanatomic mapping of conducting system of 
+    # heart must not be assigned in addition to an ablation code from categories K57 Other 
+    # therapeutic transluminal operations on heart or K62 Therapeutic transluminal 
+    # operations on heart
+    "PSK6:0:E": "?L586:!K57,K62"
+}
+
+def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
     compiled_standards_dict = {}
     for key, standard in standards_dict.items():
         standard = standard.split(":")
