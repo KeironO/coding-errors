@@ -91,7 +91,26 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             "note": "%s cannot exist without one of %s" % (icd10, "/".join(values))
                         }
 
+            elif rule == "¿":
+                tim = [True in list(itertools.chain(*_mask)) for k, _mask in mask_dict.items()]
+                if False not in tim:
+                    # If both are present
+                    proper_pos = False
+                    pos = icd10s.index(icd10)
 
+                    for code, mask in mask_dict.items():
+                        if mask[0].index(True) == (pos-1):
+                            proper_pos = True
+                    if not proper_pos:
+                        if standard not in results:
+                            results[standard] = {}
+                        rel = list(mask_dict.keys())
+
+                        results[standard][rule] = {
+                            "pass": False,
+                            "relevant" :rel,
+                            "note": "%s must be coded after one of %s when %s are all present" % (icd10, ",".join(rel), ",".join(rel))
+                        }
 
             elif rule == ")":
                 primary_code_position = icd10s.index(icd10)
@@ -129,9 +148,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                                     "relevant": rel,
                                     "note": "When %s in primary poition it cannot be followed by %s" % (icd10, ", ".join(rel))
                                 }
-                        
-
-
             elif rule == "$":
                 
                 position = icd10s.index(icd10)
@@ -158,8 +174,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                                 "relevant": rel,
                                 "note": "%s must always follow %s" % (icd10, " or ".join(rel))
                             }
-
-
             elif rule == "{":
 
                 if mask_dict == {} or True not in list(
@@ -285,7 +299,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         }
 
     # Exception clauses (@)
-    
     for standard, rules in returned_standard.items():
         if "@" in rules and standard in results:
             exception_codes = rules["@"]

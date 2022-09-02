@@ -32,8 +32,9 @@ from .utils import hyph
 # ! : Cannot be coded with
 # .n: Require's nth character
 # { : Must always be coded with
-# ~x..y: x character cannot be y
+# ~x..y : x character cannot be y
 # > : Should not be directly followed by
+# ¿ : 
 # $ : Should always follow by
 # € : Can only exist when coded after one of...
 # ) : Should always be sequences either way by 
@@ -49,8 +50,11 @@ icd10_standards_dict = {
     "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
     # ☑️ A (Z38) must be primary or first secondary diag position
     "DChS.XVI.1:0:E": "?Z38:^*",
-    # ☑️ Only code O432 AFTER O720/O730 
-    "DCS.XV.19:0:E": "?O432:$O720,O730",
+    # ☑️ Only code O432 AFTER O720/O730
+    # O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 
+    # (Third-stage haemorrhage) or O73.0 (Retained placenta and membranes, without
+    #  haemorrhage) when both are present.
+    "DCS.XV.19:0:E": "?O432:¿O720,O730",
     # ☑️ P95 should not coded.
     "DCS.XVI.7:0:E": "?P95X:/*",
     # ☑️ C97X  should always be coded in the primary diagnosis position
@@ -355,7 +359,7 @@ icd10_standards_dict = {
     # I630-I631-I632 should not be coded with I65
     "FSCP:42:E": "?I65:!I630-I632",
     # Z722 should not be coded with F55,F19,F11,F12,F13,F14,F15,F16
-    "FSCP:43:E": "?F55,F19,F11-F16:!Z722"
+    "FSCP:43:W": "?F55,F19,F111,F113-F119,F16:!Z722"
 }
 
 
@@ -382,9 +386,9 @@ def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
     compiled_standards_dict = {}
     for key, standard in standards_dict.items():
         standard = standard.split(":")
-
+       
         primary_icd10s = hyph(standard[0][1:])
-
+    
         for icd10 in primary_icd10s:
 
             if icd10 not in compiled_standards_dict:
