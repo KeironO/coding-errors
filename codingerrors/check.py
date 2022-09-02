@@ -109,7 +109,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         results[standard][rule] = {
                             "pass": False,
                             "relevant" :rel,
-                            "note": "%s must be coded after one of %s when %s are all present" % (icd10, ",".join(rel), ",".join(rel))
+                            "note": "%s must be coded after one of %s when %s are all present" % (icd10, "/".join(rel), "/".join(rel))
                         }
 
             elif rule == ")":

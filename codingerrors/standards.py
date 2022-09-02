@@ -134,7 +134,7 @@ icd10_standards_dict = {
     # External Causes 
     "DChS.XX.1:0:E": "?V01-V99,Y01-Y98:&*",
     # B972 without U071 
-    "DSC.XXII.5:COVID-19:0:E": "?U071:>B972",
+    "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1:E": "?U071:!U072",
     # U071 must be in primary position
@@ -357,9 +357,7 @@ icd10_standards_dict = {
     # Codes from I64 should not be coded with I63
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
-    "FSCP:42:E": "?I65:!I630-I632",
-    # Z722 should not be coded with F55,F19,F11,F12,F13,F14,F15,F16
-    "FSCP:43:W": "?F55,F19,F111,F113-F119,F16:!Z722"
+    "FSCP:42:E": "?I65:!I630-I632"
 }
 
 
