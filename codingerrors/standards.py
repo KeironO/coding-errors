@@ -153,17 +153,17 @@ icd10_standards_dict = {
     # DCS.X.5: COAD/COPD, chest infection and asthma with associated conditions is quite a large standard that needs to be
     # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection 
     # (J440) should not be coded with a Unspecified acute lower respiratory infection (J22).
-    # Amendment: Remove the J22X as J440 already denotes that the lower respiratory infection is present.
-    "DCS.X.5:0:E": "?J440:!J22X",
+    # Amendment: Remove the J22 as J440 already denotes that the lower respiratory infection is present.
+    "DCS.X.5:0:E": "?J440:!J22",
     # Chronic obstructive pulmonary disease, unspecified (J449) should not be coded with J22X.
-    # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X
-    "DCS.X.5:1:E": "?J449:!J22X",
+    # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X.
+    "DCS.X.5:1:E": "?J449:!J22",
     # Chest infection and pneumonia
     "DCS.X.5:3:W": "?J18:!J22",
     # COPD with pneumonia
     "DCS.X.5:4:E": "?J449:!J12-J18",
     # Emphysema, unspecified (J439) cannot be coded with Chronic obstructive pulmonary disease (J44)
-    # Amendment: Remove the J44.
+    # Amendment: Remove the J44, k
     "DCS.X.5:5:E": "?J439:!J44",
     # Respiratory failure (J960) must always be coded to the fifth character.
     # Amendment: If a fifth character is not present, add a 9.
