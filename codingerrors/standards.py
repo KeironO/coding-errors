@@ -44,45 +44,86 @@ from .utils import hyph
 
 icd10_standards_dict = {
 
-    # ☑️ Zika Virus Must always follow 'Other specified mosquito-borne viral fevers'
-    "DCS.I.5:0:E": "?U068:$A928",
-    # Metastatic cancer must have a primary cancer or history of a primary cancer 
+    # ☑️ Zika Virus (U068) must always be followed by other specified Mosquito-borne viral fever (A929)
+    # Amendment: Where <, add the secondary code.
+    "DCS.I.5:0:E": "?U068:<A928",
+    # Metastatic cancer must have a primary cancer or history of a primary cancer
+    # Amendment: Can't really make it up, so ignore or add a Z85.
     "DCS.II.2:0:E": "?C77-C79:{C00-C76,C80,Z85,D329",
     # ☑️ A (Z38) must be primary or first secondary diag position
+    # Amendment: Move to the front of the codes unless suited for secondary.
     "DChS.XVI.1:0:E": "?Z38:^*",
     # ☑️ Only code O432 AFTER O720/O730
-    # O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 
-    # (Third-stage haemorrhage) or O73.0 (Retained placenta and membranes, without
-    #  haemorrhage) when both are present.
+    # O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 (Third-stage haemorrhage) or O73.0 
+    # (Retained placenta and membranes, without haemorrhage) when both are present.
+    # Amendment: Place O432 between one of O720 or O730
+    # 05/09/2022: This is wrong. Need to write a check for when both codes are present that O432 is actually there.
     "DCS.XV.19:0:E": "?O432:¿O720,O730",
-    # ☑️ P95 should not coded.
+    # ☑️ Fetal death of unspecified cause (P95) should not coded  is not requird in any diagnostic position .
+    # Amendment: Take forward for further evaluation, but not working with obstretics.
     "DCS.XVI.7:0:E": "?P95X:/*",
-    # ☑️ C97X  should always be coded in the primary diagnosis position
+    # ☑️ Malignant neoplasms of independent (primary) multiple sites (C97X) should always be coded in the primary
+    # diagnosis position. Additional codes must be used 
+    # Amendment: Move  C97X to the primary position.
     "DCS.II.4:0:E": "?C97X:^*",
-    # O664 & O665 should not be coded
+    # Failed trial of labour, unspecified (O664) and Failed application of vacuum extractor and forceps (O665)
+    # should not be coded.
+    # Amendment: Take forward for future evaluation.
     "DSC.XV.24W:0:W": "?O664,O665:/*",
-    # O629 & O63 cannot be coded with O664 & O665
-    "DSC.XV.24W:0:E": "?O664,O665:!O629,O63",
-    # E10._ or E11._or E14._ should not be coded in an obstetric FCE
+    # This was asked for by Joanne Gapper, to differentiate between a given warning and an actual data quality error.
+    # Abnormality of forces of labour (O629) and Long labour (O63) cannot be coded with Failed trial of labour, 
+    # unspecified (O664) or Failed application of vacuum extractor and forceps (O665)
+    # Amendment: Bring forward for further analysis.
+    "DSC.XV.24E:0:E": "?O664,O665:!O629,O63",
+    # Diabetes mellitus (E10-E14) should not be coded in an obstetric clinical episode (where O00-O99 denotes a likely episode)
+    # Amendment: Remove Diabetes code, and replace with a relevant code within Diabetes mellitus in pregnancy, childbirth 
+    # and the puerperium (O24)
     "DCS.XV.9:0:E": "?O00-O99:!E10,E11,E14",
-    # F100 should not be coded with T36-T50 - unless T510 is also assigned
+    # Mental and behavioural disorders due to use of alcohol (F100) should not be coded with any codes in Poisoning by drugs, 
+    # medicaments and biological substances (T36-T50), unless Toxic effect of alcohol : Ethanol (T510) is also assigned.
+    # Amendment: Remove the F100 code.
     "DCS.XIX.8:0:E": "?F100:!T36-T50:@T510",
-    # - C81._ to C96._ should not be coded with C77._/C78._/C79._ unless there is a code from C00-C75 or C80._ or Z85._
+    # Malignant neoplasms, stated or presumed to be primary, of lymphoid, haematopoietic and related tissue (C81-C96) should 
+    # not be coded with any of Secondary and unspecified malignant neoplasm of lymph nodes (C77), Secondary malignant neoplasm 
+    # of respiratory and digestive organs (C78), or Secondary malignant neoplasm of other and unspecified sites (C79) unless
+    # there is a code from Malignant neoplasms, stated or presumed to be primary, of specified sites, except of lymphoid, 
+    # haematopoietic and related tissue (C00 to C75) or Malignant neoplasm, without specification of site (C80) or 
+    # Personal history of malignant neoplasm (Z85) are present. 
+    # Amendment: Bring forward for future analysis. We're not focusing too much on stuff that describes cancer.
     "DCS.II.7:0:E": "?C81-C96:!C77-C79:@C00-C75,C80,Z85",
-    # - codes  Z37.2 or Z37.3 or Z37.4 or Z37.5 or Z37.6 or Z37.7 should always be coded with O30._
+    # Outcome of delivery codes such as between Twins, both liveborn (Z372) and Other multiple births, all stillborn (Z377)
+    # are intended for use as an additional code to identify the outcome of delivery on the mother's record and should always
+    # be coded as part of a Multiple gestation (O30).
+    # Amendment: Bring forward for future analysis.
     "DCS.XV.14:0:E": "?Z372-Z377:{O30",
-    # F00.- must always either be sequenced directly after  or before a code from G30_D 
+    # If present, dementia in Alzheimer disease (F00) must always either be sequenced directly before or after a 
+    # code from Alzheimer disease (G30) 
+    # Amendment: If G30 not present, add a Alzheimer disease, unspecified (G309).
     "DGCS.5:0:E": "?F00:)G30",
-    # R65.1 must always be coded directly following a code from A40._ or A41.*or P36.* or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
+    # When present, Systemic Inflammatory Response Syndrome of infectious origin with organ failure (R651) must always be
+    # coded directly following one of Streptococcal sepsis (A40), Other sepsis (A41), Bacterial sepsis of newborn (P36), 
+    # Puerperal sepsis (O85), Septicaemic plague (A207), Generalized tularaemia (A217), Anthrax sepsis(A227), Brucellosis, 
+    # unspecified (A239), Erysipelothrix sepsis (A267), Extraintestinal yersiniosis (A282), Listerial sepsis (A327), 
+    # Waterhouse-Friderichsen syndrome (A391), Actinomycotic sepsis (A427), Other gonococcal infections (A548), Candidal 
+    # sepsis (B377), Other infection during labour (O753), or Meningococcaemia, unspecified (A394)
+    # Amendment: Remove R651 if none of the required codes are present.
     "DChS.I.1:0:E": "?R651:€A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753,A394",
-    # Code in Z20-Z28 in primary position should not directly followed by a code A00-B99 or R00-T99
+    # If any codes within Persons with potential health hazards related to communicable diseases excluding Need for other 
+    # prophylactic measures (Z29) (Z20-Z28) are placed in the primary position, they shuld not be directly followed by any 
+    # codes within A00-B99 and R00-T99.
+    # Amendment: Reposition code so that the rule passes.
     "DCS.XXI.3:0:E": "?Z20-Z28:¬A00-A99,B00-B99,R00-R99,S00-S99,T00-T99",
-
-    ## LC/JG/KO/CC
-    # Anaemia must not be coded in leukaemia, myeloma and myelodysplasia
+    # Other anaemias (D64) cannot not be coded in codes Multiple myeloma and malignant plasma cell neoplasms 
+    # (C90), Lymphoid leukaemia (C91), Myeloid leukaemia (C92), Monocytic leukaemia (C93), Other leukaemias of specified 
+    # cell type (C94), or Leukaemia of unspecified cell type (C95).
+    # Amendment: Remove anemia code as it's a given for leukemia, and replace it with Anemia in neoplastic disease (D63).
     "DChS.II.2:0:E": "?D64:!C90-C95",
-    # Sickle cell trait must not be coded with thalassaemia or sickle cell anaemia with or without crisis
-    "DCS.III.1:0:E": "?D573:!D56,D570,D571",
+    # When present, Sickle-cell trait (D573) cannot be coded with any of Thalassaemia (D56), or Sickle-cell anaemia with 
+    # crisis (D570), or Sickle-cell anaemia without crisis (D571).
+    # Amendment: Remove Sickle-cell trait (D573).
+    "DCS.III.1:0:E": "?D56:!D573",
+    "DCS.III.1:1:E": "?D570:!D573",
+    "DCS.III.1:2:E": "?D571:!D573",
     # COPD with Chest infection
     "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
@@ -91,7 +132,7 @@ icd10_standards_dict = {
     "DCS.X.5:2:E": "?J449:!J12-J18",
     # COPD with Emphysema
     "DCS.X.5:3:E": "?J449:!J439",
-    # Respiratory Failure
+    # Respiratory Failure (J960)
     "DCS.X.7:0:E": "?J960,J961,J969:.5",
     # Gastritis and duodenitis
     "DCS.XI.4:0:E": "?K297:!K298",
@@ -217,8 +258,6 @@ icd10_standards_dict = {
     "DCS.XIII.3:0:E": "?N179:!T795",
     # Severe Sepsis : R65.1 must always be coded directly following a code from A40._ or A41._or P36._ or O85. or (A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753 - have added A394)
     # "DChS.I.1:0:E": "?A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753:<R651",
-    # Multiple independent primary malignant neoplasm
-    "DSC.II.4:0:E": "?C97X:^*",
     # I739 should not be coded with I702,I723,I724,I743,I744,I745
     "DC.IX.15:0:E": "?I702,I723,I724,I743,I744,I745:!I739",
     # K22.2 must not be coded with Q39.4
