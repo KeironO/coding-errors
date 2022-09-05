@@ -25,21 +25,47 @@
 
 from .utils import hyph
 
-# &* : Can never be in the primary position
-# ^* : Must be in primary or secondary position.
+
+###  First sequence
+
 # ? : Applies to the following codes.
+## If a single code is matched, it will be evaluated by the contents of the following sequences.
+
+
+### Second sequence
+
+# &* : Can never be in the primary position
+## Any or all of the codes in the first sequence can never, under any circumstance be in primary position.
+
+# ^* : Must be in primary or secondary position.
+## Any or all of the codes in the first sequence must always be in primary or secondary position.
+
 # / : never code
+## Any of the codes in the first sequence can never, under any circumstance be coded.
+
 # ! : Cannot be coded with
+## Any or all of the codes in the first sequence cen never be coded with the following codes, in any position.
+
 # .n: Require's nth character
+
 # { : Must always be coded with
+
 # ~x..y : x character cannot be y
+
 # > : Should not be directly followed by
+
 # ¿ : 
+
 # $ : Should always follow by
+
 # € : Can only exist when coded after one of...
+
 # ) : Should always be sequences either way by 
-# ¬ : When in primary position should never be followed by 
-# @ : Exception when present (ignore)
+
+# ¬ : When in primary position should never be followed by
+
+## Third sequence
+# @ : Ignore the 'error' if any of the following codes are present.
 
 
 icd10_standards_dict = {
@@ -133,12 +159,14 @@ icd10_standards_dict = {
     # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X
     "DCS.X.5:1:E": "?J449:!J22X",
     # Chest infection and pneumonia
-    "DCS.X.5:2:W": "?J18:!J22",
+    "DCS.X.5:3:W": "?J18:!J22",
     # COPD with pneumonia
-    "DCS.X.5:2:E": "?J449:!J12-J18",
-    # COPD with Emphysema
-    "DCS.X.5:3:E": "?J449:!J439",
-    # Respiratory Failure (J960)
+    "DCS.X.5:4:E": "?J449:!J12-J18",
+    # Emphysema, unspecified (J439) cannot be coded with Chronic obstructive pulmonary disease (J44)
+    # Amendment: Remove the J44.
+    "DCS.X.5:5:E": "?J439:!J44",
+    # Respiratory failure (J960) must always be coded to the fifth character.
+    # Amendment: If a fifth character is not present, add a 9.
     "DCS.X.7:0:E": "?J960,J961,J969:.5",
     # Gastritis and duodenitis
     "DCS.XI.4:0:E": "?K297:!K298",
