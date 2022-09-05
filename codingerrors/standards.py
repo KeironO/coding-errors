@@ -116,18 +116,24 @@ icd10_standards_dict = {
     # Other anaemias (D64) cannot not be coded in codes Multiple myeloma and malignant plasma cell neoplasms 
     # (C90), Lymphoid leukaemia (C91), Myeloid leukaemia (C92), Monocytic leukaemia (C93), Other leukaemias of specified 
     # cell type (C94), or Leukaemia of unspecified cell type (C95).
-    # Amendment: Remove anemia code as it's a given for leukemia, and replace it with Anemia in neoplastic disease (D63).
+    # Amendment: Remove anemia code as it's a given for leukemia.
     "DChS.II.2:0:E": "?D64:!C90-C95",
     # When present, Sickle-cell trait (D573) cannot be coded with any of Thalassaemia (D56), or Sickle-cell anaemia with 
     # crisis (D570), or Sickle-cell anaemia without crisis (D571).
-    # Amendment: Remove Sickle-cell trait (D573).
+    # Amendment: Remove Sickle-cell trait (D573) when codes are present.
     "DCS.III.1:0:E": "?D56:!D573",
     "DCS.III.1:1:E": "?D570:!D573",
     "DCS.III.1:2:E": "?D571:!D573",
-    # COPD with Chest infection
+    # DCS.X.5: COAD/COPD, chest infection and asthma with associated conditions is quite a large standard that needs to be
+    # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection 
+    # (J440) should not be coded with a Unspecified acute lower respiratory infection (J22).
+    # Amendment: Remove the J22X as J440 already denotes that the lower respiratory infection is present.
     "DCS.X.5:0:E": "?J440:!J22X",
+    # Chronic obstructive pulmonary disease, unspecified (J449) should not be coded with J22X.
+    # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X
+    "DCS.X.5:1:E": "?J449:!J22X",
     # Chest infection and pneumonia
-    "DCS.X.5:1:W": "?J18:!J22",
+    "DCS.X.5:2:W": "?J18:!J22",
     # COPD with pneumonia
     "DCS.X.5:2:E": "?J449:!J12-J18",
     # COPD with Emphysema
@@ -182,7 +188,8 @@ icd10_standards_dict = {
     "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3:E": "?J18:>B972",
-    # U049 SARS should not be coded
+    # South Asian Respiratory Syndrome (U049) should not be coded in any circumstance.
+    # Amendment: Remove the U049.
     "DSC.XXII.5:COVID-19:4:E": "?U049:/*",
     # B342 or B972 should not directly follow U071 or U072…. This guidence from WHO and NHS Digital
     "DSC.XXII.5:COVID-19:5:E": "?U071,U072:>B342",
