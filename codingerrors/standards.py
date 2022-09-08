@@ -44,11 +44,13 @@ from .utils import hyph
 ## Any of the codes in the first sequence can never, under any circumstance be coded.
 
 # ! : Cannot be coded with
-## Any or all of the codes in the first sequence cen never be coded with the following codes, in any position.
+## Any or all of the codes in the first sequence should never be coded with the following codes, in any position.
 
 # .n: Require's nth character
+## Any or all of the codes in the first sequence require a nth character.
 
 # { : Must always be coded with
+## 
 
 # ~x..y : x character cannot be y
 
@@ -84,7 +86,7 @@ icd10_standards_dict = {
     # (Retained placenta and membranes, without haemorrhage) when both are present.
     # Amendment: Place O432 between one of O720 or O730
     # 05/09/2022: This is wrong. Need to write a check for when both codes are present that O432 is actually there.
-    "DCS.XV.19:0:E": "?O432:¿O720,O730",
+    # "DCS.XV.19:0:E": "?O432:¿O720,O730",
     # ☑️ Fetal death of unspecified cause (P95) should not coded  is not requird in any diagnostic position .
     # Amendment: Take forward for further evaluation, but not working with obstretics.
     "DCS.XVI.7:0:E": "?P95X:/*",
@@ -154,35 +156,48 @@ icd10_standards_dict = {
     # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection 
     # (J440) should not be coded with a Unspecified acute lower respiratory infection (J22).
     # Amendment: Remove the J22 as J440 already denotes that the lower respiratory infection is present.
-    "DCS.X.5:0:E": "?J440:!J22",
+    #"DCS.X.5:0:E": "?J440:!J22",
     # Chronic obstructive pulmonary disease, unspecified (J449) should not be coded with J22X.
     # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X.
-    "DCS.X.5:1:E": "?J449:!J22",
+    #"DCS.X.5:1:E": "?J449:!J22",
     # Chest infection and pneumonia
-    "DCS.X.5:3:W": "?J18:!J22",
+    #"DCS.X.5:2:W": "?J18:!J22",
     # COPD with pneumonia
-    "DCS.X.5:4:E": "?J449:!J12-J18",
-    # Emphysema, unspecified (J439) cannot be coded with Chronic obstructive pulmonary disease (J44)
-    # Amendment: Remove the J44, k
-    "DCS.X.5:5:E": "?J439:!J44",
-    # Respiratory failure (J960) must always be coded to the fifth character.
+    #"DCS.X.5:3:E": "?J449:!J12-J18",
+    # Emphysema (J43) cannot be coded with Chronic obstructive pulmonary disease (J44). J43 describes emphysemic episodes. 
+    # Amendment: Remove the J44. 
+    #"DCS.X.5:4:E": "?J43:!J44",
+    "DCS.X.5:0:E": "?J440:!J22X",
+    # Chest infection and pneumonia
+    "DCS.X.5:1:W": "?J18:!J22",
+    # COPD with pneumonia
+    "DCS.X.5:2:E": "?J449:!J12-J18",
+    # COPD with Emphysema
+    "DCS.X.5:3:E": "?J449:!J439",
+    # All codes in Respiratory failure (J960) should always be coded to the fifth character.
     # Amendment: If a fifth character is not present, add a 9.
     "DCS.X.7:0:E": "?J960,J961,J969:.5",
-    # Gastritis and duodenitis
+    # The standard specifies that Gastroduodenitis, unspecified (K299) should only be assigned if the episode has both 
+    # (K297) and Duodenitis (K298) are present. From this a DQ error is thrown if both are present. 
+    # Amendment: Replace both with Gastroduodenitis (K299).
     "DCS.XI.4:0:E": "?K297:!K298",
-    # Other specified bacterial intestinal infections, is not to be code with K29
-    # "DCS.XI.4:1:E": "?A048:!K29",
-    # Multiple gestation
-    # "DCS.XV.14:0:E": "?Z372-Z377:{O30",
-    # Parastoma hernia
-    "DCS.XI.5:0:E": "?K433,K435:{Z93",
-    # Delirum and Dementia
-    "DCS.V.3:0:E": "?F03X:!F051",
-    # F03X should not be coded with F051                                                                                                         LC unsure if needs deleting
-    # "DCS.V.3:1:W": "?F051:!F03X",
-    # Mental and behavioural disorders due to multiple drug use and use of other.ie psychoactive substances not to be coded with f10-f18
+    # A code from Artifical Opening Status (Z93) must be assigned when any of Parastomal hernia with obstruction, without 
+    # gangrene (K433), Parastomal hernia with gangrene (K434), or Parastomal hernia without obstruction or gangrene (K435)
+    # Amendment: Add a Artificial opening status, unspecified (Z939) if no record of stoma is present.
+    "DCS.XI.5:0:E": "?K433,K434,K435:{Z93",
+    # There is no need to code a formal diagnosis of Unspecified dementia (F03X) when Delirium superimposed on dementia (F051) 
+    # is present.
+    # Amendment: Remove F03X.
+    "DCS.V.3:0:E": "?F051:!F03X",
+    # It has been advised that all codes within Mental and behavioural disorders due to multiple drug use and use of other 
+    # psychoactive substances (F19) should not be coded besides all codes within  Mental and behavioural disorders due to 
+    # psychoactive substance use (F10-19) excluding F19, and Mental and behavioural disorders due to use of tobacco (F17)
+    # Amendment: Remove F10-16 and F-18 codes.
     "DCS.V.4:0:W": "?F19:!F10-F16,F18",
-    # Amaurosis fugax
+    # The standard states that no additional code should be assigned to classify loss of vision in patients who have been 
+    # diagnosed with Amaurosis fugax (G453) as this is implict within the code. A common error we've found is that people
+    # are coding Visual impairment including blindness (binocular or monocular) (H53), so we check this here.
+    # Amendment: Remove the Visual impairment including blindness (binocular or monocular) (H53) codes.
     "DCS.VI.2:0:E": "?G453:!H54",
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
     "DCS.IX.6:0:E": "?I21,I22:!I23",

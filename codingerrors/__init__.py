@@ -32,8 +32,7 @@ from .standards import icd10_standards_dict, opcs49_standards_dict
 
 def run(icd10s: list, type: str="icd10", standards_dict: dict=None):
     if standards_dict != None:
-        standards_dict = _build_standards_dict(standards_dict)
-
+        pass
     elif type.upper() == "ICD10":
         standards_dict = _build_standards_dict(icd10_standards_dict)
     elif type.upper() == "OPCS49":
