@@ -136,7 +136,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
 
                     for code, mask in mask_dict.items():
                         tim = list(itertools.chain(*mask))
-                        print(tim, True in tim)
                         if True in tim:
                             index = tim.index(True) 
                             if index == (primary_code_position + 1):
@@ -224,18 +223,14 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                                     }
 
             elif rule == "<":
-                error = True
+                error = False
                 primary_code_position = icd10s.index(icd10)
                 for code, masks in mask_dict.items():
                     for mask in masks:
                         if True in mask:
-                            mask_positions = mask.index(True)
-                            if type(mask_positions) == int:
-                                if mask_positions != primary_code_position+1:
-                                    error = True
-                                    break
-                                else:
-                                    error = False
+                            mask_positions = [i for i, x in enumerate(mask) if x == True]
+                            if primary_code_position+1 not in mask_positions:
+                                error = True
                         else:
                             error = False
 
