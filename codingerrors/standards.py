@@ -227,8 +227,8 @@ icd10_standards_dict = {
     "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1:E": "?U071:!U072",
-    # U071 must be in primary position
-    "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
+    # U071 must be in primary position - Removed on the 28th September 2022.
+    # "DSC.XXII.5:COVID-19:2:W": "?U071:^*",
     # B972 should not directly follow codes in J18_
     "DSC.XXII.5:COVID-19:3:E": "?J18:>B972",
     # South Asian Respiratory Syndrome (U049) should not be coded in any circumstance.
