@@ -35,7 +35,7 @@ pip install git+https://github.com/KeironO/coding-errors --no-cache-dir
 
 ```python
 >>> from codingerrors import run
->>> run(["M676", "M707"], type="opcs4")
+>>> run(["J440", "J22"], type="opcs4")
 ```
 
 python
