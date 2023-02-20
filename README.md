@@ -10,8 +10,8 @@ This is a simple tool to evaluate a list of clinically coded codes (ICD-10 and O
 
 Coding standards currently implemented are:
 
-- National Clinical Coding Standards ICD-10 5th Edition (2021)
-- National Clinical Coding Standards OPCS-4 (2021)
+- National Clinical Coding Standards ICD-10 5th Edition (2022)
+- National Clinical Coding Standards OPCS-4 (2022)
 
 ## Installation
 
@@ -23,33 +23,32 @@ pip install git+https://github.com/KeironO/coding-errors --no-cache-dir
 
 ## Usage
 
+### ICD-10
+
 ```python
 >>> from codingerrors import run
 >>> run(["J440", "J22"])
 {'J440': {'DCS.X.5:0:E': {'!': {'pass': False, 'relevant': ['J22'], 'note': 'You cannot code J22 with J440'}}}}
 ```
 
-## Standards
+### OPCS-4
 
-Currently, this little tool accounts for the following standards:
+```python
+>>> from codingerrors import run
+>>> run(["M676", "M707"], type="opcs4")
+```
 
-### National Clinical Coding Standards ICD-10 5th Edition (2021)
-
-- **DCS.I.5 : Zika Virus** :: Ensure that U06.9 (Emergency use of U06.9) is correctly sequenced with A92.8 (Other specified mosquito-borne viral fevers). Please note that this includes the pregnancy positioning, without checking for whether O98.5 (Other viral diseases complicating pregnancy , childbirth and the puerperium) is present.
-- **DChS.XVI.1 : Liveborn infants acording to place of birth** :: When a Z38 (Liveborn infants according to place of birth) is assigned, it must always be in the primary diagnosis or secondary position. Please not that this does not check to see whether the baby is completely not well, it just assumes that a code in secondary position is due to this.
-- **DCS.XV.19 : Morbidly adherent placenta** :: O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 (Third-stage haemorrhage) or O73.0 (Retained placenta and membranes, without haemorrhage) when both are present.
-- **DCS.XVI.7 : Stillbirths** :: P95.X (Fetal death of unspecified cause) is not required in any
-diagnostic position.
-- **DCS.II.4 : Multiple independent primary malignant neoplasms** :: Where present, C97.X (Malignant neoplasms of 
-independent (primary) multiple sites) must be assigned in the primary position. Please note that this does not check whether multiple primary neoplasms exist.
-
-### Four Step Coding Principles (ICD-10)
+python
+>>> from codingerrors import run
+>>> run(["J440", "J22"], )
+{'J440': {'DCS.X.5:0:E': {'!': {'pass': False, 'relevant': ['J22'], 'note': 'You cannot code J22 with J440'}}}}
 
 ## Contributors
 
 - Lisa Cartwright
 - Claire Connell
 - Joanne Gapper
+- Ewelina Tetlak
 - Keiron O'Shea 
 
 ## Bug reporting and feature suggestions

@@ -58,6 +58,8 @@ from .utils import hyph
 
 # ¿ : 
 
+# % : Outpatient only codes
+
 # $ : Should always follow by
 
 # € : Can only exist when coded after one of...
@@ -676,22 +678,404 @@ icd10_standards_dict = {
     "T1:225:X": "?Z97:!Z44,T82,Z45,T83,T85,Z46,T84",
     "T1:226:X": "?Z867:!I69",
     "T1:227:X": "?Z875:!Z35"
-   
 }
 
 
-opcs49_standards_dict = {
+opcs4_standards_dict = {
+    # Pain relief procedure coding: Block of the brachial plexus.
+    # Injection of therapeutic substance around peripheral nerve (A735) must be coded
+    # with Brachial plexus NEC (Z089)
+    "PCSA2:0:W": "?A735:{Z089",
     # 
-    "PCSK3:0:E": "?K49:!K75",
+    "PCSA2:1:E": "?A573,A574,A575:{Z07",
+    "PCSA2:2:W": "?V55:{Z00-Z99",
+    "PCSA2:3:E": "?A111,A112:€A114",
+    "PCSU3:0:E": "?B164:!Y93,Y94,Y97,Y98",
+    "PChSV1:0:E": "?V22-V70:{V55",
+    
+    # Chapter A: Nervous System
+    "002PLAC:0:E": "?A05:!A221,A40",
+    "003PLAC:0:E": "?A064:!A391",
+    "004PLAC:0:E": "?A113:!A203",
+    "005PLAC:0:E": "?A281:!E137,E124",
+    "006PLAC:0:E": "?A391:!A064",
+    "007PLAC:0:E": "?A515:!A39",
+    "008PLAC:0:E": "?A52:!Y89",
+    "009PLAC:0:E": "?A736:!A71",
+    "010PLAC:0:E": "?A841:!A11,U221",
+
+    # Chapter B: Endocrine System and Breast
+    "011PLAC:0:E": "?B30:!B312",
+    "012PLAC:0:E": "?B39:!B293",
+    "013PLAC:0:E": "?B45:!B312",
+
+    # Chapter C: Eye
+    "014PLAC:0:E": "?C09:!C151,C152",
+    "015PLAC:0:E": "?C16:!C20",
+    "016PLAC:0:E": "?C32,C33:!C31",
+    "017PLAC:0:E": "?C52:!C532",
+    "018PLAC:0:E": "?C80:!C841,C842",
+    "019PLAC:0:E": "?C82:!C88",
+    "020PLAC:0:E": "?C867:!C084,C434,C893",
+    "021PLAC:0:E": "?C85:!C812",
+    "022PLAC:0:E": "?C87:!C866,C865,A822,A845",
+    "023PLAC:0:E": "?C825,C826:!C812",
+    "024PLAC:0:E": "?C841:!C80",
+    "025PLAC:0:E": "?C845:!C553",
+    "026PLAC:0:E": "?C893:!C867",
+    "027PLAC:0:E": "?C90:&*",
+    "028PLAC:0:E": "?C90:!Y80",
+
+    # Chapter D: Ear
+    "029PLAC:0:E": "?D013:!D021",
+    "030PLAC:0:E": "?D03:!X031",
+    "031PLAC:0:E": "?D05:!D13",
+    "032PLAC:0:E": "?D13:!D05",
+    "033PLAC:0:E": "?D153:!D151",
+
+    # Chapter E: Respiratory Tract
+    "034PLAC:0:E": "?E02:/*",
+    "035PLAC:0:E": "?E023,E024:!E073",
+    "036PLAC:0:E": "?E124:!E137",
+    "037PLAC:0:E": "?E147:!E162",
+    "038PLAC:0:E": "?E25:!E65",
+    "039PLAC:0:E": "?E36:!E37",
+    "040PLAC:0:E": "?E41:!E42",
+    "041PLAC:0:E": "?E441:!E442",
+    "043PLAC:0:E": "?E24:!E253,E259,E64",
+    "044PLAC:0:E": "?E32:!E369,E379",
+    "045PLAC:0:E": "?E35:!E369,E379",
+    "046PLAC:0:E": "?E35:!E369,E3710",
+    "047PLAC:0:E": "?E48:!E499",
+    "048PLAC:0:E": "?E50:!E519",
+    "049PLAC:0:E": "?E62:!E639",
+    "050PLAC:0:E": "?E64:!E659",
+    "051PLAC:0:E": "?E893:!E855",
+    "052PLAC:0:E": "?E931,E932:!E941",
+    "053PLAC:0:E": "?E933,E934:!E492",
+    "054PLAC:0:E": "?E551:!E59,E491",
+    "055PLAC:0:E": "?E53:!K01",
+    "056PLAC:0:E": "?E64:!E24",
+    "057PLAC:0:E": "?E65:!E25",
+    "058PLAC:0:E": "?E855:!E893",
+    "059PLAC:0:E": "?E856:!X522",
+    "060PLAC:0:E": "?E87:!X52",
+
+    # Chapter F: Mouth
+    "061PLAC:0:E": "?F03:!V123,V124",
+    "062PLAC:0:E": "?F11:!V151",
+    "063PLAC:0:E": "?F13:!F17",
+    "064PLAC:0:E": "?F14:!F65-F66",
+    "065PLAC:0:E": "?F19:!V151",
+    "066PLAC:0:E": "?F192:!F112,F113",
+    "067PLAC:0:E": "?F29:!V123,V124",
+
+    # Chapter G: Upper Digestive Track
+    "068PLAC:0:E": "?G169:!G12,G14,G15,G20",
+    "069PLAC:0:E": "?G18:!G199",
+    "070PLAC:0:E": "?G459:!G42-G44,G46",
+    "071PLAC:0:E": "?G54:!G559",
+    "072PLAC:0:E": "?G64:!G659",
+    "073PLAC:0:E": "?G79:!G809",
+    "074PLAC:0:E": "?G12,G14,G16,G18,G19,G20:!G42-G46",
+    "075PLAC:0:E": "?G54:!G42-G46",
+
+    # Chapter H: Lower Digestive Track
+    "076PLAC:0:E": "?H20:!H229,H23",
+    "077PLAC:0:E": "?H05:!H29",
+    "078PLAC:0:E": "?H21:!H24,H229",
+    "079PLAC:0:E": "?H22:!H52",
+    "080PLAC:0:E": "?H259:!H23,H24",
+    "081PLAC:0:E": "?H25:!H229",
+    "082PLAC:0:E": "?H26:!H289",
+    "083PLAC:0:E": "?H27:!H289",
+    "084PLAC:0:E": "?H37:!H289",
+    "085PLAC:0:E": "?H38:!H23,H229",
+    "086PLAC:0:E": "?H72:!H739",
+
+    # Chapter J: Other Abdominal Organs
+    "087PLAC:0:E": "?J08:!J099",
+    "088PLAC:0:E": "?J09:!T43,J17",
+    "089PLAC:0:E": "?J10:!J06,J11",
+    "090PLAC:0:E": "?J11:!J10,J77",
+    "091PLAC:0:E": "?J13:!J107",
+    "092PLAC:0:E": "?J14:!J10-J13",
+    "093PLAC:0:E": "?J15:!J06,J11",
+    "094PLAC:0:E": "?J339:!J18",
+    "095PLAC:0:E": "?J34:!J392-J394",
+    "096PLAC:0:E": "?J40,J41:!J38-J39",
+    "098PLAC:0:E": "?J44-J45:!J43",
+    "099PLAC:0:E": "?J77:!J06,J11",
+
+    # Chapter K: Heart
+    "101PLAC:0:E": "?K10:!K04,K133,K134",
+    "102PLAC:0:E": "?K11:!K04,K131,K132",
+    "103PLAC:0:E": "?K12:!K04,K135,K136,K137,K138,K139",
+    "104PLAC:0:E": "?K18,K19:!K04",
+    "105PLAC:0:E": "?K22,K23:!K40-K52,K58",
+    "106PLAC:0:E": "?K25:!K341",
+    "107PLAC:0:E": "?K344:!K554",
+    "108PLAC:0:E": "?K37:!K18-K19",
+    "109PLAC:0:E": "?K46:!K40-K44",
+    "110PLAC:0:E": "?K49,K501:!K75",
+    "112PLAC:0:E": "?K554:!K344",
+    "113PLAC:0:E": "?K59:!K72,X505",
+    "115PLAC:0:E": "?K624:!K59",
+	"116PLAC:0:E": "?K625:!K223",
+	"117PLAC:0:E": "?K63:!U105,U102,U103",
+	"118PLAC:0:E": "?K68:!K77",
+	"119PLAC:0:E": "?K72:!K59X605",
+	"120PLAC:0:E": "?K73,K74:!K59K72",
+	"PCSK3:0:E": "?K75:!K49",
+	"122PLAC:0:E": "?K77:!K68",
+
+    # Chapter L: Arteries and Veins
+	"123PLAC:0:E": "?L04:!L12",
+	"124PLAC:0:E": "?L18:!L27,L28",
+	"125PLAC:0:E": "?L27,L28:!L18,L19",
+	"126PLAC:0:E": "?L56:!L48",
+	"127PLAC:0:E": "?L57:!L49",
+	"128PLAC:0:E": "?L58:!L50",
+	"129PLAC:0:E": "?L59:!L51",
+	"130PLAC:0:E": "?L73:!L776",
+	"131PLAC:0:E": "?L75:!L74O05",
+	"132PLAC:0:E": "?L767:!L73",
+	"133PLAC:0:E": "?L773:!J114",
+	"134PLAC:0:E": "?L80:!K621",
+	"135PLAC:0:E": "?L85,L87:!L84",
+	"136PLAC:0:E": "?L912:!L943,L997,O152,O153",
+	"137PLAC:0:E": "?L93:!L19",
+	"138PLAC:0:E": "?O01-O02:!O02-O03",
+	"139PLAC:0:E": "?O043:!O034-O036",
+
+    # Chapter M: Urinary
+	"140PLAC:0:E": "?M062:!M136",
+	"141PLAC:0:E": "?M07:!M09,M10",
+	"142PLAC:0:E": "?M16:!X401",
+	"143PLAC:0:E": "?M292:!M274",
+	"144PLAC:0:E": "?M293:!M275",
+	"145PLAC:0:E": "?M294:!M277",
+	"146PLAC:0:E": "?M295:!M27",
+	"147PLAC:0:E": "?M37:!M646,M542",
+	"148PLAC:0:E": "?M383:!M245,M256,M247",
+	"149PLAC:0:E": "?M47:!M496,U121",
+	"150PLAC:0:E": "?M474:!U264,M482",
+	"151PLAC:0:E": "?M496:!U127",
+	"152PLAC:0:E": "?M513:!M521",
+	"153PLAC:0:E": "?M583:!M564",
+	"154PLAC:0:E": "?M61:!M341",
+	"155PLAC:0:E": "?M676:!M707",
+
+    # Chapter N: Male Genital Organs
+	"156PLAC:0:E": "?N03:!N351",
+	"157PLAC:0:E": "?N11:!T193",
+	"158PLAC:0:E": "?N13:!N346",
+	"159PLAC:0:E": "?N156:!N344,N345",
+	"160PLAC:0:E": "?N24:!N353",
+	"161PLAC:0:E": "?N32:!N352",
+	"162PLAC:0:E": "?N326:!N324",
+	"163PLAC:0:E": "?N34:!N35",
+
+    # Chapter P: Lower Female Genital Tract
+	"164PLAC:0:E": "?P072:!R272",
+	"165PLAC:0:E": "?P24,P30:!M51,M52,M53,M54,M55",
+	"166PLAC:0:E": "?P26:!Q14",
+	"167PLAC:0:E": "?P273:!Q554",
+	"168PLAC:0:E": "?Q052:!Q101,Q111,Q112",
+	"169PLAC:0:E": "?Q053:!R152",
+	"170PLAC:0:E": "?Q076:!X161",
+	"171PLAC:0:E": "?Q123:!P315",
+	"172PLAC:0:E": "?Q163:!Q176",
+	"173PLAC:0:E": "?Q203:!R123,R30",
+	"174PLAC:0:E": "?Q25:!Q27,Q28",
+	"175PLAC:0:E": "?Q561:!Q41",
+	"176PLAC:0:E": "?Q58:!Q091,Q11",
+    
+    # Chapter R: Female Genital Tract Associated with Pregnancy, Childbirth and Puerperium
+	"177PLAC:0:E": "?R022:!R131",
+	"178PLAC:0:E": "?R12:!Q20",
+	"179PLAC:0:E": "?R17:!Q019",
+	"180PLAC:0:E": "?R18:!Q011,R259",
+	"181PLAC:0:E": "?R19,R20,R21,R22,R23,R24,R25:!Q58",
+	"182PLAC:0:E": "?R27:!P13",
+	"183PLAC:0:E": "?R28:!Q10,Q11",
+	"184PLAC:0:E": "?R29:!R302,Q10,Q11",
+	"185PLAC:0:E": "?R30:!Q09,Q20",
+	"186PLAC:0:E": "?R304:!Q205",
+	"187PLAC:0:E": "?R372:!R274",
+
+    # Chapter S: Skin
+	"188PLAC:0:E": "?S02:!T296",
+	"189PLAC:0:E": "?S21:!C102",
+	"190PLAC:0:E": "?S34:!C103",
+	"191PLAC:0:E": "?S52:!X38",
+
+    # Chapter T: Soft Tissue
+	"192PLAC:0:E": "?T122:!T124",
+	"193PLAC:0:E": "?T16:!G23",
+	"194PLAC:0:E": "?T24:!T97",
+	"195PLAC:0:E": "?T27:!T98",
+	"196PLAC:0:E": "?T304:!T317",
+	"197PLAC:0:E": "?T305:!J043",
+	"198PLAC:0:E": "?T317:!T304",
+	"199PLAC:0:E": "?T32:!T282",
+	"200PLAC:0:E": "?T34:!A124,A53,L811,X402",
+	"201PLAC:0:E": "?T413:!T323",
+	"202PLAC:0:E": "?T415:!T323",
+	"203PLAC:0:E": "?T423:!T413,T415",
+	"204PLAC:0:E": "?T46:!A124,A53,L811,X402",
+	"205PLAC:0:E": "?T50:!S18,S25",
+	"206PLAC:0:E": "?T55:!T51",
+	"207PLAC:0:E": "?T644:!W77",
+	"208PLAC:0:E": "?T69:!W77",
+	"209PLAC:0:E": "?T76:!S17,S24",
+	"210PLAC:0:E": "?T832:!M416",
+	"211PLAC:0:E": "?T97:!T244",
+
+    # Chapter U: Diagnostic Imaging, Testing and Rehab
+	"212PLAC:0:E": "?U07:!U18,U15",
+	"213PLAC:0:E": "?U08:!U17",
+	"214PLAC:0:E": "?U081:!U175",
+	"215PLAC:0:E": "?U092:!Q555",
+	"216PLAC:0:E": "?U10:!K63",
+	"217PLAC:0:E": "?U11:!L00-L99",
+	"218PLAC:0:E": "?U12:!U26",
+	"219PLAC:0:E": "?U13:!U14",
+	"220PLAC:0:E": "?U15:!U07",
+	"221PLAC:0:E": "?U19:!U10",
+	"222PLAC:0:E": "?U29:!U12",
+	"223PLAC:0:E": "?U264:!M474",
+	"224PLAC:0:E": "?U34:!U10",
+	"225PLAC:0:E": "?U40:!U27",
+	"226PLAC:0:E": "?U41:!U283,U341",
+	"227PLAC:0:E": "?U502,U504,U505,U506:!U503",
+	"228PLAC:0:E": "?U533,U534:!U531,U532",
+
+    # Chapter V: Bones and Joins of Skull and Spine 
+	"229PLAC:0:E": "?V073:!F18",
+	"230PLAC:0:E": "?V09:!C08",
+	"231PLAC:0:E": "?V123,V124:!F03,F29",
+	"232PLAC:0:E": "?V125:!V023",
+	"233PLAC:0:E": "?V144:!F18",
+	"234PLAC:0:E": "?V25:!V281",
+	"235PLAC:0:E": "?V26:!V282",
+	"236PLAC:0:E": "?V401:!V37,V38,V39",
+	"237PLAC:0:E": "?V405:!V365",
+	"238PLAC:0:E": "?V41:!O095",
+	"239PLAC:0:E": "?V415:!V311",
+	"240PLAC:0:E": "?V444:!V446",
+	"241PLAC:0:E": "?V465:!V405",
+	"242PLAC:0:E": "?V67:!V281",
+	"243PLAC:0:E": "?V61:!V282",
+
+    # Chapter W: Other Bones and Joints
+	"244PLAC:0:E": "?W01,W02,W03,W04:!X19-X27",
+	"245PLAC:0:E": "?W05:!W37-W54,W93,W98,O06,O07,)008,O18,O21,O22,O23,O24,O25,O26,O09",
+	"246PLAC:0:E": "?W06:!T039",
+	"247PLAC:0:E": "?W08:!W03,W04,X19-X27",
+	"248PLAC:0:E": "?W086:!W06,X067-X11",
+	"249PLAC:0:E": "?W12,W13:!W775,X19-X27",
+	"250PLAC:0:E": "?W15:!W03,W04,X19-X27",
+	"254PLAC:0:E": "?W30:!X48,X49",
+	"255PLAC:0:E": "?W31:!W341",
+	"256PLAC:0:E": "?W322:!W342",
+	"257PLAC:0:E": "?W34:!W99",
+	"258PLAC:0:E": "?W55,W56,W57,W58:!X19-X27",
+	"259PLAC:0:E": "?W59:!W03,W04",
+	"260PLAC:0:E": "?W65,W66,W67:!X19-X27",
+	"261PLAC:0:E": "?W745:!O275",
+	"262PLAC:0:E": "?W743:!O271",
+	"263PLAC:0:E": "?W77,W78,W79,W81,W92:!X19-X27",
+	"264PLAC:0:E": "?W962:!O371",
+	"265PLAC:0:E": "?W964:!O372",
+
+    # Chapter Y: Subsidiary Classification of Methods of Operation
+	"311PLAC:0:E": "?Y52:!Y76",
+	"312PLAC:0:E": "?Y53:!Y78",
+	"313PLAC:0:E": "?Y532:!Y755,Y764",
+	"314PLAC:0:E": "?Y536:!Y744",
+	"315PLAC:0:E": "?Y671:!Y692",
+	"316PLAC:0:E": "?Y68:!Y78",
+	"317PLAC:0:E": "?Y681:!Y755,Y764",
+	"318PLAC:0:E": "?Y766:!Y762",
+
+    # Chapter Z: Subsidiary Classification of Sites of Operation
+	"319PLAC:0:E": "?Z241:!Z226",
+	"320PLAC:0:E": "?Z361:!Z95",
+	"321PLAC:0:E": "?Z38:!O451,Z382",
+	"322PLAC:0:E": "?Z395:!Z395,Z98",
+	"323PLAC:0:E": "?Z47:!Z162,Z164,Z201,Z221,Z251",
+	"324PLAC:0:E": "?Z49:!Z426,Z427,Z431,Z436,Z443,Z444",
+	"325PLAC:0:E": "?Z499:!Z156",
+	"326PLAC:0:E": "?Z63:!Z203",
+	"327PLAC:0:E": "?O12:!Z955",
+	"328PLAC:0:E": "?O33:!Z63,Z64,Z65",
+
+	"251PLAC:0:E": "?W16:!X19-X27",
+	"252PLAC:0:E": "?W19,W20,W21,W22:!W65",
+	"253PLAC:0:E": "?W24,W25,W26:!W66",
+	"266PLAC:0:E": "?W960:!O370",
+	"267PLAC:0:E": "?W972:!O381",
+	"268PLAC:0:E": "?W974:!O382",
+	"269PLAC:0:E": "?W971:!O380",
+	"270PLAC:0:E": "?W982:!O391",
+	"271PLAC:0:E": "?W984:!O392",
+	"272PLAC:0:E": "?W985:!O392",
+	"273PLAC:0:E": "?W980:!O390",
+	"274PLAC:0:E": "?O06,O06,O07:!W40",
+	"275PLAC:0:E": "?O09:!W05",
+	"276PLAC:0:E": "?O17:!W66",
+	"277PLAC:0:E": "?O37:!W965,W966",
+	"278PLAC:0:E": "?O38:!W975,W976",
+	"279PLAC:0:E": "?O39:!W986,W987,",
+	"280PLAC:0:E": "?O49:!W70,W82,W83,W89",
+	"281PLAC:0:E": "?O413:!O411,O412",
+	"282PLAC:0:E": "?O51:!W55",
+	"283PLAC:0:E": "?X082:!X215",
+	"284PLAC:0:E": "?X084:!X216",
+	"285PLAC:0:E": "?X11:!X273",
+	"286PLAC:0:E": "?X15:!X16",
+	"287PLAC:0:E": "?X161:!Q076",
+	"288PLAC:0:E": "?X28:!X29",
+	"289PLAC:0:E": "?X326:!X337",
+	"290PLAC:0:E": "?X353:!X441",
+	"291PLAC:0:E": "?X374:!X442",
+	"292PLAC:0:E": "?X385:!X443",
+	"293PLAC:0:E": "?X391:!X444",
+	"294PLAC:0:E": "?X44:!E952",
+	"295PLAC:0:E": "?X52:!X581,E87",
+	"296PLAC:0:E": "?X522:!E856",
+	"297PLAC:0:E": "?X60:!X62",
+	"298PLAC:0:E": "?X62:!X60",
+	"299PLAC:0:E": "?X655:!X657",
+	"300PLAC:0:E": "?X70,X71,X72,X73:!X74",
+	"301PLAC:0:E": "?X74:!X70-X73,X81-X98",
+	"302PLAC:0:E": "?X81-X98:!X74",
+	"303PLAC:0:E": "?Y02:!Y14",
+	"304PLAC:0:E": "?Y03:!Y15",
+	"305PLAC:0:E": "?Y173:!Y176",
+	"306PLAC:0:E": "?Y373:!Y352",
+	"307PLAC:0:E": "?Y45:!Y53",
+	"308PLAC:0:E": "?Y452:!Y743,Y753,Y765",
+	"309PLAC:0:E": "?Y49:!Y74",
+	"310PLAC:0:E": "?Y50:!Y75",
+
+    # Chapter C - Eye. Exceptions are: Bilateral recession of medial recti muscles of eyes (C312),
+    # Bilateral resection of medial recti muscles of eyes (C313), Bilateral recession of lateral 
+    # recti muscles of eyes (C314), and Bilateral resection of lateral recti muscles of eyes (C315).
+    "LATCODING:0:E": "?C00-C30,C311,C316,C318,C319,C32-C99:{Z00-Z99",
+    "LATCODING:1:E": "?K00-K99:{Z00-Z99",
+
+
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
     # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code 
     # with codes in category W82 Therapeutic endoscopic operations on semilunar cartilage
     "CSW8:0:E":"?W82:!Z00-Z99",
-    # Aspiration of prosthetic joint requires a laterality
+    # Aspiration of prosthetic joint (W901) requires a laterality
     "PCSW9:0:E": "?W901:{Z94",
     # 3D mapping of the heart is an inherent part of ablation of the conducting system of the 
-    # heart and is rarely performed on its own, therefore code K58.6 Percutaneous 
+    # heart and is rarely performed on its own, therefore code K586 Percutaneous 
     # transluminal three dimensional electroanatomic mapping of conducting system of 
     # heart must not be assigned in addition to an ablation code from categories K57 Other 
     # therapeutic transluminal operations on heart or K62 Therapeutic transluminal 
@@ -703,34 +1087,34 @@ def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
     compiled_standards_dict = {}
     for key, standard in standards_dict.items():
         standard = standard.split(":")
-       
-        primary_icd10s = hyph(standard[0][1:])
-    
-        for icd10 in primary_icd10s:
 
-            if icd10 not in compiled_standards_dict:
-                compiled_standards_dict[icd10] = {}
+        primary_codes = hyph(standard[0][1:])
+    
+        for code in primary_codes:
+
+            if code not in compiled_standards_dict:
+                compiled_standards_dict[code] = {}
 
             for part in standard[1:]:
                 dehyphyed = hyph(part[1:])
                 if part.startswith("."):
-                    if key not in compiled_standards_dict[icd10]:
-                        compiled_standards_dict[icd10][key] = {}
-                    compiled_standards_dict[icd10][key]["."] = part[1:]
+                    if key not in compiled_standards_dict[code]:
+                        compiled_standards_dict[code][key] = {}
+                    compiled_standards_dict[code][key]["."] = part[1:]
                 elif part[0] in ("&", "/", "^"):
-                    if key not in compiled_standards_dict[icd10]:
-                        compiled_standards_dict[icd10][key] = {}
-                    compiled_standards_dict[icd10][key][part[0]] = icd10
+                    if key not in compiled_standards_dict[code]:
+                        compiled_standards_dict[code][key] = {}
+                    compiled_standards_dict[code][key][part[0]] = code
                 elif part[0] == "~":
                     character, have = part[1:].split("..")
-                    if key not in compiled_standards_dict[icd10]:
-                        compiled_standards_dict[icd10][key] = {}
-                    compiled_standards_dict[icd10][key][part[0]] = {
+                    if key not in compiled_standards_dict[code]:
+                        compiled_standards_dict[code][key] = {}
+                    compiled_standards_dict[code][key][part[0]] = {
                         "character": character,
                         "have": have
                     }
                 else:
-                    if key not in compiled_standards_dict[icd10]:
-                        compiled_standards_dict[icd10][key] = {}
-                    compiled_standards_dict[icd10][key][part[0]] = dehyphyed
+                    if key not in compiled_standards_dict[code]:
+                        compiled_standards_dict[code][key] = {}
+                    compiled_standards_dict[code][key][part[0]] = dehyphyed
     return compiled_standards_dict
