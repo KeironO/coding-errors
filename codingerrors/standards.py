@@ -50,13 +50,13 @@ from .utils import hyph
 ## Any or all of the codes in the first sequence require a nth character.
 
 # { : Must always be coded with
-## 
+##
 
 # ~x..y : x character cannot be y
 
 # > : Should not be directly followed by
 
-# ¿ : 
+# ¿ :
 
 # % : Outpatient only codes
 
@@ -64,7 +64,7 @@ from .utils import hyph
 
 # € : Can only exist when coded after one of...
 
-# ) : Should always be sequences either way by 
+# ) : Should always be sequences either way by
 
 # ¬ : When in primary position should never be followed by
 
@@ -73,7 +73,6 @@ from .utils import hyph
 
 
 icd10_standards_dict = {
-
     # ☑️ Zika Virus (U068) must always be followed by other specified Mosquito-borne viral fever (A929)
     # Amendment: Where <, add the secondary code.
     "DCS.I.5:0:E": "?U068:<A928",
@@ -84,7 +83,7 @@ icd10_standards_dict = {
     # Amendment: Move to the front of the codes unless suited for secondary.
     "DChS.XVI.1:0:E": "?Z38:^*",
     # ☑️ Only code O432 AFTER O720/O730
-    # O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 (Third-stage haemorrhage) or O73.0 
+    # O43.2 (Morbidly adherent placenta) must be assigned following either O72.0 (Third-stage haemorrhage) or O73.0
     # (Retained placenta and membranes, without haemorrhage) when both are present.
     # Amendment: Place O432 between one of O720 or O730
     # 05/09/2022: This is wrong. Need to write a check for when both codes are present that O432 is actually there.
@@ -93,7 +92,7 @@ icd10_standards_dict = {
     # Amendment: Take forward for further evaluation, but not working with obstretics.
     "DCS.XVI.7:0:E": "?P95X:/*",
     # ☑️ Malignant neoplasms of independent (primary) multiple sites (C97X) should always be coded in the primary
-    # diagnosis position. Additional codes must be used 
+    # diagnosis position. Additional codes must be used
     # Amendment: Move  C97X to the primary position.
     "DCS.II.4:0:E": "?C97X:^*",
     # Failed trial of labour, unspecified (O664) and Failed application of vacuum extractor and forceps (O665)
@@ -101,24 +100,24 @@ icd10_standards_dict = {
     # Amendment: Take forward for future evaluation.
     "DSC.XV.24W:0:W": "?O664,O665:/*",
     # This was asked for by Joanne Gapper, to differentiate between a given warning and an actual data quality error.
-    # Abnormality of forces of labour (O629) and Long labour (O63) cannot be coded with Failed trial of labour, 
+    # Abnormality of forces of labour (O629) and Long labour (O63) cannot be coded with Failed trial of labour,
     # unspecified (O664) or Failed application of vacuum extractor and forceps (O665)
     # Amendment: Bring forward for further analysis.
     "DSC.XV.24E:0:E": "?O664,O665:!O629,O63",
     # Diabetes mellitus (E10-E14) should not be coded in an obstetric clinical episode (where O00-O99 denotes a likely episode)
-    # Amendment: Remove Diabetes code, and replace with a relevant code within Diabetes mellitus in pregnancy, childbirth 
+    # Amendment: Remove Diabetes code, and replace with a relevant code within Diabetes mellitus in pregnancy, childbirth
     # and the puerperium (O24)
     "DCS.XV.9:0:E": "?O00-O99:!E10,E11,E14",
-    # Mental and behavioural disorders due to use of alcohol (F100) should not be coded with any codes in Poisoning by drugs, 
+    # Mental and behavioural disorders due to use of alcohol (F100) should not be coded with any codes in Poisoning by drugs,
     # medicaments and biological substances (T36-T50), unless Toxic effect of alcohol : Ethanol (T510) is also assigned.
     # Amendment: Remove the F100 code.
     "DCS.XIX.8:0:E": "?F100:!T36-T50:@T510",
-    # Malignant neoplasms, stated or presumed to be primary, of lymphoid, haematopoietic and related tissue (C81-C96) should 
-    # not be coded with any of Secondary and unspecified malignant neoplasm of lymph nodes (C77), Secondary malignant neoplasm 
+    # Malignant neoplasms, stated or presumed to be primary, of lymphoid, haematopoietic and related tissue (C81-C96) should
+    # not be coded with any of Secondary and unspecified malignant neoplasm of lymph nodes (C77), Secondary malignant neoplasm
     # of respiratory and digestive organs (C78), or Secondary malignant neoplasm of other and unspecified sites (C79) unless
-    # there is a code from Malignant neoplasms, stated or presumed to be primary, of specified sites, except of lymphoid, 
-    # haematopoietic and related tissue (C00 to C75) or Malignant neoplasm, without specification of site (C80) or 
-    # Personal history of malignant neoplasm (Z85) are present. 
+    # there is a code from Malignant neoplasms, stated or presumed to be primary, of specified sites, except of lymphoid,
+    # haematopoietic and related tissue (C00 to C75) or Malignant neoplasm, without specification of site (C80) or
+    # Personal history of malignant neoplasm (Z85) are present.
     # Amendment: Bring forward for future analysis. We're not focusing too much on stuff that describes cancer.
     "DCS.II.7:0:E": "?C81-C96:!C77-C79:@C00-C75,C80,Z85",
     # Outcome of delivery codes such as between Twins, both liveborn (Z372) and Other multiple births, all stillborn (Z377)
@@ -126,49 +125,49 @@ icd10_standards_dict = {
     # be coded as part of a Multiple gestation (O30).
     # Amendment: Bring forward for future analysis.
     "DCS.XV.14:0:E": "?Z372-Z377:{O30",
-    # If present, dementia in Alzheimer disease (F00) must always either be sequenced directly before or after a 
-    # code from Alzheimer disease (G30) 
+    # If present, dementia in Alzheimer disease (F00) must always either be sequenced directly before or after a
+    # code from Alzheimer disease (G30)
     # Amendment: If G30 not present, add a Alzheimer disease, unspecified (G309).
     "DGCS.5:0:E": "?F00:)G30",
     # When present, Systemic Inflammatory Response Syndrome of infectious origin with organ failure (R651) must always be
-    # coded directly following one of Streptococcal sepsis (A40), Other sepsis (A41), Bacterial sepsis of newborn (P36), 
-    # Puerperal sepsis (O85), Septicaemic plague (A207), Generalized tularaemia (A217), Anthrax sepsis(A227), Brucellosis, 
-    # unspecified (A239), Erysipelothrix sepsis (A267), Extraintestinal yersiniosis (A282), Listerial sepsis (A327), 
-    # Waterhouse-Friderichsen syndrome (A391), Actinomycotic sepsis (A427), Other gonococcal infections (A548), Candidal 
+    # coded directly following one of Streptococcal sepsis (A40), Other sepsis (A41), Bacterial sepsis of newborn (P36),
+    # Puerperal sepsis (O85), Septicaemic plague (A207), Generalized tularaemia (A217), Anthrax sepsis(A227), Brucellosis,
+    # unspecified (A239), Erysipelothrix sepsis (A267), Extraintestinal yersiniosis (A282), Listerial sepsis (A327),
+    # Waterhouse-Friderichsen syndrome (A391), Actinomycotic sepsis (A427), Other gonococcal infections (A548), Candidal
     # sepsis (B377), Other infection during labour (O753), or Meningococcaemia, unspecified (A394)
     # Amendment: Remove R651 if none of the required codes are present.
     "DChS.I.1:0:E": "?R651:€A40,A41,P36,O85,A207,A217,A227,A239,A267,A282,A327,A391,A427,A548,B377,O753,A394",
-    # If any codes within Persons with potential health hazards related to communicable diseases excluding Need for other 
-    # prophylactic measures (Z29) (Z20-Z28) are placed in the primary position, they shuld not be directly followed by any 
+    # If any codes within Persons with potential health hazards related to communicable diseases excluding Need for other
+    # prophylactic measures (Z29) (Z20-Z28) are placed in the primary position, they shuld not be directly followed by any
     # codes within A00-B99 and R00-T99.
     # Amendment: Reposition code so that the rule passes.
     "DCS.XXI.3:0:E": "?Z20-Z28:¬A00-A99,B00-B99,R00-R99,S00-S99,T00-T99",
-    # Other anaemias (D64) cannot not be coded in codes Multiple myeloma and malignant plasma cell neoplasms 
-    # (C90), Lymphoid leukaemia (C91), Myeloid leukaemia (C92), Monocytic leukaemia (C93), Other leukaemias of specified 
+    # Other anaemias (D64) cannot not be coded in codes Multiple myeloma and malignant plasma cell neoplasms
+    # (C90), Lymphoid leukaemia (C91), Myeloid leukaemia (C92), Monocytic leukaemia (C93), Other leukaemias of specified
     # cell type (C94), or Leukaemia of unspecified cell type (C95).
     # Amendment: Remove anemia code as it's a given for leukemia.
     "DChS.II.2:0:E": "?D64:!C90-C95",
-    # When present, Sickle-cell trait (D573) cannot be coded with any of Thalassaemia (D56), or Sickle-cell anaemia with 
+    # When present, Sickle-cell trait (D573) cannot be coded with any of Thalassaemia (D56), or Sickle-cell anaemia with
     # crisis (D570), or Sickle-cell anaemia without crisis (D571).
     # Amendment: Remove Sickle-cell trait (D573) when codes are present.
     "DCS.III.1:0:E": "?D56:!D573",
     "DCS.III.1:1:E": "?D570:!D573",
     "DCS.III.1:2:E": "?D571:!D573",
     # DCS.X.5: COAD/COPD, chest infection and asthma with associated conditions is quite a large standard that needs to be
-    # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection 
+    # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection
     # (J440) should not be coded with a Unspecified acute lower respiratory infection (J22).
     # Amendment: Remove the J22 as J440 already denotes that the lower respiratory infection is present.
-    #"DCS.X.5:0:E": "?J440:!J22",
+    # "DCS.X.5:0:E": "?J440:!J22",
     # Chronic obstructive pulmonary disease, unspecified (J449) should not be coded with J22X.
     # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X.
-    #"DCS.X.5:1:E": "?J449:!J22",
+    # "DCS.X.5:1:E": "?J449:!J22",
     # Chest infection and pneumonia
-    #"DCS.X.5:2:W": "?J18:!J22",
+    # "DCS.X.5:2:W": "?J18:!J22",
     # COPD with pneumonia
-    #"DCS.X.5:3:E": "?J449:!J12-J18",
-    # Emphysema (J43) cannot be coded with Chronic obstructive pulmonary disease (J44). J43 describes emphysemic episodes. 
-    # Amendment: Remove the J44. 
-    #"DCS.X.5:4:E": "?J43:!J44",
+    # "DCS.X.5:3:E": "?J449:!J12-J18",
+    # Emphysema (J43) cannot be coded with Chronic obstructive pulmonary disease (J44). J43 describes emphysemic episodes.
+    # Amendment: Remove the J44.
+    # "DCS.X.5:4:E": "?J43:!J44",
     "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
     "DCS.X.5:1:W": "?J18:!J22",
@@ -179,24 +178,24 @@ icd10_standards_dict = {
     # All codes in Respiratory failure (J960) should always be coded to the fifth character.
     # Amendment: If a fifth character is not present, add a 9.
     "DCS.X.7:0:E": "?J960,J961,J969:.5",
-    # The standard specifies that Gastroduodenitis, unspecified (K299) should only be assigned if the episode has both 
-    # (K297) and Duodenitis (K298) are present. From this a DQ error is thrown if both are present. 
+    # The standard specifies that Gastroduodenitis, unspecified (K299) should only be assigned if the episode has both
+    # (K297) and Duodenitis (K298) are present. From this a DQ error is thrown if both are present.
     # Amendment: Replace both with Gastroduodenitis (K299).
     "DCS.XI.4:0:E": "?K297:!K298",
-    # A code from Artifical Opening Status (Z93) must be assigned when any of Parastomal hernia with obstruction, without 
+    # A code from Artifical Opening Status (Z93) must be assigned when any of Parastomal hernia with obstruction, without
     # gangrene (K433), Parastomal hernia with gangrene (K434), or Parastomal hernia without obstruction or gangrene (K435)
     # Amendment: Add a Artificial opening status, unspecified (Z939) if no record of stoma is present.
     "DCS.XI.5:0:E": "?K433,K434,K435:{Z93",
-    # There is no need to code a formal diagnosis of Unspecified dementia (F03X) when Delirium superimposed on dementia (F051) 
+    # There is no need to code a formal diagnosis of Unspecified dementia (F03X) when Delirium superimposed on dementia (F051)
     # is present.
     # Amendment: Remove F03X.
     "DCS.V.3:0:E": "?F051:!F03X",
-    # It has been advised that all codes within Mental and behavioural disorders due to multiple drug use and use of other 
-    # psychoactive substances (F19) should not be coded besides all codes within  Mental and behavioural disorders due to 
+    # It has been advised that all codes within Mental and behavioural disorders due to multiple drug use and use of other
+    # psychoactive substances (F19) should not be coded besides all codes within  Mental and behavioural disorders due to
     # psychoactive substance use (F10-19) excluding F19, and Mental and behavioural disorders due to use of tobacco (F17)
     # Amendment: Remove F10-16 and F-18 codes.
     "DCS.V.4:0:W": "?F19:!F10-F16,F18",
-    # The standard states that no additional code should be assigned to classify loss of vision in patients who have been 
+    # The standard states that no additional code should be assigned to classify loss of vision in patients who have been
     # diagnosed with Amaurosis fugax (G453) as this is implict within the code. A common error we've found is that people
     # are coding Visual impairment including blindness (binocular or monocular) (H53), so we check this here.
     # Amendment: Remove the Visual impairment including blindness (binocular or monocular) (H53) codes.
@@ -204,28 +203,28 @@ icd10_standards_dict = {
     # I23.- Certain current complications following acute myocardial infarction must not be coded with I21.- or I22.-
     "DCS.IX.6:0:E": "?I21,I22:!I23",
     # I46.9 unspecified cardiac arrest should not be coded with I46.0 or I46.1
-    "DCS.IX.8:0:E " : "?I460,I461:!I469",
+    "DCS.IX.8:0:E ": "?I460,I461:!I469",
     # Heart Failure CCF
-    "DCS.IX.10:0:E": "?I501,I509:!I500,I50X",       
+    "DCS.IX.10:0:E": "?I501,I509:!I500,I50X",
     # Pulmonary Oedema
     "DCS.IX.10:1:E": "?I00-I01,I05-I10,I119,I12,I14-15,I20-I25,I25-I35,I38-I40,I49,I51,I52:!J81X",
-    # congestive cardiac failure (CCF) (I50.0) should not be coded with left ventricular failure (LVF) (I50.1) 
-    "DCS.IX.10:2:E" : "?I501:!I500",
+    # congestive cardiac failure (CCF) (I50.0) should not be coded with left ventricular failure (LVF) (I50.1)
+    "DCS.IX.10:2:E": "?I501:!I500",
     # I64.X Stroke, must not be coded with I63.-
     "DCS.IX.11:0:E": "?I64X:!I63",
-    # Atherosclerosis 
+    # Atherosclerosis
     "DCS.IX.14:0:E": "?I70:.5",
     # Fifth character in Chapter XIX
     "DCS.XIX.2:0:E": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
     # Palliative care # LC YOU CAN CODE THEM TOGETHER, IF THE Z51.8 IS BEING USED TO IDENTIFY OTHER MEDICAL CARE BUT NEVER IN D01*
-    "DCS.XXI.9:0:W": "?Z518:!Z515",                               
+    "DCS.XXI.9:0:W": "?Z518:!Z515",
     # DM should be either Type 1/Type 2 or unknown
     "DCS.IV.1:0:E": "?E11,E14:!E10",
     "DCS.IV.1:1:E": "?E11:!E14,E10",
     "DCS.IV.1:2:E": "?E14:!E10,E11",
-    # External Causes 
+    # External Causes
     "DChS.XX.1:0:E": "?V01-V99,Y01-Y98:&*",
-    # B972 without U071 
+    # B972 without U071
     "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
     "DSC.XXII.5:COVID-19:1:E": "?U071:!U072",
@@ -252,7 +251,7 @@ icd10_standards_dict = {
     "DChS.XVIII:2:E": "?I21-I22:!R07",
     # R060 - shortness of breath should not be coded with Pneumonia (J12 - J18) or LRTI (J22) or IECOPD (J440)
     "DChS.XVIII:3:E": "?J12-J18:!R060",
-    # R568 should not be coded with either G40 or G41 
+    # R568 should not be coded with either G40 or G41
     "DChS.XVIII:4:W": "?G40-G41:!R568",
     # R251 should not be coded with either G20 or G21
     "DChS.XVIII:5:E": "?G20-G21:!R251",
@@ -261,10 +260,10 @@ icd10_standards_dict = {
     # Musculoskeletal 5th Character
     "DChS.XIII.1:0:E": "?M00-M25,M40-M54,M60-M99:~5..9",
     # no need to assign urethral obstruction N368 with N40X
-    "DCS.XIV.5:0:E" :"?N40X:!N368",
-    # Z72.0 tobacco use must not be coded                                                          FOR CURRENT SMOKER USE F17.1                                              
+    "DCS.XIV.5:0:E": "?N40X:!N368",
+    # Z72.0 tobacco use must not be coded                                                          FOR CURRENT SMOKER USE F17.1
     "DSC.V.7:0:E": "?Z720:/*",
-    # Z12.1 Special screening examination for neoplasm of intestinal tract 
+    # Z12.1 Special screening examination for neoplasm of intestinal tract
     "DCS.XXI.1:0:E": "?D12,K55-K64,C18-C21:!Z121",
     # Y838 and Y839 and Y848 and Y849 should not be coded with a code from T80-T88
     "DSC.XIX.7:0:E": "?T80-T88:!Y838,Y839,Y848,Y849",
@@ -272,7 +271,7 @@ icd10_standards_dict = {
     "DCS.XIV.12:0:E": "?N993:>Y83,Y84",
     # F80 should not be coded with either F81 or F82
     "DCS.XIV.12:1!E:": "?F81,F82:!F80",
-    # CKD with Renal Failure 
+    # CKD with Renal Failure
     "DCS.XIV.2:0:E": "?N184,N185:!N19",
     # Chronic kidney disease
     "DCS.XIV.2:1:E": "?N182,N183,N184,N185,N189:!N181",
@@ -282,8 +281,8 @@ icd10_standards_dict = {
     "DCS.XIV.2:5:E": "?N181,N182,N183,N184,N189:!N185",
     "DCS.XIV.2:6:E": "?N181,N182,N183,N184,N185:!N189",
     # T29 should not be coded
-    "DCS.XIX.5:0:E": "?T29:/*",                                                                                        
-    # J95.8 should not be coded  
+    "DCS.XIX.5:0:E": "?T29:/*",
+    # J95.8 should not be coded
     "DSC.XIX.7:1:W": "?J958:/*",
     # Codes O95, O96, O97 should never be assigned
     "DCS.XV.29:0:E": "?O95-O97:/*",
@@ -319,7 +318,7 @@ icd10_standards_dict = {
     "DCS.XI.10:1:E": "?K640,K642,K643:!K641",
     "DCS.XI.10:3:E": "?K640,K641,K643:!K642",
     "DCS.XI.10:4:E": "?K640,K641,K642:!K643",
-    # Pressure Ulcers 
+    # Pressure Ulcers
     "DCS.XII.3:0:E": "?L891,L892,L893,L899:!L890",
     "DCS.XII.3:1:E": "?L890,L892,L893,L899:!L891",
     "DCS.XII.3:2:E": "?L890,L891,L893,L899:!L892",
@@ -353,7 +352,7 @@ icd10_standards_dict = {
     "DCS.XV.7:0:E": "?021:!R11",
     # Z33.x must not be used with any code from O00.- to O99.-
     "DCS.XXI.5:0:E": "?O00-O99:!Z33",
-    # Pregnant state, incidental 
+    # Pregnant state, incidental
     "DCS.XV.33:0:E": "?Z33X:&*",
     # Dehydration of newborn (P74.1) must not be coded with E86.x
     "DCS.IV.7:0:E": "?E86X:!P741",
@@ -365,7 +364,7 @@ icd10_standards_dict = {
     "DCS.VII.3:0:E": "?H544:!H540",
     # H91.9 must not be coded with H90.0, h90.1, h90.2, h90.3, h90.4, h90.5, h90.6, h90.7, h90.8, h91.0, h91.1, h91.2, h91.3, h91.8
     "DCS.VIII.1:0:E": "?H90,H910,H911,H912,H913,H918:!H919",
-    # Neonatal Jaundice 
+    # Neonatal Jaundice
     "FSCP:0:E": "?P072,P073:!P599",
     # B95/B96/B97/B98 Never in primary position
     "FSCP:1:E": "?B95-B98:&*",
@@ -389,13 +388,13 @@ icd10_standards_dict = {
     "FSCP:11:E": "?N132:!N20",
     # I633-I634-I635 should not be coded with I65
     # "FSCP:12:E": "?I65:!I633-I635", <- To investigate
-    # J852 Abscess of lung without pneumonia should not be coded with pneumonia 
+    # J852 Abscess of lung without pneumonia should not be coded with pneumonia
     "FSCP:13:W": "?J12-J18:!J852",
     # I080 coded with codes from I34 and I35
     "FSCP:14:E": "?I34-I35:!I080",
     # codes O640 - O663 should not be coded with O320 - O324/O326 -O329 and O33._
     "FSCP:15:E": "?O320-O324,O326-O329,O33:!O640-O663",
-    # Dementia 
+    # Dementia
     "FSCP:16:E": "?F03:!F01-F02",
     # R251 should not be followed directly by a code between Y40 - Y59
     "FSCP:17:E": "?R251:>Y40-Y59",
@@ -426,14 +425,14 @@ icd10_standards_dict = {
     # G629 should not be directly followed by a code from Y40-Y59
     "FSCP:30:E": "?G629:>Y40-Y59",
     # B95 B96 should not directly follow I830
-    "FSCP:31:E": "?I830:>B95,B96", 
+    "FSCP:31:E": "?I830:>B95,B96",
     # Kidney and Ureter Calculi
     "FSCP:32:E": "?N201,N202:!N200",
     # Codes from L30 should not be directly followed by any codes in the range Y100 - Y599
     "FSCP:33:E": "?L30:>Y10-Y59",
     # Influenza with pneumonia
     "FSCP:34:W": "?J13-J18:!J10-J11",
-    # Ankylosis of joint should not be coded with stiffness of joint 
+    # Ankylosis of joint should not be coded with stiffness of joint
     "FSCP:35:E": "?M256:!M246",
     # K802 Calculus of gallbladder without cholecystitis coded with K81_ Cholecystitis
     "FSCP:36:E": "?K81:!K802",
@@ -449,9 +448,8 @@ icd10_standards_dict = {
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
     "FSCP:42:E": "?I65:!I630-I632",
-
     # Type 1 errors
-"T1:001:X": "?A182:!A163,A183",
+    "T1:001:X": "?A182:!A163,A183",
     "T1:002:X": "?A40:!O05,O03,O07,T814,T802,T880,O06,O04,O85X,O080,O753",
     "T1:003:X": "?A41:!A40,O05,O03,O07,A499,T814,A393,T802,T880,O06,A548,O04,O753,O080,O85X",
     "T1:004:X": "?A56:!P231",
@@ -673,11 +671,11 @@ icd10_standards_dict = {
     "T1:220:X": "?Z48:!Z47,Z45",
     "T1:221:X": "?Z63:!Z61",
     "T1:222:X": "?Z90:!D730",
-    #"T1:223:X": "?Z91:!Z864,Z58",
+    # "T1:223:X": "?Z91:!Z864,Z58",
     "T1:224:X": "?Z96:!T83,Z45,T84",
     "T1:225:X": "?Z97:!Z44,T82,Z45,T83,T85,Z46,T84",
     "T1:226:X": "?Z867:!I69",
-    "T1:227:X": "?Z875:!Z35"
+    "T1:227:X": "?Z875:!Z35",
 }
 
 
@@ -686,13 +684,12 @@ opcs4_standards_dict = {
     # Injection of therapeutic substance around peripheral nerve (A735) must be coded
     # with Brachial plexus NEC (Z089)
     "PCSA2:0:W": "?A735:{Z089",
-    # 
+    #
     "PCSA2:1:E": "?A573,A574,A575:{Z07",
     "PCSA2:2:W": "?V55:{Z00-Z99",
     "PCSA2:3:E": "?A111,A112:€A114",
     "PCSU3:0:E": "?B164:!Y93,Y94,Y97,Y98",
     "PChSV1:0:E": "?V22-V70:{V55",
-    
     # Chapter A: Nervous System
     "002PLAC:0:E": "?A05:!A221,A40",
     "003PLAC:0:E": "?A064:!A391",
@@ -703,12 +700,10 @@ opcs4_standards_dict = {
     "008PLAC:0:E": "?A52:!Y89",
     "009PLAC:0:E": "?A736:!A71",
     "010PLAC:0:E": "?A841:!A11,U221",
-
     # Chapter B: Endocrine System and Breast
     "011PLAC:0:E": "?B30:!B312",
     "012PLAC:0:E": "?B39:!B293",
     "013PLAC:0:E": "?B45:!B312",
-
     # Chapter C: Eye
     "014PLAC:0:E": "?C09:!C151,C152",
     "015PLAC:0:E": "?C16:!C20",
@@ -725,14 +720,12 @@ opcs4_standards_dict = {
     "026PLAC:0:E": "?C893:!C867",
     "027PLAC:0:E": "?C90:&*",
     "028PLAC:0:E": "?C90:!Y80",
-
     # Chapter D: Ear
     "029PLAC:0:E": "?D013:!D021",
     "030PLAC:0:E": "?D03:!X031",
     "031PLAC:0:E": "?D05:!D13",
     "032PLAC:0:E": "?D13:!D05",
     "033PLAC:0:E": "?D153:!D151",
-
     # Chapter E: Respiratory Tract
     "034PLAC:0:E": "?E02:/*",
     "035PLAC:0:E": "?E023,E024:!E073",
@@ -760,7 +753,6 @@ opcs4_standards_dict = {
     "058PLAC:0:E": "?E855:!E893",
     "059PLAC:0:E": "?E856:!X522",
     "060PLAC:0:E": "?E87:!X52",
-
     # Chapter F: Mouth
     "061PLAC:0:E": "?F03:!V123,V124",
     "062PLAC:0:E": "?F11:!V151",
@@ -769,7 +761,6 @@ opcs4_standards_dict = {
     "065PLAC:0:E": "?F19:!V151",
     "066PLAC:0:E": "?F192:!F112,F113",
     "067PLAC:0:E": "?F29:!V123,V124",
-
     # Chapter G: Upper Digestive Track
     "068PLAC:0:E": "?G169:!G12,G14,G15,G20",
     "069PLAC:0:E": "?G18:!G199",
@@ -779,7 +770,6 @@ opcs4_standards_dict = {
     "073PLAC:0:E": "?G79:!G809",
     "074PLAC:0:E": "?G12,G14,G16,G18,G19,G20:!G42-G46",
     "075PLAC:0:E": "?G54:!G42-G46",
-
     # Chapter H: Lower Digestive Track
     "076PLAC:0:E": "?H20:!H229,H23",
     "077PLAC:0:E": "?H05:!H29",
@@ -792,7 +782,6 @@ opcs4_standards_dict = {
     "084PLAC:0:E": "?H37:!H289",
     "085PLAC:0:E": "?H38:!H23,H229",
     "086PLAC:0:E": "?H72:!H739",
-
     # Chapter J: Other Abdominal Organs
     "087PLAC:0:E": "?J08:!J099",
     "088PLAC:0:E": "?J09:!T43,J17",
@@ -806,7 +795,6 @@ opcs4_standards_dict = {
     "096PLAC:0:E": "?J40,J41:!J38-J39",
     "098PLAC:0:E": "?J44-J45:!J43",
     "099PLAC:0:E": "?J77:!J06,J11",
-
     # Chapter K: Heart
     "101PLAC:0:E": "?K10:!K04,K133,K134",
     "102PLAC:0:E": "?K11:!K04,K131,K132",
@@ -821,267 +809,252 @@ opcs4_standards_dict = {
     "112PLAC:0:E": "?K554:!K344",
     "113PLAC:0:E": "?K59:!K72,X505",
     "115PLAC:0:E": "?K624:!K59",
-	"116PLAC:0:E": "?K625:!K223",
-	"117PLAC:0:E": "?K63:!U105,U102,U103",
-	"118PLAC:0:E": "?K68:!K77",
-	"119PLAC:0:E": "?K72:!K59X605",
-	"120PLAC:0:E": "?K73,K74:!K59K72",
-	"PCSK3:0:E": "?K75:!K49",
-	"122PLAC:0:E": "?K77:!K68",
-
+    "116PLAC:0:E": "?K625:!K223",
+    "117PLAC:0:E": "?K63:!U105,U102,U103",
+    "118PLAC:0:E": "?K68:!K77",
+    "119PLAC:0:E": "?K72:!K59X605",
+    "120PLAC:0:E": "?K73,K74:!K59K72",
+    "PCSK3:0:E": "?K75:!K49",
+    "122PLAC:0:E": "?K77:!K68",
     # Chapter L: Arteries and Veins
-	"123PLAC:0:E": "?L04:!L12",
-	"124PLAC:0:E": "?L18:!L27,L28",
-	"125PLAC:0:E": "?L27,L28:!L18,L19",
-	"126PLAC:0:E": "?L56:!L48",
-	"127PLAC:0:E": "?L57:!L49",
-	"128PLAC:0:E": "?L58:!L50",
-	"129PLAC:0:E": "?L59:!L51",
-	"130PLAC:0:E": "?L73:!L776",
-	"131PLAC:0:E": "?L75:!L74O05",
-	"132PLAC:0:E": "?L767:!L73",
-	"133PLAC:0:E": "?L773:!J114",
-	"134PLAC:0:E": "?L80:!K621",
-	"135PLAC:0:E": "?L85,L87:!L84",
-	"136PLAC:0:E": "?L912:!L943,L997,O152,O153",
-	"137PLAC:0:E": "?L93:!L19",
-	"138PLAC:0:E": "?O01-O02:!O02-O03",
-	"139PLAC:0:E": "?O043:!O034-O036",
-
+    "123PLAC:0:E": "?L04:!L12",
+    "124PLAC:0:E": "?L18:!L27,L28",
+    "125PLAC:0:E": "?L27,L28:!L18,L19",
+    "126PLAC:0:E": "?L56:!L48",
+    "127PLAC:0:E": "?L57:!L49",
+    "128PLAC:0:E": "?L58:!L50",
+    "129PLAC:0:E": "?L59:!L51",
+    "130PLAC:0:E": "?L73:!L776",
+    "131PLAC:0:E": "?L75:!L74O05",
+    "132PLAC:0:E": "?L767:!L73",
+    "133PLAC:0:E": "?L773:!J114",
+    "134PLAC:0:E": "?L80:!K621",
+    "135PLAC:0:E": "?L85,L87:!L84",
+    "136PLAC:0:E": "?L912:!L943,L997,O152,O153",
+    "137PLAC:0:E": "?L93:!L19",
+    "138PLAC:0:E": "?O01-O02:!O02-O03",
+    "139PLAC:0:E": "?O043:!O034-O036",
     # Chapter M: Urinary
-	"140PLAC:0:E": "?M062:!M136",
-	"141PLAC:0:E": "?M07:!M09,M10",
-	"142PLAC:0:E": "?M16:!X401",
-	"143PLAC:0:E": "?M292:!M274",
-	"144PLAC:0:E": "?M293:!M275",
-	"145PLAC:0:E": "?M294:!M277",
-	"146PLAC:0:E": "?M295:!M27",
-	"147PLAC:0:E": "?M37:!M646,M542",
-	"148PLAC:0:E": "?M383:!M245,M256,M247",
-	"149PLAC:0:E": "?M47:!M496,U121",
-	"150PLAC:0:E": "?M474:!U264,M482",
-	"151PLAC:0:E": "?M496:!U127",
-	"152PLAC:0:E": "?M513:!M521",
-	"153PLAC:0:E": "?M583:!M564",
-	"154PLAC:0:E": "?M61:!M341",
-	"155PLAC:0:E": "?M676:!M707",
-
+    "140PLAC:0:E": "?M062:!M136",
+    "141PLAC:0:E": "?M07:!M09,M10",
+    "142PLAC:0:E": "?M16:!X401",
+    "143PLAC:0:E": "?M292:!M274",
+    "144PLAC:0:E": "?M293:!M275",
+    "145PLAC:0:E": "?M294:!M277",
+    "146PLAC:0:E": "?M295:!M27",
+    "147PLAC:0:E": "?M37:!M646,M542",
+    "148PLAC:0:E": "?M383:!M245,M256,M247",
+    "149PLAC:0:E": "?M47:!M496,U121",
+    "150PLAC:0:E": "?M474:!U264,M482",
+    "151PLAC:0:E": "?M496:!U127",
+    "152PLAC:0:E": "?M513:!M521",
+    "153PLAC:0:E": "?M583:!M564",
+    "154PLAC:0:E": "?M61:!M341",
+    "155PLAC:0:E": "?M676:!M707",
     # Chapter N: Male Genital Organs
-	"156PLAC:0:E": "?N03:!N351",
-	"157PLAC:0:E": "?N11:!T193",
-	"158PLAC:0:E": "?N13:!N346",
-	"159PLAC:0:E": "?N156:!N344,N345",
-	"160PLAC:0:E": "?N24:!N353",
-	"161PLAC:0:E": "?N32:!N352",
-	"162PLAC:0:E": "?N326:!N324",
-	"163PLAC:0:E": "?N34:!N35",
-
+    "156PLAC:0:E": "?N03:!N351",
+    "157PLAC:0:E": "?N11:!T193",
+    "158PLAC:0:E": "?N13:!N346",
+    "159PLAC:0:E": "?N156:!N344,N345",
+    "160PLAC:0:E": "?N24:!N353",
+    "161PLAC:0:E": "?N32:!N352",
+    "162PLAC:0:E": "?N326:!N324",
+    "163PLAC:0:E": "?N34:!N35",
     # Chapter P: Lower Female Genital Tract
-	"164PLAC:0:E": "?P072:!R272",
-	"165PLAC:0:E": "?P24,P30:!M51,M52,M53,M54,M55",
-	"166PLAC:0:E": "?P26:!Q14",
-	"167PLAC:0:E": "?P273:!Q554",
-	"168PLAC:0:E": "?Q052:!Q101,Q111,Q112",
-	"169PLAC:0:E": "?Q053:!R152",
-	"170PLAC:0:E": "?Q076:!X161",
-	"171PLAC:0:E": "?Q123:!P315",
-	"172PLAC:0:E": "?Q163:!Q176",
-	"173PLAC:0:E": "?Q203:!R123,R30",
-	"174PLAC:0:E": "?Q25:!Q27,Q28",
-	"175PLAC:0:E": "?Q561:!Q41",
-	"176PLAC:0:E": "?Q58:!Q091,Q11",
-    
+    "164PLAC:0:E": "?P072:!R272",
+    "165PLAC:0:E": "?P24,P30:!M51,M52,M53,M54,M55",
+    "166PLAC:0:E": "?P26:!Q14",
+    "167PLAC:0:E": "?P273:!Q554",
+    "168PLAC:0:E": "?Q052:!Q101,Q111,Q112",
+    "169PLAC:0:E": "?Q053:!R152",
+    "170PLAC:0:E": "?Q076:!X161",
+    "171PLAC:0:E": "?Q123:!P315",
+    "172PLAC:0:E": "?Q163:!Q176",
+    "173PLAC:0:E": "?Q203:!R123,R30",
+    "174PLAC:0:E": "?Q25:!Q27,Q28",
+    "175PLAC:0:E": "?Q561:!Q41",
+    "176PLAC:0:E": "?Q58:!Q091,Q11",
     # Chapter R: Female Genital Tract Associated with Pregnancy, Childbirth and Puerperium
-	"177PLAC:0:E": "?R022:!R131",
-	"178PLAC:0:E": "?R12:!Q20",
-	"179PLAC:0:E": "?R17:!Q019",
-	"180PLAC:0:E": "?R18:!Q011,R259",
-	"181PLAC:0:E": "?R19,R20,R21,R22,R23,R24,R25:!Q58",
-	"182PLAC:0:E": "?R27:!P13",
-	"183PLAC:0:E": "?R28:!Q10,Q11",
-	"184PLAC:0:E": "?R29:!R302,Q10,Q11",
-	"185PLAC:0:E": "?R30:!Q09,Q20",
-	"186PLAC:0:E": "?R304:!Q205",
-	"187PLAC:0:E": "?R372:!R274",
-
+    "177PLAC:0:E": "?R022:!R131",
+    "178PLAC:0:E": "?R12:!Q20",
+    "179PLAC:0:E": "?R17:!Q019",
+    "180PLAC:0:E": "?R18:!Q011,R259",
+    "181PLAC:0:E": "?R19,R20,R21,R22,R23,R24,R25:!Q58",
+    "182PLAC:0:E": "?R27:!P13",
+    "183PLAC:0:E": "?R28:!Q10,Q11",
+    "184PLAC:0:E": "?R29:!R302,Q10,Q11",
+    "185PLAC:0:E": "?R30:!Q09,Q20",
+    "186PLAC:0:E": "?R304:!Q205",
+    "187PLAC:0:E": "?R372:!R274",
     # Chapter S: Skin
-	"188PLAC:0:E": "?S02:!T296",
-	"189PLAC:0:E": "?S21:!C102",
-	"190PLAC:0:E": "?S34:!C103",
-	"191PLAC:0:E": "?S52:!X38",
-
+    "188PLAC:0:E": "?S02:!T296",
+    "189PLAC:0:E": "?S21:!C102",
+    "190PLAC:0:E": "?S34:!C103",
+    "191PLAC:0:E": "?S52:!X38",
     # Chapter T: Soft Tissue
-	"192PLAC:0:E": "?T122:!T124",
-	"193PLAC:0:E": "?T16:!G23",
-	"194PLAC:0:E": "?T24:!T97",
-	"195PLAC:0:E": "?T27:!T98",
-	"196PLAC:0:E": "?T304:!T317",
-	"197PLAC:0:E": "?T305:!J043",
-	"198PLAC:0:E": "?T317:!T304",
-	"199PLAC:0:E": "?T32:!T282",
-	"200PLAC:0:E": "?T34:!A124,A53,L811,X402",
-	"201PLAC:0:E": "?T413:!T323",
-	"202PLAC:0:E": "?T415:!T323",
-	"203PLAC:0:E": "?T423:!T413,T415",
-	"204PLAC:0:E": "?T46:!A124,A53,L811,X402",
-	"205PLAC:0:E": "?T50:!S18,S25",
-	"206PLAC:0:E": "?T55:!T51",
-	"207PLAC:0:E": "?T644:!W77",
-	"208PLAC:0:E": "?T69:!W77",
-	"209PLAC:0:E": "?T76:!S17,S24",
-	"210PLAC:0:E": "?T832:!M416",
-	"211PLAC:0:E": "?T97:!T244",
-
+    "192PLAC:0:E": "?T122:!T124",
+    "193PLAC:0:E": "?T16:!G23",
+    "194PLAC:0:E": "?T24:!T97",
+    "195PLAC:0:E": "?T27:!T98",
+    "196PLAC:0:E": "?T304:!T317",
+    "197PLAC:0:E": "?T305:!J043",
+    "198PLAC:0:E": "?T317:!T304",
+    "199PLAC:0:E": "?T32:!T282",
+    "200PLAC:0:E": "?T34:!A124,A53,L811,X402",
+    "201PLAC:0:E": "?T413:!T323",
+    "202PLAC:0:E": "?T415:!T323",
+    "203PLAC:0:E": "?T423:!T413,T415",
+    "204PLAC:0:E": "?T46:!A124,A53,L811,X402",
+    "205PLAC:0:E": "?T50:!S18,S25",
+    "206PLAC:0:E": "?T55:!T51",
+    "207PLAC:0:E": "?T644:!W77",
+    "208PLAC:0:E": "?T69:!W77",
+    "209PLAC:0:E": "?T76:!S17,S24",
+    "210PLAC:0:E": "?T832:!M416",
+    "211PLAC:0:E": "?T97:!T244",
     # Chapter U: Diagnostic Imaging, Testing and Rehab
-	"212PLAC:0:E": "?U07:!U18,U15",
-	"213PLAC:0:E": "?U08:!U17",
-	"214PLAC:0:E": "?U081:!U175",
-	"215PLAC:0:E": "?U092:!Q555",
-	"216PLAC:0:E": "?U10:!K63",
-	"217PLAC:0:E": "?U11:!L00-L99",
-	"218PLAC:0:E": "?U12:!U26",
-	"219PLAC:0:E": "?U13:!U14",
-	"220PLAC:0:E": "?U15:!U07",
-	"221PLAC:0:E": "?U19:!U10",
-	"222PLAC:0:E": "?U29:!U12",
-	"223PLAC:0:E": "?U264:!M474",
-	"224PLAC:0:E": "?U34:!U10",
-	"225PLAC:0:E": "?U40:!U27",
-	"226PLAC:0:E": "?U41:!U283,U341",
-	"227PLAC:0:E": "?U502,U504,U505,U506:!U503",
-	"228PLAC:0:E": "?U533,U534:!U531,U532",
-
-    # Chapter V: Bones and Joins of Skull and Spine 
-	"229PLAC:0:E": "?V073:!F18",
-	"230PLAC:0:E": "?V09:!C08",
-	"231PLAC:0:E": "?V123,V124:!F03,F29",
-	"232PLAC:0:E": "?V125:!V023",
-	"233PLAC:0:E": "?V144:!F18",
-	"234PLAC:0:E": "?V25:!V281",
-	"235PLAC:0:E": "?V26:!V282",
-	"236PLAC:0:E": "?V401:!V37,V38,V39",
-	"237PLAC:0:E": "?V405:!V365",
-	"238PLAC:0:E": "?V41:!O095",
-	"239PLAC:0:E": "?V415:!V311",
-	"240PLAC:0:E": "?V444:!V446",
-	"241PLAC:0:E": "?V465:!V405",
-	"242PLAC:0:E": "?V67:!V281",
-	"243PLAC:0:E": "?V61:!V282",
-
+    "212PLAC:0:E": "?U07:!U18,U15",
+    "213PLAC:0:E": "?U08:!U17",
+    "214PLAC:0:E": "?U081:!U175",
+    "215PLAC:0:E": "?U092:!Q555",
+    "216PLAC:0:E": "?U10:!K63",
+    "217PLAC:0:E": "?U11:!L00-L99",
+    "218PLAC:0:E": "?U12:!U26",
+    "219PLAC:0:E": "?U13:!U14",
+    "220PLAC:0:E": "?U15:!U07",
+    "221PLAC:0:E": "?U19:!U10",
+    "222PLAC:0:E": "?U29:!U12",
+    "223PLAC:0:E": "?U264:!M474",
+    "224PLAC:0:E": "?U34:!U10",
+    "225PLAC:0:E": "?U40:!U27",
+    "226PLAC:0:E": "?U41:!U283,U341",
+    "227PLAC:0:E": "?U502,U504,U505,U506:!U503",
+    "228PLAC:0:E": "?U533,U534:!U531,U532",
+    # Chapter V: Bones and Joins of Skull and Spine
+    "229PLAC:0:E": "?V073:!F18",
+    "230PLAC:0:E": "?V09:!C08",
+    "231PLAC:0:E": "?V123,V124:!F03,F29",
+    "232PLAC:0:E": "?V125:!V023",
+    "233PLAC:0:E": "?V144:!F18",
+    "234PLAC:0:E": "?V25:!V281",
+    "235PLAC:0:E": "?V26:!V282",
+    "236PLAC:0:E": "?V401:!V37,V38,V39",
+    "237PLAC:0:E": "?V405:!V365",
+    "238PLAC:0:E": "?V41:!O095",
+    "239PLAC:0:E": "?V415:!V311",
+    "240PLAC:0:E": "?V444:!V446",
+    "241PLAC:0:E": "?V465:!V405",
+    "242PLAC:0:E": "?V67:!V281",
+    "243PLAC:0:E": "?V61:!V282",
     # Chapter W: Other Bones and Joints
-	"244PLAC:0:E": "?W01,W02,W03,W04:!X19-X27",
-	"245PLAC:0:E": "?W05:!W37-W54,W93,W98,O06,O07,)008,O18,O21,O22,O23,O24,O25,O26,O09",
-	"246PLAC:0:E": "?W06:!T039",
-	"247PLAC:0:E": "?W08:!W03,W04,X19-X27",
-	"248PLAC:0:E": "?W086:!W06,X067-X11",
-	"249PLAC:0:E": "?W12,W13:!W775,X19-X27",
-	"250PLAC:0:E": "?W15:!W03,W04,X19-X27",
-	"254PLAC:0:E": "?W30:!X48,X49",
-	"255PLAC:0:E": "?W31:!W341",
-	"256PLAC:0:E": "?W322:!W342",
-	"257PLAC:0:E": "?W34:!W99",
-	"258PLAC:0:E": "?W55,W56,W57,W58:!X19-X27",
-	"259PLAC:0:E": "?W59:!W03,W04",
-	"260PLAC:0:E": "?W65,W66,W67:!X19-X27",
-	"261PLAC:0:E": "?W745:!O275",
-	"262PLAC:0:E": "?W743:!O271",
-	"263PLAC:0:E": "?W77,W78,W79,W81,W92:!X19-X27",
-	"264PLAC:0:E": "?W962:!O371",
-	"265PLAC:0:E": "?W964:!O372",
-
+    "244PLAC:0:E": "?W01,W02,W03,W04:!X19-X27",
+    "245PLAC:0:E": "?W05:!W37-W54,W93,W98,O06,O07,)008,O18,O21,O22,O23,O24,O25,O26,O09",
+    "246PLAC:0:E": "?W06:!T039",
+    "247PLAC:0:E": "?W08:!W03,W04,X19-X27",
+    "248PLAC:0:E": "?W086:!W06,X067-X11",
+    "249PLAC:0:E": "?W12,W13:!W775,X19-X27",
+    "250PLAC:0:E": "?W15:!W03,W04,X19-X27",
+    "254PLAC:0:E": "?W30:!X48,X49",
+    "255PLAC:0:E": "?W31:!W341",
+    "256PLAC:0:E": "?W322:!W342",
+    "257PLAC:0:E": "?W34:!W99",
+    "258PLAC:0:E": "?W55,W56,W57,W58:!X19-X27",
+    "259PLAC:0:E": "?W59:!W03,W04",
+    "260PLAC:0:E": "?W65,W66,W67:!X19-X27",
+    "261PLAC:0:E": "?W745:!O275",
+    "262PLAC:0:E": "?W743:!O271",
+    "263PLAC:0:E": "?W77,W78,W79,W81,W92:!X19-X27",
+    "264PLAC:0:E": "?W962:!O371",
+    "265PLAC:0:E": "?W964:!O372",
     # Chapter Y: Subsidiary Classification of Methods of Operation
-	"311PLAC:0:E": "?Y52:!Y76",
-	"312PLAC:0:E": "?Y53:!Y78",
-	"313PLAC:0:E": "?Y532:!Y755,Y764",
-	"314PLAC:0:E": "?Y536:!Y744",
-	"315PLAC:0:E": "?Y671:!Y692",
-	"316PLAC:0:E": "?Y68:!Y78",
-	"317PLAC:0:E": "?Y681:!Y755,Y764",
-	"318PLAC:0:E": "?Y766:!Y762",
-
+    "311PLAC:0:E": "?Y52:!Y76",
+    "312PLAC:0:E": "?Y53:!Y78",
+    "313PLAC:0:E": "?Y532:!Y755,Y764",
+    "314PLAC:0:E": "?Y536:!Y744",
+    "315PLAC:0:E": "?Y671:!Y692",
+    "316PLAC:0:E": "?Y68:!Y78",
+    "317PLAC:0:E": "?Y681:!Y755,Y764",
+    "318PLAC:0:E": "?Y766:!Y762",
     # Chapter Z: Subsidiary Classification of Sites of Operation
-	"319PLAC:0:E": "?Z241:!Z226",
-	"320PLAC:0:E": "?Z361:!Z95",
-	"321PLAC:0:E": "?Z38:!O451,Z382",
-	"322PLAC:0:E": "?Z395:!Z395,Z98",
-	"323PLAC:0:E": "?Z47:!Z162,Z164,Z201,Z221,Z251",
-	"324PLAC:0:E": "?Z49:!Z426,Z427,Z431,Z436,Z443,Z444",
-	"325PLAC:0:E": "?Z499:!Z156",
-	"326PLAC:0:E": "?Z63:!Z203",
-	"327PLAC:0:E": "?O12:!Z955",
-	"328PLAC:0:E": "?O33:!Z63,Z64,Z65",
-
-	"251PLAC:0:E": "?W16:!X19-X27",
-	"252PLAC:0:E": "?W19,W20,W21,W22:!W65",
-	"253PLAC:0:E": "?W24,W25,W26:!W66",
-	"266PLAC:0:E": "?W960:!O370",
-	"267PLAC:0:E": "?W972:!O381",
-	"268PLAC:0:E": "?W974:!O382",
-	"269PLAC:0:E": "?W971:!O380",
-	"270PLAC:0:E": "?W982:!O391",
-	"271PLAC:0:E": "?W984:!O392",
-	"272PLAC:0:E": "?W985:!O392",
-	"273PLAC:0:E": "?W980:!O390",
-	"274PLAC:0:E": "?O06,O06,O07:!W40",
-	"275PLAC:0:E": "?O09:!W05",
-	"276PLAC:0:E": "?O17:!W66",
-	"277PLAC:0:E": "?O37:!W965,W966",
-	"278PLAC:0:E": "?O38:!W975,W976",
-	"279PLAC:0:E": "?O39:!W986,W987,",
-	"280PLAC:0:E": "?O49:!W70,W82,W83,W89",
-	"281PLAC:0:E": "?O413:!O411,O412",
-	"282PLAC:0:E": "?O51:!W55",
-	"283PLAC:0:E": "?X082:!X215",
-	"284PLAC:0:E": "?X084:!X216",
-	"285PLAC:0:E": "?X11:!X273",
-	"286PLAC:0:E": "?X15:!X16",
-	"287PLAC:0:E": "?X161:!Q076",
-	"288PLAC:0:E": "?X28:!X29",
-	"289PLAC:0:E": "?X326:!X337",
-	"290PLAC:0:E": "?X353:!X441",
-	"291PLAC:0:E": "?X374:!X442",
-	"292PLAC:0:E": "?X385:!X443",
-	"293PLAC:0:E": "?X391:!X444",
-	"294PLAC:0:E": "?X44:!E952",
-	"295PLAC:0:E": "?X52:!X581,E87",
-	"296PLAC:0:E": "?X522:!E856",
-	"297PLAC:0:E": "?X60:!X62",
-	"298PLAC:0:E": "?X62:!X60",
-	"299PLAC:0:E": "?X655:!X657",
-	"300PLAC:0:E": "?X70,X71,X72,X73:!X74",
-	"301PLAC:0:E": "?X74:!X70-X73,X81-X98",
-	"302PLAC:0:E": "?X81-X98:!X74",
-	"303PLAC:0:E": "?Y02:!Y14",
-	"304PLAC:0:E": "?Y03:!Y15",
-	"305PLAC:0:E": "?Y173:!Y176",
-	"306PLAC:0:E": "?Y373:!Y352",
-	"307PLAC:0:E": "?Y45:!Y53",
-	"308PLAC:0:E": "?Y452:!Y743,Y753,Y765",
-	"309PLAC:0:E": "?Y49:!Y74",
-	"310PLAC:0:E": "?Y50:!Y75",
-
+    "319PLAC:0:E": "?Z241:!Z226",
+    "320PLAC:0:E": "?Z361:!Z95",
+    "321PLAC:0:E": "?Z38:!O451,Z382",
+    "322PLAC:0:E": "?Z395:!Z395,Z98",
+    "323PLAC:0:E": "?Z47:!Z162,Z164,Z201,Z221,Z251",
+    "324PLAC:0:E": "?Z49:!Z426,Z427,Z431,Z436,Z443,Z444",
+    "325PLAC:0:E": "?Z499:!Z156",
+    "326PLAC:0:E": "?Z63:!Z203",
+    "327PLAC:0:E": "?O12:!Z955",
+    "328PLAC:0:E": "?O33:!Z63,Z64,Z65",
+    "251PLAC:0:E": "?W16:!X19-X27",
+    "252PLAC:0:E": "?W19,W20,W21,W22:!W65",
+    "253PLAC:0:E": "?W24,W25,W26:!W66",
+    "266PLAC:0:E": "?W960:!O370",
+    "267PLAC:0:E": "?W972:!O381",
+    "268PLAC:0:E": "?W974:!O382",
+    "269PLAC:0:E": "?W971:!O380",
+    "270PLAC:0:E": "?W982:!O391",
+    "271PLAC:0:E": "?W984:!O392",
+    "272PLAC:0:E": "?W985:!O392",
+    "273PLAC:0:E": "?W980:!O390",
+    "274PLAC:0:E": "?O06,O06,O07:!W40",
+    "275PLAC:0:E": "?O09:!W05",
+    "276PLAC:0:E": "?O17:!W66",
+    "277PLAC:0:E": "?O37:!W965,W966",
+    "278PLAC:0:E": "?O38:!W975,W976",
+    "279PLAC:0:E": "?O39:!W986,W987,",
+    "280PLAC:0:E": "?O49:!W70,W82,W83,W89",
+    "281PLAC:0:E": "?O413:!O411,O412",
+    "282PLAC:0:E": "?O51:!W55",
+    "283PLAC:0:E": "?X082:!X215",
+    "284PLAC:0:E": "?X084:!X216",
+    "285PLAC:0:E": "?X11:!X273",
+    "286PLAC:0:E": "?X15:!X16",
+    "287PLAC:0:E": "?X161:!Q076",
+    "288PLAC:0:E": "?X28:!X29",
+    "289PLAC:0:E": "?X326:!X337",
+    "290PLAC:0:E": "?X353:!X441",
+    "291PLAC:0:E": "?X374:!X442",
+    "292PLAC:0:E": "?X385:!X443",
+    "293PLAC:0:E": "?X391:!X444",
+    "294PLAC:0:E": "?X44:!E952",
+    "295PLAC:0:E": "?X52:!X581,E87",
+    "296PLAC:0:E": "?X522:!E856",
+    "297PLAC:0:E": "?X60:!X62",
+    "298PLAC:0:E": "?X62:!X60",
+    "299PLAC:0:E": "?X655:!X657",
+    "300PLAC:0:E": "?X70,X71,X72,X73:!X74",
+    "301PLAC:0:E": "?X74:!X70-X73,X81-X98",
+    "302PLAC:0:E": "?X81-X98:!X74",
+    "303PLAC:0:E": "?Y02:!Y14",
+    "304PLAC:0:E": "?Y03:!Y15",
+    "305PLAC:0:E": "?Y173:!Y176",
+    "306PLAC:0:E": "?Y373:!Y352",
+    "307PLAC:0:E": "?Y45:!Y53",
+    "308PLAC:0:E": "?Y452:!Y743,Y753,Y765",
+    "309PLAC:0:E": "?Y49:!Y74",
+    "310PLAC:0:E": "?Y50:!Y75",
     # Chapter C - Eye. Exceptions are: Bilateral recession of medial recti muscles of eyes (C312),
-    # Bilateral resection of medial recti muscles of eyes (C313), Bilateral recession of lateral 
+    # Bilateral resection of medial recti muscles of eyes (C313), Bilateral recession of lateral
     # recti muscles of eyes (C314), and Bilateral resection of lateral recti muscles of eyes (C315).
     "LATCODING:0:E": "?C00-C30,C311,C316,C318,C319,C32-C99:{Z00-Z99",
     "LATCODING:1:E": "?K00-K99:{Z00-Z99",
-
-
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
-    # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code 
+    # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code
     # with codes in category W82 Therapeutic endoscopic operations on semilunar cartilage
-    "CSW8:0:E":"?W82:!Z00-Z99",
+    "CSW8:0:E": "?W82:!Z00-Z99",
     # Aspiration of prosthetic joint (W901) requires a laterality
     "PCSW9:0:E": "?W901:{Z94",
-    # 3D mapping of the heart is an inherent part of ablation of the conducting system of the 
-    # heart and is rarely performed on its own, therefore code K586 Percutaneous 
-    # transluminal three dimensional electroanatomic mapping of conducting system of 
-    # heart must not be assigned in addition to an ablation code from categories K57 Other 
-    # therapeutic transluminal operations on heart or K62 Therapeutic transluminal 
+    # 3D mapping of the heart is an inherent part of ablation of the conducting system of the
+    # heart and is rarely performed on its own, therefore code K586 Percutaneous
+    # transluminal three dimensional electroanatomic mapping of conducting system of
+    # heart must not be assigned in addition to an ablation code from categories K57 Other
+    # therapeutic transluminal operations on heart or K62 Therapeutic transluminal
     # operations on heart
-    "PSK6:0:E": "?L586:!K57,K62"
+    "PSK6:0:E": "?L586:!K57,K62",
 }
+
 
 def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
     compiled_standards_dict = {}
@@ -1089,9 +1062,8 @@ def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
         standard = standard.split(":")
 
         primary_codes = hyph(standard[0][1:])
-    
-        for code in primary_codes:
 
+        for code in primary_codes:
             if code not in compiled_standards_dict:
                 compiled_standards_dict[code] = {}
 
@@ -1111,7 +1083,7 @@ def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
                         compiled_standards_dict[code][key] = {}
                     compiled_standards_dict[code][key][part[0]] = {
                         "character": character,
-                        "have": have
+                        "have": have,
                     }
                 else:
                     if key not in compiled_standards_dict[code]:
