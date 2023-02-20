@@ -30,7 +30,7 @@ from codingerrors import run
 
 class TestStandards(unittest.TestCase):
     # We can't check every single standard (unrealistic, so we'll do 2 of every possible ruleset instead.)
-    
+
     ## Tests
 
     # ✔️ = In check.py
@@ -56,7 +56,7 @@ class TestStandards(unittest.TestCase):
     # $ : Should always follow by ☑️ ✔️
     #   - test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers
     #   - test_morbidly_adherent_placenta_following_retained_or_third_placenta
- 
+
     # € : Should always either be sequenced directly after ✔️
 
     # ) : Should always be sequenced either way by  ✔️
@@ -93,7 +93,9 @@ class TestStandards(unittest.TestCase):
         # Test to see whether F100 coded with T36 AND T510 does not return an error
         self.assertEqual(run(["F100", "T36", "T510"]), {})
 
-    def test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers(self):
+    def test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers(
+        self,
+    ):
         # This test validates to see whether DCS.I.5 works as intended
         # Zika Virus must always follow Other specified mosquito-borne viral fevers
         # RULE: $
@@ -126,10 +128,6 @@ class TestStandards(unittest.TestCase):
         self.assertNotEqual(run(["C81", "C79"]), {})
         self.assertEqual(run(["C81"]), {})
         self.assertEqual(run(["C81", "C79", "Z85"]), {})
-
-
-
-
 
 
 if __name__ == "__main__":
