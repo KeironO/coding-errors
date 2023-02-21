@@ -38,10 +38,6 @@ pip install git+https://github.com/KeironO/coding-errors --no-cache-dir
 >>> run(["J440", "J22"], type="opcs4")
 ```
 
-python
->>> from codingerrors import run
->>> run(["J440", "J22"], )
-{'J440': {'DCS.X.5:0:E': {'!': {'pass': False, 'relevant': ['J22'], 'note': 'You cannot code J22 with J440'}}}}
 
 ## Contributors
 
