@@ -28,7 +28,6 @@ from .standards import _build_standards_dict
 
 
 def _check_rule_values(values, icd10s):
-
     mask_dict = {}
 
     for value in values:
@@ -47,16 +46,13 @@ def _check_rule_values(values, icd10s):
 
 
 def _check_against_standard(returned_standard, icd10s, icd10):
-
     results = {}
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
             mask_dict = _check_rule_values(values, icd10s)
-            
 
             if rule == "!":
                 for code, mask in mask_dict.items():
-
                     if True in list(itertools.chain(*mask)):
                         if standard not in results:
                             results[standard] = {}
@@ -64,42 +60,51 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         results[standard][rule] = {
                             "pass": False,
                             "relevant": rel,
-                            "note": "You cannot code %s with %s" % ("".join(rel), icd10),
+                            "note": "You cannot code %s with %s"
+                            % ("".join(rel), icd10),
                         }
 
             elif rule == "€":
                 primary_code_position = icd10s.index(icd10)
-                
 
-                if True in list(itertools.chain(*list(itertools.chain(*list(mask_dict.values()))))):
+                if True in list(
+                    itertools.chain(*list(itertools.chain(*list(mask_dict.values()))))
+                ):
                     for code, mask in mask_dict.items():
                         if True in list(itertools.chain(*mask)):
-                            if primary_code_position != (list(itertools.chain(*mask)).index(True) + 1):
+                            if primary_code_position != (
+                                list(itertools.chain(*mask)).index(True) + 1
+                            ):
                                 rel = [icd10s[x.index(True)] for x in mask]
                                 results[standard] = {
                                     "pass": False,
                                     "relevant": icd10,
-                                    "note": "%s can only exist after %s" % (icd10, "/".join(rel))
-                                } 
+                                    "note": "%s can only exist after %s"
+                                    % (icd10, "/".join(rel)),
+                                }
                 else:
                     if standard not in results:
                         results[standard] = {}
-                    
+
                     results[standard][rule] = {
-                            "pass": False,
-                            "relevant": icd10,
-                            "note": "%s cannot exist without one of %s" % (icd10, "/".join(values))
-                        }
+                        "pass": False,
+                        "relevant": icd10,
+                        "note": "%s cannot exist without one of %s"
+                        % (icd10, "/".join(values)),
+                    }
 
             elif rule == "¿":
-                tim = [True in list(itertools.chain(*_mask)) for k, _mask in mask_dict.items()]
+                tim = [
+                    True in list(itertools.chain(*_mask))
+                    for k, _mask in mask_dict.items()
+                ]
                 if False not in tim:
                     # If both are present
                     proper_pos = False
                     pos = icd10s.index(icd10)
 
                     for code, mask in mask_dict.items():
-                        if mask[0].index(True) == (pos-1):
+                        if mask[0].index(True) == (pos - 1):
                             proper_pos = True
                     if not proper_pos:
                         if standard not in results:
@@ -108,8 +113,9 @@ def _check_against_standard(returned_standard, icd10s, icd10):
 
                         results[standard][rule] = {
                             "pass": False,
-                            "relevant" :rel,
-                            "note": "%s must be coded after one of %s when %s are all present" % (icd10, "/".join(rel), "/".join(rel))
+                            "relevant": rel,
+                            "note": "%s must be coded after one of %s when %s are all present"
+                            % (icd10, "/".join(rel), "/".join(rel)),
                         }
 
             elif rule == ")":
@@ -119,25 +125,27 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     tim = list(itertools.chain(*mask))
                     if True in tim:
                         index = tim.index(True)
-                        if index != (primary_code_position + 1) and index != (primary_code_position - 1):
+                        if index != (primary_code_position + 1) and index != (
+                            primary_code_position - 1
+                        ):
                             if standard not in results:
                                 results[standard] = {}
                             rel = [icd10s[x.index(True)] for x in mask]
                             results[standard][rule] = {
                                 "pass": False,
                                 "relevant": rel,
-                                "note": "%s must be coded before or after %s" % (icd10, "".join(rel)),
+                                "note": "%s must be coded before or after %s"
+                                % (icd10, "".join(rel)),
                             }
-            
+
             elif rule == "¬":
                 primary_code_position = icd10s.index(icd10)
 
                 if primary_code_position == 0:
-
                     for code, mask in mask_dict.items():
                         tim = list(itertools.chain(*mask))
                         if True in tim:
-                            index = tim.index(True) 
+                            index = tim.index(True)
                             if index == (primary_code_position + 1):
                                 if standard not in results:
                                     results[standard] = {}
@@ -145,10 +153,10 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                                 results[standard][rule] = {
                                     "pass": False,
                                     "relevant": rel,
-                                    "note": "When %s in primary poition it cannot be followed by %s" % (icd10, ", ".join(rel))
+                                    "note": "When %s in primary poition it cannot be followed by %s"
+                                    % (icd10, ", ".join(rel)),
                                 }
             elif rule == "$":
-                
                 position = icd10s.index(icd10)
 
                 if mask_dict == {}:
@@ -157,12 +165,13 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     results[standard][rule] = {
                         "pass": False,
                         "rel": icd10s,
-                        "note": "%s missing?" % (" or ".join(returned_standard[standard][rule]))
+                        "note": "%s missing?"
+                        % (" or ".join(returned_standard[standard][rule])),
                     }
                 else:
-                    for code, mask in mask_dict.items():                    
+                    for code, mask in mask_dict.items():
                         _mask = list(itertools.chain(*mask))
-                        if _mask.index(True) != position-1:
+                        if _mask.index(True) != position - 1:
                             if standard not in results:
                                 results[standard] = {}
 
@@ -171,10 +180,10 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                             results[standard][rule] = {
                                 "pass": False,
                                 "relevant": rel,
-                                "note": "%s must always follow %s" % (icd10, " or ".join(rel))
+                                "note": "%s must always follow %s"
+                                % (icd10, " or ".join(rel)),
                             }
             elif rule == "{":
-
                 if mask_dict == {} or True not in list(
                     itertools.chain(
                         *[list(itertools.chain(*v)) for v in mask_dict.values()]
@@ -188,13 +197,14 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "note": "None of %s found" % (",".join(values)),
                     }
             elif rule == ".":
-                if len(icd10) < int(values) and icd10[-1] != '9':
+                if len(icd10) < int(values) and icd10[-1] != "9":
                     if standard not in results:
                         results[standard] = {}
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": "%s needs to have a %i character" % (icd10, int(values)),
+                        "note": "%s needs to have a %i character"
+                        % (icd10, int(values)),
                     }
             elif rule == "/":
                 if standard not in results:
@@ -202,7 +212,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 results[standard][rule] = {
                     "pass": False,
                     "relevant": [icd10],
-                    "note": "%s cannot be coded" % icd10
+                    "note": "%s cannot be coded" % icd10,
                 }
 
             elif rule == ">":
@@ -210,16 +220,16 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 for code, masks in mask_dict.items():
                     for mask in masks:
                         if True in mask:
-                            
                             mask_positions = mask.index(True)
                             if type(mask_positions) == int:
-                                if mask_positions == primary_code_position+1:
+                                if mask_positions == primary_code_position + 1:
                                     if standard not in results:
                                         results[standard] = {}
                                     results[standard][rule] = {
                                         "pass": False,
                                         "relevant": [icd10],
-                                        "note": "%s should not be coded directly after %s" % (code, icd10)
+                                        "note": "%s should not be coded directly after %s"
+                                        % (code, icd10),
                                     }
 
             elif rule == "<":
@@ -228,8 +238,10 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 for code, masks in mask_dict.items():
                     for mask in masks:
                         if True in mask:
-                            mask_positions = [i for i, x in enumerate(mask) if x == True]
-                            if primary_code_position+1 not in mask_positions:
+                            mask_positions = [
+                                i for i, x in enumerate(mask) if x == True
+                            ]
+                            if primary_code_position + 1 not in mask_positions:
                                 error = True
                         else:
                             error = False
@@ -237,32 +249,31 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                 if error:
                     if standard not in results:
                         results[standard] = {}
-                    
+
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": "One of %s needs to coded directly after %s" % (",".join(values), icd10)
+                        "note": "One of %s needs to coded directly after %s"
+                        % (",".join(values), icd10),
                     }
-            
-            
 
             elif rule == "~":
-
                 character = int(values["character"])
                 have = values["have"]
                 passes = True
                 if len(icd10) >= character:
-                    if icd10[character-1] == have:
+                    if icd10[character - 1] == have:
                         passes = False
 
                 if not passes:
                     if standard not in results:
                         results[standard] = {}
-                    
+
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": "%s has %s in the %i position" % (icd10, have, character)
+                        "note": "%s has %s in the %i position"
+                        % (icd10, have, character),
                     }
 
             elif rule == "&":
@@ -272,25 +283,26 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": "%s cannot be in primary position!" % (icd10)
+                        "note": "%s cannot be in primary position!" % (icd10),
                     }
             elif rule == "^":
                 rule_pass = False
-                
+
                 if len(icd10s) == 1:
                     rule_pass = True
-                
+
                 elif icd10 in icd10s[0:2]:
                     rule_pass = True
-                
+
                 if not rule_pass:
                     if standard not in results:
                         results[standard] = {}
-                        
+
                         results[standard][rule] = {
                             "pass": False,
                             "relevant": [icd10],
-                            "note": "%s must be in primary or secondary position!" % (icd10)
+                            "note": "%s must be in primary or secondary position!"
+                            % (icd10),
                         }
 
     # Exception clauses (@)
@@ -299,9 +311,11 @@ def _check_against_standard(returned_standard, icd10s, icd10):
             exception_codes = rules["@"]
 
             mask_dict = _check_rule_values(values, icd10s)
-            
+
             # 🤡 <- Me writing this code.
-            if True in itertools.chain(*list(itertools.chain(*list(mask_dict.values())))):
+            if True in itertools.chain(
+                *list(itertools.chain(*list(mask_dict.values())))
+            ):
                 del results[standard]
-    
+
     return results

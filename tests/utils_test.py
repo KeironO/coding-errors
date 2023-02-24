@@ -46,8 +46,8 @@ class TestHyph(unittest.TestCase):
         # Basic hyph down to the third character, should return three instances
         self.assertEqual(hyph("M38-M40"), ["M38", "M39", "M40"])
         # Large query over a multitude of codes over differing tens.
-        self.assertEqual(len(hyph("M338-M444")), (444-338)+1)
-    
+        self.assertEqual(len(hyph("M338-M444")), (444 - 338) + 1)
+
     def test_spacing(self):
         # Just to see if we can deal with malformed input
         self.assertEqual(hyph("M38- M40"), ["M38", "M39", "M40"])
@@ -56,7 +56,6 @@ class TestHyph(unittest.TestCase):
         self.assertEqual(hyph(" M38  - M40"), ["M38", "M39", "M40"])
         self.assertEqual(hyph(" M38  - M40   "), ["M38", "M39", "M40"])
         self.assertEqual(hyph(" M38  , M40   "), ["M38", "M40"])
-
 
 
 if __name__ == "__main__":

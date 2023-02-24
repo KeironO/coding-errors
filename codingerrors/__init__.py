@@ -30,7 +30,8 @@ from .check import _check_against_standard
 
 from .standards import icd10_standards_dict, opcs4_standards_dict
 
-def run(icd10s: list, type: str="icd10", standards_dict: dict=None):
+
+def run(icd10s: list, type: str = "icd10", standards_dict: dict = None):
     if standards_dict != None:
         pass
     elif type.upper() == "ICD10":
@@ -41,35 +42,29 @@ def run(icd10s: list, type: str="icd10", standards_dict: dict=None):
     final_results = {}
 
     for icd10 in icd10s:
-
         if icd10 not in final_results:
             final_results[icd10] = {}
 
         # Check against X codes. This is where we have a hard limit of 3 characters.
         if len(icd10) == 3:
             if "%sX" % (icd10) in standards_dict:
-                final_results[icd10] = _check_against_standard(standards_dict["%sX" % (icd10)], icd10s, icd10)
-        
+                final_results[icd10] = _check_against_standard(
+                    standards_dict["%sX" % (icd10)], icd10s, icd10
+                )
+
         if icd10 in standards_dict:
-            
-            results =  _check_against_standard(
-                standards_dict[icd10], icd10s, icd10
-            )
+            results = _check_against_standard(standards_dict[icd10], icd10s, icd10)
 
             for standard, result in results.items():
                 final_results[icd10][standard] = result
 
         if len(icd10) > 3 and icd10[0:3] in standards_dict:
-            results = _check_against_standard(
-                standards_dict[icd10[0:3]], icd10s, icd10
-            )
+            results = _check_against_standard(standards_dict[icd10[0:3]], icd10s, icd10)
 
             for standard, result in results.items():
                 final_results[icd10][standard] = result
 
-
     for k in [k for k, v in final_results.items() if v == {}]:
         del final_results[k]
-
 
     return final_results
