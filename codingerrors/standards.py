@@ -1032,7 +1032,8 @@ opcs4_standards_dict = {
     # Bilateral resection of medial recti muscles of eyes (C313), Bilateral recession of lateral
     # recti muscles of eyes (C314), and Bilateral resection of lateral recti muscles of eyes (C315).
     "LATCODING:0:E": "?C00-C30,C311,C316,C318,C319,C32-C99:{Z00-Z99",
-    "LATCODING:1:E": "?K00-K99:{Z00-Z99",
+    # Chapter K - Heart. Doesn't require a laterality code afterward.
+    "LATCODING:1:E": "?K00-K99:>Z00-Z99",
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
     # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code
