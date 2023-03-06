@@ -27,48 +27,28 @@ from .utils import hyph
 
 
 ###  First sequence
-
 # ? : Applies to the following codes.
 ## If a single code is matched, it will be evaluated by the contents of the following sequences.
-
-
 ### Second sequence
-
 # &* : Can never be in the primary position
 ## Any or all of the codes in the first sequence can never, under any circumstance be in primary position.
-
 # ^* : Must be in primary or secondary position.
 ## Any or all of the codes in the first sequence must always be in primary or secondary position.
-
 # / : never code
 ## Any of the codes in the first sequence can never, under any circumstance be coded.
-
 # ! : Cannot be coded with
 ## Any or all of the codes in the first sequence should never be coded with the following codes, in any position.
-
 # .n: Require's nth character
 ## Any or all of the codes in the first sequence require a nth character.
-
 # { : Must always be coded with
-##
-
 # ~x..y : x character cannot be y
-
 # > : Should not be directly followed by
-
-# ¿ :
-
 # % : Outpatient only codes
-
 # $ : Should always follow by
-
 # € : Can only exist when coded after one of...
-
 # ) : Should always be sequences either way by
-
 # ¬ : When in primary position should never be followed by
-
-## Third sequence
+### Third sequence
 # @ : Ignore the 'error' if any of the following codes are present.
 
 
@@ -223,7 +203,8 @@ icd10_standards_dict = {
     "DCS.IV.1:1:E": "?E11:!E14,E10",
     "DCS.IV.1:2:E": "?E14:!E10,E11",
     # External Causes
-    "DChS.XX.1:0:E": "?V01-V99,Y01-Y98:&*",
+    "DChS.XX.1:0:E": "?V01-V99:&*",
+    "DChS.XX.2:0:E": "?Y01-Y98:&*",
     # B972 without U071
     "DSC.XXII.5:COVID-19:0:W": "?U071:>B972",
     # U071 coded with U072
@@ -448,6 +429,19 @@ icd10_standards_dict = {
     "FSCP:41:E": "?I63:!I64",
     # I630-I631-I632 should not be coded with I65
     "FSCP:42:E": "?I65:!I630-I632",
+    # Not coding this..
+    "MLE:01:W": "?R452:/*",
+
+    # Unacceptable Primary Diagnosis
+    "CHICKS:01:E": "?B972:&*",
+    "CHICKS:02:E": "?I999:&*",
+    "CHICKS:03:E": "?W01:&*",
+    "CHICKS:04:E": "?W19:&*",
+    "CHICKS:05:E": "?W54:&*",
+    "CHICKS:06:E": "?Z20:&*",
+    "CHICKS:07:E": "?Z60:&*",
+    "CHICKS:08:E": "?Z80-Z99:&*",
+
     # Type 1 errors
     "T1:001:X": "?A182:!A163,A183",
     "T1:002:X": "?A40:!O05,O03,O07,T814,T802,T880,O06,O04,O85X,O080,O753",
@@ -672,10 +666,10 @@ icd10_standards_dict = {
     "T1:221:X": "?Z63:!Z61",
     "T1:222:X": "?Z90:!D730",
     # "T1:223:X": "?Z91:!Z864,Z58",
-    "T1:224:X": "?Z96:!T83,Z45,T84",
-    "T1:225:X": "?Z97:!Z44,T82,Z45,T83,T85,Z46,T84",
-    "T1:226:X": "?Z867:!I69",
-    "T1:227:X": "?Z875:!Z35",
+    "T1:223:X": "?Z96:!T83,Z45,T84",
+    "T1:224:X": "?Z97:!Z44,T82,Z45,T83,T85,Z46,T84",
+    "T1:225:X": "?Z867:!I69",
+    "T1:226:X": "?Z875:!Z35",
 }
 
 
@@ -1038,7 +1032,7 @@ opcs4_standards_dict = {
     # Bilateral resection of medial recti muscles of eyes (C313), Bilateral recession of lateral
     # recti muscles of eyes (C314), and Bilateral resection of lateral recti muscles of eyes (C315).
     "LATCODING:0:E": "?C00-C30,C311,C316,C318,C319,C32-C99:{Z00-Z99",
-    "LATCODING:1:E": "?K00-K99:>Z00-Z99",
+    "LATCODING:1:E": "?K00-K99:{Z00-Z99",
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
     # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code
