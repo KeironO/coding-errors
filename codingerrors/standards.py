@@ -721,6 +721,7 @@ opcs4_standards_dict = {
     "032PLAC:0:E": "?D13:!D05",
     "033PLAC:0:E": "?D153:!D151",
     # Chapter E: Respiratory Tract
+    "034PLAC:0:E": "?E02:/*",
     "035PLAC:0:E": "?E023,E024:!E073",
     "036PLAC:0:E": "?E124:!E137",
     "037PLAC:0:E": "?E147:!E162",
