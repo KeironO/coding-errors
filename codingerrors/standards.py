@@ -677,8 +677,15 @@ icd10_standards_dict = {
 
 
 opcs4_standards_dict = {
+
+    "PRIM:0:E": "?Y00-Y99:&*",
+    "PRIM:1:E" "?Z00:Z99:&*" 
+
+
+    # HALO Sequencing
     "PCSL2:0:E": "?L703&Y524&Y532:<Z378",
-        # Pain relief procedure coding: Block of the brachial plexus.
+    
+    # Pain relief procedure coding: Block of the brachial plexus.
     # Injection of therapeutic substance around peripheral nerve (A735) must be coded
     # with Brachial plexus NEC (Z089)
     "PCSA2:0:W": "?A735:{Z089",
@@ -1038,6 +1045,10 @@ opcs4_standards_dict = {
     "LATCODING:1:E": "?K00-K99:>Z94",
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
+    # CHECK WITH JO
+    "PCSU2:0:E": "?U20:{Y98",
+    "PChSV1:0:E": "?V22-V70:>V55",
+
     # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code
     # with codes in category W82 Therapeutic endoscopic operations on semilunar cartilage
     "CSW8:0:E": "?W82:{Z94",
