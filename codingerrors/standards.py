@@ -679,12 +679,23 @@ icd10_standards_dict = {
 opcs4_standards_dict = {
 
     "PRIM:0:E": "?Y00-Y99:&*",
-    "PRIM:1:E" "?Z00:Z99:&*" 
-
+    "PRIM:1:E": "?Z00:Z99:&*",
 
     # HALO Sequencing
     "PCSL2:0:E": "?L703&Y524&Y532:<Z378",
     
+    # Invasive ventilation and tracheostomy should never be coded in this sequence.
+    # TODO: Amend / and everything else to use extended map generation.
+    "PCSE5:0:E": "?E423&E851:/*",
+
+    # Lens Sequencing
+    "LENSSEQ:0:E": "?C751:{C712",
+
+    # Codes within catagories X70 and X71 should not be assigned unless there is a local requirement to do so (THERE IS NO REQUIREMENT IN CTM)
+    "PROCURE:0:E": "X70-X71:/*",
+
+    "COLECTOMY:0:E": "?H085,H095,H105,H115:{H14,H15",
+    "THERAPU:0:E": "?M309:!M26,M27,M28,M29,M32",
     # Pain relief procedure coding: Block of the brachial plexus.
     # Injection of therapeutic substance around peripheral nerve (A735) must be coded
     # with Brachial plexus NEC (Z089)
@@ -1045,14 +1056,18 @@ opcs4_standards_dict = {
     "LATCODING:1:E": "?K00-K99:>Z94",
     # U21 always requires a site code.
     "PCSU1:0:E": "?U21:{Z00-Z99",
-    # CHECK WITH JO
+
     "PCSU2:0:E": "?U20:{Y98",
     "PChSV1:0:E": "?V22-V70:>V55",
+
+    "HIGHCOST:0:E": "?X81-X82,X830,X831,X832,X838,X839,X84-X88,X891,X893-X899,X901,X902,X903,X905,X906,X907,X908,X909,X91-99:/*",
 
     # Semilunar cartilage is only found in the knee joint, so is not necessary to assign a site code
     # with codes in category W82 Therapeutic endoscopic operations on semilunar cartilage
     "CSW8:0:E": "?W82:{Z94",
     "CSW8:1:E": "?W82:!Z846",
+    "CSW8:2:W": "?W879:!W82-W87",
+
     # Aspiration of prosthetic joint (W901) requires a laterality
     "PCSW9:0:E": "?W901:{Z94",
     # 3D mapping of the heart is an inherent part of ablation of the conducting system of the
