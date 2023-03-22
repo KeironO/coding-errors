@@ -27,8 +27,10 @@ from gzip import READ
 from .standards import _build_standards_dict
 from .check import _check_against_standard
 
-
+from .utils import chunks
 from .standards import icd10_standards_dict, opcs4_standards_dict
+
+
 
 
 def run(icd10s: list, type: str = "icd10", standards_dict: dict = None):
@@ -41,7 +43,10 @@ def run(icd10s: list, type: str = "icd10", standards_dict: dict = None):
 
     final_results = {}
 
+    
+
     for icd10 in icd10s:
+
         if icd10 not in final_results:
             final_results[icd10] = {}
 
@@ -64,6 +69,28 @@ def run(icd10s: list, type: str = "icd10", standards_dict: dict = None):
             for standard, result in results.items():
                 final_results[icd10][standard] = result
 
+    for index in range(len(icd10s)+1)[::-1]:
+        if index == 0:
+            continue
+
+        for chunk in chunks(icd10s, index):
+            chunk = [x for x in chunk if x != None]
+
+            if len(chunk) == 1:
+                continue
+            
+            icd10_chunk = '&'.join(chunk)
+
+            if icd10_chunk in standards_dict:
+                results = _check_against_standard(standards_dict[icd10_chunk], icd10s, icd10_chunk)
+
+                if icd10_chunk not in final_results:
+                    final_results[icd10_chunk] = {}
+                
+                for standard, result in results.items():
+                    final_results[icd10_chunk][standard] = result
+
+        
     for k in [k for k, v in final_results.items() if v == {}]:
         del final_results[k]
 

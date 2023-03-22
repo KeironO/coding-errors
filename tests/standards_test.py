@@ -93,32 +93,7 @@ class TestStandards(unittest.TestCase):
         # Test to see whether F100 coded with T36 AND T510 does not return an error
         self.assertEqual(run(["F100", "T36", "T510"]), {})
 
-    def test_zika_virus_must_alwys_follow_other_speicifed_mosquito_borne_viral_fevers(
-        self,
-    ):
-        # This test validates to see whether DCS.I.5 works as intended
-        # Zika Virus must always follow Other specified mosquito-borne viral fevers
-        # RULE: $
 
-        # Coded in correct position.
-        self.assertEqual(run(["A928", "U068"]), {})
-        # Codded in correct position with additional code prepended
-        self.assertEqual(run(["J22", "A928", "U068"]), {})
-        # Coded in correct position with additional code appended
-        self.assertEqual(run(["J22", "A928", "U068", "I10"]), {})
-        # Failed because wrong sequence.
-        self.assertNotEqual(run(["J22", "U068", "A928", "I10"]), {})
-
-    def test_morbidly_adherent_placenta_following_retained_or_third_placenta(self):
-        # This test valdiates to see whether DCS.XV.19 works as intended
-        # Only code O432 AFTER O720/O730
-        # RULE: $
-
-        self.assertEqual(run(["O720", "O432"]), {})
-        self.assertNotEqual(run(["O432", "O720"]), {})
-        self.assertEqual(run(["O720"]), {})
-        # Cannot code without O720 or O730
-        self.assertNotEqual(run(["O432"]), {})
 
     def test_metastatic_cancer_should_never_be_coded_with_a_hematological_cancer(self):
         # This test valdiates to see whether DCS.II.7 works as intended

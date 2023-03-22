@@ -29,6 +29,9 @@ from .utils import hyph
 ###  First sequence
 # ? : Applies to the following codes.
 ## If a single code is matched, it will be evaluated by the contents of the following sequences.
+## Within a ? if the following exists
+# , : OR across all preceeding codes.
+# & : Where the combination of codes matters.
 ### Second sequence
 # &* : Can never be in the primary position
 ## Any or all of the codes in the first sequence can never, under any circumstance be in primary position.
@@ -674,7 +677,8 @@ icd10_standards_dict = {
 
 
 opcs4_standards_dict = {
-    # Pain relief procedure coding: Block of the brachial plexus.
+    "PCSL2:0:E": "?L703&Y524&Y532:<Z378",
+        # Pain relief procedure coding: Block of the brachial plexus.
     # Injection of therapeutic substance around peripheral nerve (A735) must be coded
     # with Brachial plexus NEC (Z089)
     "PCSA2:0:W": "?A735:{Z089",
@@ -1047,6 +1051,12 @@ opcs4_standards_dict = {
     # therapeutic transluminal operations on heart or K62 Therapeutic transluminal
     # operations on heart
     "PSK6:0:E": "?L586:!K57,K62",
+}    
+
+
+
+opcs4_global_standards_dict = {
+    
 }
 
 

@@ -46,7 +46,10 @@ def _check_rule_values(values, icd10s):
 
 
 def _check_against_standard(returned_standard, icd10s, icd10):
+
+
     results = {}
+
     for standard, rules in returned_standard.items():
         for rule, values in rules.items():
             mask_dict = _check_rule_values(values, icd10s)
@@ -234,27 +237,46 @@ def _check_against_standard(returned_standard, icd10s, icd10):
 
             elif rule == "<":
                 error = False
-                primary_code_position = icd10s.index(icd10)
+
+                if "&" in icd10:
+                    splits =  icd10.split("&")
+                    for index, i in enumerate(icd10s):
+                        if i == splits[0]:
+                            if icd10s[index:len(splits)] == splits:
+                                primary_code_position = index+len(splits)-1
+                else:
+                    primary_code_position = icd10s.index(icd10)
+                
+
+                if mask_dict == {}:
+                    error = True
                 for code, masks in mask_dict.items():
                     for mask in masks:
                         if True in mask:
                             mask_positions = [
                                 i for i, x in enumerate(mask) if x == True
                             ]
+
                             if primary_code_position + 1 not in mask_positions:
                                 error = True
                         else:
                             error = False
+                    if error == False:
+                        break
 
                 if error:
                     if standard not in results:
                         results[standard] = {}
-
+                    
+                    if len(values) > 1:
+                        note = "One of %s needs to coded directly after %s" % (",".join(values), icd10)
+                    else:
+                        note = "%s needs to be coded directly after %s" % (values[0], icd10)
+                    
                     results[standard][rule] = {
                         "pass": False,
                         "relevant": [icd10],
-                        "note": "One of %s needs to coded directly after %s"
-                        % (",".join(values), icd10),
+                        "note": note
                     }
 
             elif rule == "~":

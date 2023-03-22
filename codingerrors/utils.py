@@ -23,6 +23,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+from itertools import zip_longest
 
 def hyph(s: str) -> list:
     ret = []
@@ -39,3 +40,10 @@ def hyph(s: str) -> list:
             ret.append(entity)
 
     return ret
+
+
+def chunks(l, n: int = None):
+    if n == None:
+        n = len(l)
+    return list(zip_longest(*[iter(l)]*n, fillvalue=None))
+    
