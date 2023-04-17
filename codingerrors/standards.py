@@ -53,9 +53,14 @@ from .utils import hyph
 # ¬ : When in primary position should never be followed by
 ### Third sequence
 # @ : Ignore the 'error' if any of the following codes are present.
-
+# TODO: £ : Cannot be followed by in any position
 
 icd10_standards_dict = {
+    # Temp Position
+    "I460.UNSPEC:0:E": "?I460:.5",
+    "CKD.UNSPEC:0:E": "?N18:£N17",
+    "SPON.UNSPEC:0:E": "?M4798:/*",
+    "DCS.IX.10:0:E": "?J81:!I00-I01,I05-I09,I10,I111-I119,I12,I14,I15,I20-I25,I33,I35,I34,I38,I39,I40,I41,I42,I43,I44-I49,I51-I52",
     # ☑️ Zika Virus (U068) must always be followed by other specified Mosquito-borne viral fever (A929)
     # Amendment: Where <, add the secondary code.
     "DCS.I.5:0:E": "?U068:<A928",
@@ -140,17 +145,17 @@ icd10_standards_dict = {
     # broken up into a number of parts. Chronic obstructive pulmonary disease with acute lower respiratory infection
     # (J440) should not be coded with a Unspecified acute lower respiratory infection (J22).
     # Amendment: Remove the J22 as J440 already denotes that the lower respiratory infection is present.
-    # "DCS.X.5:0:E": "?J440:!J22",
+    "DCS.X.5:0:E": "?J440:!J22",
     # Chronic obstructive pulmonary disease, unspecified (J449) should not be coded with J22X.
     # Amendment: Change J449 to J440 to denote that it's COPD with an acute lower respiratory infection, and remove J22X.
-    # "DCS.X.5:1:E": "?J449:!J22",
+    "DCS.X.5:1:E": "?J449:!J22",
     # Chest infection and pneumonia
-    # "DCS.X.5:2:W": "?J18:!J22",
+    "DCS.X.5:2:W": "?J18:!J22",
     # COPD with pneumonia
-    # "DCS.X.5:3:E": "?J449:!J12-J18",
+    "DCS.X.5:3:E": "?J449:!J12-J18",
     # Emphysema (J43) cannot be coded with Chronic obstructive pulmonary disease (J44). J43 describes emphysemic episodes.
     # Amendment: Remove the J44.
-    # "DCS.X.5:4:E": "?J43:!J44",
+    "DCS.X.5:4:E": "?J43:!J44",
     "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
     "DCS.X.5:1:W": "?J18:!J22",
@@ -172,7 +177,7 @@ icd10_standards_dict = {
     # There is no need to code a formal diagnosis of Unspecified dementia (F03X) when Delirium superimposed on dementia (F051)
     # is present.
     # Amendment: Remove F03X.
-    "DCS.V.3:0:E": "?F051:!F03X",
+    "DCS.V.3:0:E": "?F03X:!F051",
     # It has been advised that all codes within Mental and behavioural disorders due to multiple drug use and use of other
     # psychoactive substances (F19) should not be coded besides all codes within  Mental and behavioural disorders due to
     # psychoactive substance use (F10-19) excluding F19, and Mental and behavioural disorders due to use of tobacco (F17)
@@ -243,6 +248,7 @@ icd10_standards_dict = {
     "DChS.XI.1:0:E": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Musculoskeletal 5th Character
     "DChS.XIII.1:0:E": "?M00-M25,M40-M54,M60-M99:~5..9",
+    
     # no need to assign urethral obstruction N368 with N40X
     "DCS.XIV.5:0:E": "?N40X:!N368",
     # Z72.0 tobacco use must not be coded                                                          FOR CURRENT SMOKER USE F17.1
