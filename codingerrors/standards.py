@@ -56,6 +56,19 @@ from .utils import hyph
 # TODO: £ : Cannot be followed by in any position
 
 icd10_standards_dict = {
+
+    # 4 step coding process | Q059 Spina Bifida should not be coded with G919 Hydrocephalus"
+    "FSCP:43:E": "?G919:!Q059",
+    # "DCS.XXII.11: Multisystem inflammatory syndrome associated with COVID-19 (U07.5) | U075 must be coded directly after U071 or U072 if applicable": [
+    "DCS.XXII.11:0:E": "?U075:€U071,U072",
+    # Diabetes mellitus (E10\u0096E14) | L97X Ulcer of lower limb sequenced before_E105_E115_E145 (diabetic ulcer)": [
+    "DCS.IV.1:3:E": "?L97X:£E105,E115,E145",
+    # "DChS.XVIII.1: Signs, symptoms and abnormal laboratory findings | Hypertension should not be coded with raised BP": [
+    "DChS.XVIII.1:0:E": "?R030:!I10",
+    # 4 step coding process | Z722 Drug use should not be coded with F55,F19,F11,F12,F13,F14,F15,F16": [
+    "FSCP:43:E": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
+    # "DChS.XIII.1: Fifth characters in Chapter XIII | M21 with invalid 5th character": [
+    "DChS.XIII.4:0:E": "?M00-M25,M40-M54,M60-M99:.5",
     # Temp Position
     "I460.UNSPEC:0:E": "?I460:.5",
     "CKD.UNSPEC:0:E": "?N18:£N17",
@@ -165,7 +178,7 @@ icd10_standards_dict = {
     "DCS.X.5:3:E": "?J449:!J439",
     # All codes in Respiratory failure (J960) should always be coded to the fifth character.
     # Amendment: If a fifth character is not present, add a 9.
-    "DCS.X.7:0:E": "?J960,J961,J969:.5",
+    "DCS.X.7:0:E": "?J96:.5",
     # The standard specifies that Gastroduodenitis, unspecified (K299) should only be assigned if the episode has both
     # (K297) and Duodenitis (K298) are present. From this a DQ error is thrown if both are present.
     # Amendment: Replace both with Gastroduodenitis (K299).
@@ -203,7 +216,7 @@ icd10_standards_dict = {
     # Atherosclerosis
     "DCS.IX.14:0:E": "?I70:.5",
     # Fifth character in Chapter XIX
-    "DCS.XIX.2:0:E": "?S02,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
+    "DCS.XIX.2:0:E": "?S02,S06,S12,S22,S32,S42,S52,S62,S72,S82,S92,T02,T08,T10,T12:.5",
     # Palliative care # LC YOU CAN CODE THEM TOGETHER, IF THE Z51.8 IS BEING USED TO IDENTIFY OTHER MEDICAL CARE BUT NEVER IN D01*
     "DCS.XXI.9:0:W": "?Z518:!Z515",
     # DM should be either Type 1/Type 2 or unknown
@@ -248,7 +261,6 @@ icd10_standards_dict = {
     "DChS.XI.1:0:E": "?K56,K400,K403,K413,K420,K430,K433,K436,K440,K450,K460:!K590",
     # Musculoskeletal 5th Character
     "DChS.XIII.1:0:E": "?M00-M25,M40-M54,M60-M99:~5..9",
-    
     # no need to assign urethral obstruction N368 with N40X
     "DCS.XIV.5:0:E": "?N40X:!N368",
     # Z72.0 tobacco use must not be coded                                                          FOR CURRENT SMOKER USE F17.1

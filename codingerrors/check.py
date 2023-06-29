@@ -95,6 +95,27 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "note": "%s cannot exist without one of %s"
                         % (icd10, "/".join(values)),
                     }
+            
+            elif rule == "£":
+                primary_code_position = icd10s.index(icd10)
+
+
+                for i in values:
+                    if i in icd10s:
+                        if icd10s.index(i) > primary_code_position:
+                            if standard not in results:
+                                results[standard] = {}
+
+                            results[standard][rule] = {
+                                "pass": False,
+                                "relevant": icd10,
+                                "note": "%s cannot be coded before %s"
+                                % (icd10, "/".join(values)),
+                            }
+
+                
+
+
 
             elif rule == "¿":
                 tim = [
