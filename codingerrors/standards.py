@@ -68,7 +68,7 @@ icd10_standards_dict = {
     # 4 step coding process | Z722 Drug use should not be coded with F55,F19,F11,F12,F13,F14,F15,F16": [
     "FSCP:43:E": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # "DChS.XIII.1: Fifth characters in Chapter XIII | M21 with invalid 5th character": [
-    "DChS.XIII.4:0:E": "?M00-M25,M40-M54,M60-M99:.5",
+    "DChS.XIII.4:0:E": "?M00-M13,M19,M21,M23-M29,M37-M49,M52-M62,M64-M66,M69-M74,M76-M91,M94,M97-M99:.5",
     # Temp Position
     "I460.UNSPEC:0:E": "?I460:.5",
     "CKD.UNSPEC:0:E": "?N18:£N17",
@@ -168,7 +168,7 @@ icd10_standards_dict = {
     "DCS.X.5:3:E": "?J449:!J12-J18",
     # Emphysema (J43) cannot be coded with Chronic obstructive pulmonary disease (J44). J43 describes emphysemic episodes.
     # Amendment: Remove the J44.
-    "DCS.X.5:4:E": "?J43:!J44",
+    "DCS.X.5:4:E": "?J439:!J449",
     "DCS.X.5:0:E": "?J440:!J22X",
     # Chest infection and pneumonia
     "DCS.X.5:1:W": "?J18:!J22",
