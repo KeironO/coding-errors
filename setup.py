@@ -11,7 +11,7 @@ with open(path.join(this_directory, "README.md")) as f:
 
 setup(
     name="codingerrors",
-    version="0.0.9",
+    version="0.1.0",
     description="Coding Dashboard Error Checker",
     long_description=long_description,
     long_description_content_type="text/markdown",
