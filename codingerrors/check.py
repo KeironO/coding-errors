@@ -47,7 +47,6 @@ def _check_rule_values(values, icd10s):
 
 def _check_against_standard(returned_standard, icd10s, icd10):
 
-
     results = {}
 
     for standard, rules in returned_standard.items():
@@ -69,7 +68,6 @@ def _check_against_standard(returned_standard, icd10s, icd10):
 
             elif rule == "€":
                 primary_code_position = icd10s.index(icd10)
-
                 if True in list(
                     itertools.chain(*list(itertools.chain(*list(mask_dict.values()))))
                 ):
@@ -97,25 +95,25 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                     }
             
             elif rule == "£":
+
                 primary_code_position = icd10s.index(icd10)
 
+                for key, value in mask_dict.items():
+                    for v in value:
+                        if True in v:
+                            pos = v.index(True)
 
-                for i in values:
-                    if i in icd10s:
-                        if icd10s.index(i) > primary_code_position:
-                            if standard not in results:
-                                results[standard] = {}
+                            if pos > primary_code_position:
+                                if standard not in results:
+                                    results[standard]= {}
+                                results[standard][rule] = {
+                                    "pass": False,
+                                    "relevant": icd10,
+                                    "note": "%s cannot be coded before %s"
+                                    % (icd10, key),
+                                }
 
-                            results[standard][rule] = {
-                                "pass": False,
-                                "relevant": icd10,
-                                "note": "%s cannot be coded before %s"
-                                % (icd10, "/".join(values)),
-                            }
-
-                
-
-
+                        
 
             elif rule == "¿":
                 tim = [
@@ -221,7 +219,7 @@ def _check_against_standard(returned_standard, icd10s, icd10):
                         "note": "None of %s found" % (",".join(values)),
                     }
             elif rule == ".":
-                if len(icd10) < int(values) and icd10[-1] != "9":
+                if len(icd10) < int(values):
                     if standard not in results:
                         results[standard] = {}
                     results[standard][rule] = {

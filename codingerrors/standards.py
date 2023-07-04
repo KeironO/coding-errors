@@ -53,10 +53,12 @@ from .utils import hyph
 # ¬ : When in primary position should never be followed by
 ### Third sequence
 # @ : Ignore the 'error' if any of the following codes are present.
-# TODO: £ : Cannot be followed by in any position
+# £ : Cannot be followed by in any position
 
 icd10_standards_dict = {
-
+    "DCS.XVI.2:0:E": "?P072&P073:{P070,P071",
+    # When coding skull fractures (S02.-) associated with intracranial injuries (S06.-); the intracranial injury (S06.-) must be sequenced first.
+    "DCS.XIX.1:E": "?S02:£S06",
     # 4 step coding process | Q059 Spina Bifida should not be coded with G919 Hydrocephalus"
     "FSCP:43:E": "?G919:!Q059",
     # "DCS.XXII.11: Multisystem inflammatory syndrome associated with COVID-19 (U07.5) | U075 must be coded directly after U071 or U072 if applicable": [
@@ -68,7 +70,7 @@ icd10_standards_dict = {
     # 4 step coding process | Z722 Drug use should not be coded with F55,F19,F11,F12,F13,F14,F15,F16": [
     "FSCP:43:E": "?F55,F19,F11,F12,F13,F14,F15,F16:!Z722",
     # "DChS.XIII.1: Fifth characters in Chapter XIII | M21 with invalid 5th character": [
-    "DChS.XIII.4:0:E": "?M00-M13,M19,M21,M23-M29,M37-M49,M52-M62,M64-M66,M69-M74,M76-M91,M94,M97-M99:.5",
+    "DChS.XIII.4:0:W": "?M00-M13,M19,M21,M23-M29,M37-M44,M46-M49,M52-M62,M64-M66,M69-M74,M76-M91,M94,M97-M99:.5",
     # Temp Position
     "I460.UNSPEC:0:E": "?I460:.5",
     "CKD.UNSPEC:0:E": "?N18:£N17",
@@ -1096,12 +1098,6 @@ opcs4_standards_dict = {
     # operations on heart
     "PSK6:0:E": "?L586:!K57,K62",
 }    
-
-
-
-opcs4_global_standards_dict = {
-    
-}
 
 
 def _build_standards_dict(standards_dict: dict = icd10_standards_dict) -> dict:
