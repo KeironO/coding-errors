@@ -464,6 +464,19 @@ icd10_standards_dict = {
     "CHICKS:06:E": "?Z20:&*",
     "CHICKS:07:E": "?Z60:&*",
     "CHICKS:08:E": "?Z80-Z99:&*",
+    "CHICKS:09:E": "?X00-X99:&*",
+    "CHICKS:10:E": "?Y00-Y99:&*",
+    "CHICKS:11:E": "?W00-W99:&*",
+    "CHICKS:12:E": "?Z02:&*",
+    "CHICKS:13:E": "?Z05:&*",
+    "CHICKS:14:E": "?Z06:&*",
+    "CHICKS:15:E": "?Z07:&*",
+    "CHICKS:16:E": "?Z10:&*",
+    "CHICKS:17:E": "?Z14-Z19:&*",
+    "CHICKS:18:E": "?Z21:&*",
+    "CHICKS:19:E": "?Z49-Z62:&*",
+    "CHICKS:20:E": "?Z77-Z99:&*",
+
 
     # Type 1 errors
     "T1:001:X": "?A182:!A163,A183",
